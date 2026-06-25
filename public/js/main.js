@@ -4,6 +4,10 @@
    ========================================== */
 
 document.addEventListener('DOMContentLoaded', async () => {
+  const currentPath = window.location.pathname;
+  if (currentPath.includes('/admin') || currentPath.includes('/dashboard')) {
+    return;
+  }
   initThemeToggle();
   await injectGlobalNavbarAndFooter();
   initScrollHeader();
