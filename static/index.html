@@ -1,0 +1,1414 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Preethi Nutrition Center | Personalized Diet & Fitness Wellness</title>
+  <meta name="description" content="Transform your health at Preethi Nutrition Center. Expert nutrition counseling, weight management, Zumba classes, personalized diet plans and fitness guidance."/>
+  <meta name="keywords" content="Preethi Nutrition Center, Weight Loss, Weight Gain, Zumba, Diet Consultation, Nutrition Counseling, BMI Calculator, Fitness Guidance"/>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌿</text></svg>"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="/style.css"/>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════════
+     NAVBAR
+════════════════════════════════════════════════════════════ -->
+<nav class="navbar" id="navbar">
+  <div class="nav-container">
+    <div class="nav-logo" onclick="navigateTo('home')">
+      <div class="logo-icon">🌿</div>
+      <div class="logo-text">
+        <span class="logo-main">Preethi</span>
+        <span class="logo-sub">Nutrition Center</span>
+      </div>
+    </div>
+
+    <ul class="nav-links" id="nav-links">
+      <li><button class="nav-btn active" id="nav-home" onclick="navigateTo('home')">Home</button></li>
+      <li><button class="nav-btn" id="nav-about" onclick="navigateTo('about')">About Us</button></li>
+      <li><button class="nav-btn" id="nav-services" onclick="navigateTo('services')">Services</button></li>
+      <li><button class="nav-btn" id="nav-diet" onclick="navigateTo('diet')">Diet Plans</button></li>
+      <li><button class="nav-btn" id="nav-zumba" onclick="navigateTo('zumba')">Zumba</button></li>
+      <li><button class="nav-btn" id="nav-success" onclick="navigateTo('success')">Success Stories</button></li>
+      <li><button class="nav-btn" id="nav-blog" onclick="navigateTo('blog')">Blog & Tips</button></li>
+      <li><button class="nav-btn" id="nav-contact" onclick="navigateTo('contact')">Contact</button></li>
+    </ul>
+
+    <div class="nav-actions">
+      <button class="theme-btn" onclick="toggleTheme()" id="theme-btn" title="Toggle Theme">🌙</button>
+      <div id="auth-controls">
+        <button class="btn-login" onclick="openModal('login-modal')">Login</button>
+        <button class="btn-register" onclick="openModal('register-modal')">Register</button>
+      </div>
+      <div id="user-menu" style="display:none;">
+        <div class="user-pill" onclick="toggleUserDropdown()">
+          <span class="user-avatar" id="user-avatar">U</span>
+          <span id="user-name-display">User</span>
+          <span>▾</span>
+        </div>
+        <div class="user-dropdown" id="user-dropdown" style="display:none;">
+          <button onclick="goToDashboard()">📊 Dashboard</button>
+          <button onclick="logout()">🚪 Logout</button>
+        </div>
+      </div>
+    </div>
+
+    <button class="hamburger" onclick="toggleMobile()" id="hamburger">☰</button>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobile-menu">
+    <button onclick="navigateTo('home');toggleMobile()">🏠 Home</button>
+    <button onclick="navigateTo('about');toggleMobile()">👤 About Us</button>
+    <button onclick="navigateTo('services');toggleMobile()">⭐ Services</button>
+    <button onclick="navigateTo('diet');toggleMobile()">🥗 Diet Plans</button>
+    <button onclick="navigateTo('zumba');toggleMobile()">💃 Zumba</button>
+    <button onclick="navigateTo('success');toggleMobile()">🏆 Success Stories</button>
+    <button onclick="navigateTo('blog');toggleMobile()">📝 Blog & Tips</button>
+    <button onclick="navigateTo('contact');toggleMobile()">📞 Contact</button>
+    <div id="mobile-auth">
+      <button class="btn-login" onclick="openModal('login-modal');toggleMobile()">Login</button>
+      <button class="btn-register" onclick="openModal('register-modal');toggleMobile()">Register</button>
+    </div>
+  </div>
+</nav>
+
+<!-- ═══════════════════════════════════════════════════════════
+     ALL PAGES WRAPPER
+════════════════════════════════════════════════════════════ -->
+<main id="app-root">
+
+<!-- ════════════════════════════
+     HOME PAGE
+════════════════════════════ -->
+<section id="page-home" class="page active">
+
+  <!-- Hero Banner -->
+  <div class="hero-section">
+    <div class="hero-bg-orb orb-1"></div>
+    <div class="hero-bg-orb orb-2"></div>
+    <div class="hero-bg-orb orb-3"></div>
+    <div class="hero-content container">
+      <div class="hero-text">
+        <div class="hero-badge">🏆 Tamil Nadu's #1 Nutrition Center</div>
+        <h1 class="hero-title">Transform Your Life with <span class="gradient-text">Expert Nutrition</span></h1>
+        <p class="hero-subtitle">Personalized diet plans, certified fitness coaching, and science-backed nutrition counseling — all in one place. Start your wellness journey today.</p>
+        <div class="hero-stats">
+          <div class="stat-item"><span class="stat-num" data-target="2000">0</span><span class="stat-label">Happy Clients</span></div>
+          <div class="stat-item"><span class="stat-num" data-target="15">0</span><span class="stat-label">Years Experience</span></div>
+          <div class="stat-item"><span class="stat-num" data-target="98">0</span><span class="stat-label">% Success Rate</span></div>
+          <div class="stat-item"><span class="stat-num" data-target="50">0</span><span class="stat-label">Programs</span></div>
+        </div>
+        <div class="hero-ctas">
+          <button class="btn-primary btn-lg" onclick="openModal('register-modal')">🚀 Start Your Journey</button>
+          <button class="btn-outline btn-lg" onclick="navigateTo('services')">Explore Services →</button>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="hero-card floating">
+          <div class="hero-card-icon">🌿</div>
+          <h3>Welcome to Preethi Nutrition Center</h3>
+          <p>Your trusted partner for a healthier, happier life through personalized nutrition science</p>
+          <div class="hero-features-list">
+            <div class="hf-item">✅ Nutrition & Weight Management</div>
+            <div class="hf-item">✅ Body Assessment & Tracking</div>
+            <div class="hf-item">✅ Accountability & Coaching</div>
+            <div class="hf-item">✅ Fitness & Wellness Support</div>
+            <div class="hf-item">✅ Community Support</div>
+            <div class="hf-item">✅ Healthy Eating Habits</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- About Overview Snippet -->
+  <div class="section-padding bg-subtle">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-badge">About Preethi Nutrition</div>
+        <h2 class="section-title">Our Comprehensive <span class="gradient-text">Support System</span></h2>
+        <p class="section-desc">We provide a holistic wellness experience covering every aspect of your health journey</p>
+      </div>
+      <div class="pillars-grid">
+        <div class="pillar-card">
+          <div class="pillar-icon">🥗</div>
+          <h3>Nutrition & Weight Management</h3>
+          <ul>
+            <li>Weight loss guidance</li>
+            <li>Weight gain guidance</li>
+            <li>Healthy lifestyle coaching</li>
+            <li>Meal planning suggestions</li>
+            <li>Nutrition education</li>
+          </ul>
+        </div>
+        <div class="pillar-card">
+          <div class="pillar-icon">📊</div>
+          <h3>Body Assessment & Tracking</h3>
+          <ul>
+            <li>Weight tracking</li>
+            <li>BMI, BMR, FAT, MUSCLE measurements</li>
+            <li>Progress monitoring</li>
+            <li>Goal setting and review</li>
+          </ul>
+        </div>
+        <div class="pillar-card">
+          <div class="pillar-icon">🤝</div>
+          <h3>Accountability & Coaching</h3>
+          <ul>
+            <li>Regular follow-ups</li>
+            <li>Motivation and support</li>
+            <li>Habit-building guidance</li>
+            <li>Daily/weekly check-ins</li>
+          </ul>
+        </div>
+        <div class="pillar-card">
+          <div class="pillar-icon">💪</div>
+          <h3>Fitness & Wellness Support</h3>
+          <ul>
+            <li>Exercise recommendations</li>
+            <li>Activity tracking</li>
+            <li>Healthy routine development</li>
+            <li>Lifestyle improvement coaching</li>
+          </ul>
+        </div>
+        <div class="pillar-card">
+          <div class="pillar-icon">👥</div>
+          <h3>Community Support</h3>
+          <ul>
+            <li>Group challenges</li>
+            <li>Wellness communities</li>
+            <li>Educational sessions</li>
+            <li>Success story sharing</li>
+          </ul>
+        </div>
+        <div class="pillar-card">
+          <div class="pillar-icon">🌊</div>
+          <h3>Healthy Eating Habits</h3>
+          <ul>
+            <li>Portion control</li>
+            <li>Hydration guidance</li>
+            <li>Understanding calories & protein</li>
+            <li>Nutrition basics education</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Services Overview -->
+  <div class="section-padding">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-badge">Our Programs</div>
+        <h2 class="section-title">What We <span class="gradient-text">Offer</span></h2>
+      </div>
+      <div class="services-grid">
+        <div class="service-card" onclick="navigateTo('services')">
+          <div class="service-emoji">🔥</div>
+          <h3>Weight Loss Programs</h3>
+          <p>Science-backed fat loss programs with sustainable dietary adjustments and guided fitness protocols.</p>
+          <span class="learn-more">Learn More →</span>
+        </div>
+        <div class="service-card" onclick="navigateTo('services')">
+          <div class="service-emoji">💪</div>
+          <h3>Weight Gain Programs</h3>
+          <p>Clean, healthy bulk programs for lean muscle gain with calorie-dense, nutritious meal planning.</p>
+          <span class="learn-more">Learn More →</span>
+        </div>
+        <div class="service-card" onclick="navigateTo('services')">
+          <div class="service-emoji">🩺</div>
+          <h3>Diet Consultation</h3>
+          <p>One-on-one consultations with certified dietitians to craft your personal nutrition roadmap.</p>
+          <span class="learn-more">Learn More →</span>
+        </div>
+        <div class="service-card" onclick="navigateTo('services')">
+          <div class="service-emoji">📚</div>
+          <h3>Nutrition Counseling</h3>
+          <p>In-depth education on macronutrients, micronutrients, and building sustainable food habits.</p>
+          <span class="learn-more">Learn More →</span>
+        </div>
+        <div class="service-card" onclick="navigateTo('zumba')">
+          <div class="service-emoji">💃</div>
+          <h3>Zumba Classes</h3>
+          <p>High-energy cardio dance classes for all fitness levels. Burn calories while having fun!</p>
+          <span class="learn-more">Learn More →</span>
+        </div>
+        <div class="service-card" onclick="navigateTo('diet')">
+          <div class="service-emoji">🥘</div>
+          <h3>Healthy Meal Planning</h3>
+          <p>Weekly customized meal plans tailored to your goals, taste preferences and health conditions.</p>
+          <span class="learn-more">Learn More →</span>
+        </div>
+        <div class="service-card" onclick="navigateTo('services')">
+          <div class="service-emoji">🏃</div>
+          <h3>Fitness Guidance</h3>
+          <p>Expert fitness coaching combining nutrition and exercise for maximum results and sustainability.</p>
+          <span class="learn-more">Learn More →</span>
+        </div>
+        <div class="service-card" onclick="openModal('register-modal')">
+          <div class="service-emoji">📈</div>
+          <h3>Health Checkup Tracking</h3>
+          <p>Monitor your BMI, BMR, body fat percentage, muscle mass and progress over time.</p>
+          <span class="learn-more">Get Started →</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BMI Calculator -->
+  <div class="section-padding bg-subtle">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-badge">Free Tool</div>
+        <h2 class="section-title">BMI <span class="gradient-text">Calculator</span></h2>
+        <p class="section-desc">Calculate your Body Mass Index instantly — no login required</p>
+      </div>
+      <div class="bmi-wrapper">
+        <div class="bmi-calc-card">
+          <div class="bmi-form">
+            <div class="form-row-2">
+              <div class="form-group">
+                <label>Weight (kg)</label>
+                <input type="number" id="bmi-weight" placeholder="e.g. 65" min="20" max="300"/>
+              </div>
+              <div class="form-group">
+                <label>Height (cm)</label>
+                <input type="number" id="bmi-height" placeholder="e.g. 165" min="100" max="250"/>
+              </div>
+            </div>
+            <div class="form-row-2">
+              <div class="form-group">
+                <label>Age</label>
+                <input type="number" id="bmi-age" placeholder="e.g. 30" min="1" max="120"/>
+              </div>
+              <div class="form-group">
+                <label>Gender</label>
+                <select id="bmi-gender">
+                  <option value="male">Male</option>
+                  <option value="female">Female</option>
+                </select>
+              </div>
+            </div>
+            <button class="btn-primary btn-full" onclick="calculateBMI()">Calculate BMI & BMR</button>
+          </div>
+          <div class="bmi-result" id="bmi-result" style="display:none;">
+            <div class="bmi-score-ring">
+              <div class="bmi-score-num" id="bmi-score">0.0</div>
+              <div class="bmi-score-label" id="bmi-label">—</div>
+            </div>
+            <div class="bmi-metrics">
+              <div class="bmi-metric"><span class="bm-icon">📏</span><span class="bm-label">BMR</span><span class="bm-value" id="bmr-value">—</span></div>
+              <div class="bmi-metric"><span class="bm-icon">🔥</span><span class="bm-label">Daily Calories</span><span class="bm-value" id="tdee-value">—</span></div>
+              <div class="bmi-metric"><span class="bm-icon">⚖️</span><span class="bm-label">Ideal Weight</span><span class="bm-value" id="ideal-weight">—</span></div>
+            </div>
+            <div class="bmi-gauge">
+              <div class="gauge-track">
+                <div class="gauge-fill" id="gauge-fill"></div>
+                <div class="gauge-marker" id="gauge-marker"></div>
+              </div>
+              <div class="gauge-labels">
+                <span>Underweight</span><span>Normal</span><span>Overweight</span><span>Obese</span>
+              </div>
+            </div>
+            <p class="bmi-advice" id="bmi-advice"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Daily Health Tips -->
+  <div class="section-padding">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-badge">Daily Wellness</div>
+        <h2 class="section-title">Daily <span class="gradient-text">Health Tips</span></h2>
+      </div>
+      <div class="tips-carousel">
+        <button class="tips-arrow left-arrow" onclick="prevTip()">‹</button>
+        <div class="tips-slide" id="tips-slide">
+          <!-- Rendered by JS -->
+        </div>
+        <button class="tips-arrow right-arrow" onclick="nextTip()">›</button>
+      </div>
+      <div class="tips-dots" id="tips-dots"></div>
+    </div>
+  </div>
+
+  <!-- Testimonials -->
+  <div class="section-padding bg-subtle">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-badge">Client Love</div>
+        <h2 class="section-title">What Our Clients <span class="gradient-text">Say</span></h2>
+      </div>
+      <div class="testimonials-grid">
+        <div class="testimonial-card">
+          <div class="stars">⭐⭐⭐⭐⭐</div>
+          <p>"I lost 18kg in 4 months with Preethi Nutrition Center. The personalized diet plan and regular follow-ups kept me on track. Best decision of my life!"</p>
+          <div class="client-info"><div class="client-avatar">R</div><div><strong>Ramya S.</strong><br/><small>Lost 18kg in 4 months</small></div></div>
+        </div>
+        <div class="testimonial-card">
+          <div class="stars">⭐⭐⭐⭐⭐</div>
+          <p>"The Zumba classes are so energetic and fun! I never thought I'd enjoy exercise this much. Combined with the diet plan, I feel 10 years younger!"</p>
+          <div class="client-info"><div class="client-avatar">P</div><div><strong>Priya K.</strong><br/><small>Zumba & Diet Program Member</small></div></div>
+        </div>
+        <div class="testimonial-card">
+          <div class="stars">⭐⭐⭐⭐⭐</div>
+          <p>"As a diabetic patient, I was worried about my diet. The nutrition counseling here completely changed my eating habits. My sugar levels are now well-controlled!"</p>
+          <div class="client-info"><div class="client-avatar">M</div><div><strong>Murugan T.</strong><br/><small>Diabetic Nutrition Program</small></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA Section -->
+  <div class="cta-section">
+    <div class="container">
+      <h2>Ready to Start Your <span class="gradient-text-light">Transformation?</span></h2>
+      <p>Join 2000+ happy clients who transformed their health with Preethi Nutrition Center</p>
+      <div class="cta-buttons">
+        <button class="btn-white" onclick="openModal('register-modal')">Book Free Consultation</button>
+        <button class="btn-outline-white" onclick="navigateTo('contact')">Call Us Now</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════
+     ABOUT US PAGE
+════════════════════════════ -->
+<section id="page-about" class="page">
+  <div class="page-hero teal-hero">
+    <div class="container">
+      <div class="section-badge">Our Story</div>
+      <h1>About <span class="gradient-text">Preethi Nutrition Center</span></h1>
+      <p>Empowering healthier lives through personalized nutrition science since 2009</p>
+    </div>
+  </div>
+
+  <div class="section-padding container">
+    <div class="about-intro-grid">
+      <div class="about-text">
+        <h2>Who We Are</h2>
+        <p>Preethi Nutrition Center is a premier wellness destination founded by <strong>Ms. Preethi</strong>, a certified Clinical Nutritionist and Diabetes Educator with over 15 years of experience. Our center combines evidence-based nutrition science with compassionate, personalized coaching to help each client achieve lasting health transformations.</p>
+        <p>We believe that true wellness is not just about losing weight — it's about building a healthy relationship with food, developing sustainable habits, and nurturing your body with the right nutrition at every stage of life.</p>
+        <div class="about-highlights">
+          <div class="ah-item"><span class="ah-icon">🎓</span><div><strong>Certified Experts</strong><br/>MSc Nutrition & Dietetics, Certified Diabetes Educator</div></div>
+          <div class="ah-item"><span class="ah-icon">🏥</span><div><strong>Holistic Approach</strong><br/>Nutrition + Fitness + Lifestyle coaching combined</div></div>
+          <div class="ah-item"><span class="ah-icon">🤝</span><div><strong>Personal Attention</strong><br/>One-on-one consultations with weekly follow-ups</div></div>
+        </div>
+      </div>
+      <div class="about-stats-panel">
+        <div class="asp-item"><div class="asp-num">2000+</div><div class="asp-label">Clients Served</div></div>
+        <div class="asp-item"><div class="asp-num">15+</div><div class="asp-label">Years Experience</div></div>
+        <div class="asp-item"><div class="asp-num">98%</div><div class="asp-label">Success Rate</div></div>
+        <div class="asp-item"><div class="asp-num">50+</div><div class="asp-label">Diet Programs</div></div>
+        <div class="asp-item"><div class="asp-num">5⭐</div><div class="asp-label">Average Rating</div></div>
+        <div class="asp-item"><div class="asp-num">100%</div><div class="asp-label">Personalized Plans</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-padding bg-subtle">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Our <span class="gradient-text">Specializations</span></h2>
+      </div>
+      <div class="spec-grid">
+        <div class="spec-card"><div class="spec-icon">⚖️</div><h3>Weight Management</h3><p>Scientific weight loss and gain programs with sustainable approaches that don't compromise your health or energy.</p></div>
+        <div class="spec-card"><div class="spec-icon">🩺</div><h3>Therapeutic Diets</h3><p>Special dietary protocols for diabetes, PCOS, thyroid disorders, hypertension, and other medical conditions.</p></div>
+        <div class="spec-card"><div class="spec-icon">👶</div><h3>Pediatric Nutrition</h3><p>Specialized nutrition guidance for infants, toddlers, school children, and teenagers for optimal growth and development.</p></div>
+        <div class="spec-card"><div class="spec-icon">👴</div><h3>Geriatric Nutrition</h3><p>Age-appropriate nutrition plans for senior citizens focusing on bone health, muscle preservation, and disease prevention.</p></div>
+        <div class="spec-card"><div class="spec-icon">🤰</div><h3>Women's Health</h3><p>Nutrition guidance for pregnancy, PCOS, menopause, and hormonal health tailored specifically for women's needs.</p></div>
+        <div class="spec-card"><div class="spec-icon">💃</div><h3>Fitness & Zumba</h3><p>Integration of fun fitness programs like Zumba with dietary guidance for comprehensive wellness outcomes.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-padding">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Our <span class="gradient-text">Philosophy</span></h2>
+      </div>
+      <div class="philosophy-grid">
+        <div class="phil-card"><div class="phil-num">01</div><h3>Science-Based</h3><p>Every recommendation is grounded in the latest nutrition research and evidence-based dietary guidelines.</p></div>
+        <div class="phil-card"><div class="phil-num">02</div><h3>Personalized</h3><p>No two people are the same. We create unique plans based on your body type, health history, and lifestyle.</p></div>
+        <div class="phil-card"><div class="phil-num">03</div><h3>Sustainable</h3><p>We focus on long-term habit change, not quick fixes. Our programs are designed to last a lifetime.</p></div>
+        <div class="phil-card"><div class="phil-num">04</div><h3>Supportive</h3><p>Our team provides constant motivation, accountability and support throughout your entire wellness journey.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════
+     SERVICES PAGE
+════════════════════════════ -->
+<section id="page-services" class="page">
+  <div class="page-hero teal-hero">
+    <div class="container">
+      <div class="section-badge">Our Programs</div>
+      <h1>Our <span class="gradient-text">Services</span></h1>
+      <p>Comprehensive wellness programs designed for every health goal</p>
+    </div>
+  </div>
+
+  <div class="section-padding container">
+    <div class="service-detail-card">
+      <div class="sdc-header"><div class="sdc-icon">🔥</div><div><h2>Weight Loss Programs</h2><p class="sdc-tag">Most Popular • 8–12 Week Programs</p></div></div>
+      <p>Our weight loss programs are built on a foundation of metabolic science, calorie balance, and behavioral coaching. We ensure fat loss while preserving lean muscle mass, keeping energy levels high throughout the process.</p>
+      <div class="sdc-features">
+        <h4>What's Included:</h4>
+        <div class="feature-pills">
+          <span>📊 Initial Body Composition Analysis</span>
+          <span>🥗 Custom Weekly Meal Plans</span>
+          <span>💧 Hydration Protocol</span>
+          <span>🏃 Exercise Recommendations</span>
+          <span>📅 Weekly Follow-up Sessions</span>
+          <span>📱 Daily Check-in Support</span>
+          <span>📉 Progress Tracking Dashboard</span>
+          <span>🧠 Behavioral Coaching</span>
+        </div>
+      </div>
+      <button class="btn-primary" onclick="openModal('register-modal')">Book Consultation</button>
+    </div>
+
+    <div class="service-detail-card">
+      <div class="sdc-header"><div class="sdc-icon">💪</div><div><h2>Weight Gain Programs</h2><p class="sdc-tag">Healthy Bulk • 10–16 Week Programs</p></div></div>
+      <p>Designed for underweight individuals and those wanting to build lean muscle mass. Our clean bulk programs use nutrient-dense, calorie-surplus meal plans combined with resistance training guidance.</p>
+      <div class="sdc-features">
+        <h4>What's Included:</h4>
+        <div class="feature-pills">
+          <span>🔬 Metabolic Rate Assessment</span>
+          <span>🍖 High-Protein Meal Planning</span>
+          <span>🏋️ Muscle Building Guidelines</span>
+          <span>⏱️ Meal Timing Optimization</span>
+          <span>💊 Supplement Guidance</span>
+          <span>📈 Muscle Mass Tracking</span>
+        </div>
+      </div>
+      <button class="btn-primary" onclick="openModal('register-modal')">Book Consultation</button>
+    </div>
+
+    <div class="service-detail-card">
+      <div class="sdc-header"><div class="sdc-icon">🩺</div><div><h2>Diet Consultation</h2><p class="sdc-tag">One-on-One • 60 min Session</p></div></div>
+      <p>A comprehensive one-on-one session with our certified dietitian. We analyze your current eating habits, health history, lab reports, and lifestyle to design your personalized nutrition roadmap.</p>
+      <div class="sdc-features">
+        <h4>What's Included:</h4>
+        <div class="feature-pills">
+          <span>📋 Diet History Assessment</span>
+          <span>🧪 Lab Report Analysis</span>
+          <span>🎯 Goal Setting</span>
+          <span>📝 Personalized Diet Chart</span>
+          <span>📞 Follow-up Call</span>
+          <span>📚 Nutrition Education</span>
+        </div>
+      </div>
+      <button class="btn-primary" onclick="openModal('register-modal')">Book Consultation</button>
+    </div>
+
+    <div class="service-detail-card">
+      <div class="sdc-header"><div class="sdc-icon">📚</div><div><h2>Nutrition Counseling</h2><p class="sdc-tag">Education-Based • Ongoing Support</p></div></div>
+      <p>Understanding what you eat and why is the foundation of lasting change. Our nutrition counseling sessions teach you about macronutrients, micronutrients, reading food labels, and building intuitive eating habits.</p>
+      <div class="sdc-features">
+        <h4>Topics Covered:</h4>
+        <div class="feature-pills">
+          <span>🍎 Macronutrients & Micronutrients</span>
+          <span>🏷️ Reading Food Labels</span>
+          <span>⚖️ Portion Control Techniques</span>
+          <span>🕐 Meal Timing & Frequency</span>
+          <span>🔄 Mindful Eating Practices</span>
+          <span>🛒 Healthy Grocery Shopping</span>
+        </div>
+      </div>
+      <button class="btn-primary" onclick="openModal('register-modal')">Book Session</button>
+    </div>
+
+    <div class="service-detail-card">
+      <div class="sdc-header"><div class="sdc-icon">🏃</div><div><h2>Fitness Guidance</h2><p class="sdc-tag">Combined Nutrition + Exercise</p></div></div>
+      <p>Our fitness guidance program combines personalized nutrition with structured exercise recommendations. We work with your fitness level, available equipment, and schedule to create realistic, effective workout plans.</p>
+      <div class="sdc-features">
+        <h4>What's Included:</h4>
+        <div class="feature-pills">
+          <span>🎯 Fitness Goal Assessment</span>
+          <span>📋 Exercise Prescription</span>
+          <span>🏠 Home Workout Plans</span>
+          <span>🏋️ Gym Workout Routines</span>
+          <span>⏰ Activity Scheduling</span>
+          <span>📊 Progress Monitoring</span>
+        </div>
+      </div>
+      <button class="btn-primary" onclick="openModal('register-modal')">Get Started</button>
+    </div>
+
+    <div class="service-detail-card">
+      <div class="sdc-header"><div class="sdc-icon">📈</div><div><h2>Health Checkup Tracking</h2><p class="sdc-tag">Digital Health Monitoring</p></div></div>
+      <p>Our digital health tracking system allows you to monitor all your health metrics in one place. Track your weight, BMI, BMR, body fat %, muscle mass, daily steps, and water intake with beautiful progress charts.</p>
+      <div class="sdc-features">
+        <h4>Metrics Tracked:</h4>
+        <div class="feature-pills">
+          <span>⚖️ Weight Progress</span>
+          <span>📐 BMI Calculation</span>
+          <span>🔥 BMR & TDEE</span>
+          <span>🏃 Daily Steps</span>
+          <span>💧 Water Intake</span>
+          <span>💪 Muscle Mass %</span>
+          <span>🫀 Body Fat %</span>
+          <span>📅 Progress History</span>
+        </div>
+      </div>
+      <button class="btn-primary" onclick="openModal('register-modal')">Start Tracking</button>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════
+     DIET PLANS PAGE
+════════════════════════════ -->
+<section id="page-diet" class="page">
+  <div class="page-hero teal-hero">
+    <div class="container">
+      <div class="section-badge">Nutrition Plans</div>
+      <h1>Specialized <span class="gradient-text">Diet Plans</span></h1>
+      <p>Science-backed nutrition plans for every age, gender, and health condition</p>
+    </div>
+  </div>
+
+  <div class="section-padding container">
+    <div class="diet-categories">
+
+      <div class="diet-cat-card">
+        <div class="dcc-header orange"><span>👴</span> Old-Age Nutrition</div>
+        <div class="dcc-body">
+          <p>Specialized nutritional support for senior citizens (60+ years) focusing on preventing age-related health decline.</p>
+          <h4>Key Focus Areas:</h4>
+          <ul>
+            <li>🦴 Calcium & Vitamin D for bone strength</li>
+            <li>💊 B12 & Iron for preventing anemia</li>
+            <li>🧠 Omega-3 for cognitive health</li>
+            <li>💧 Hydration strategies for elders</li>
+            <li>🌿 Anti-inflammatory food choices</li>
+            <li>🍽️ Soft food options for dental issues</li>
+          </ul>
+          <div class="dcc-actions">
+            <button class="btn-primary" onclick="openModal('register-modal')">Get Plan</button>
+            <button class="btn-outline" onclick="downloadSamplePlan('old-age')">📥 Sample PDF</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="diet-cat-card">
+        <div class="dcc-header pink"><span>✨</span> Skin Health Nutrition</div>
+        <div class="dcc-body">
+          <p>Nourish your skin from within. Our skin health diet focuses on nutrients that promote radiance, reduce acne, and slow aging.</p>
+          <h4>Key Focus Areas:</h4>
+          <ul>
+            <li>💧 Hydration — 3L water daily protocol</li>
+            <li>🥑 Healthy fats (Omega-3, Omega-6)</li>
+            <li>🍊 Vitamin C-rich foods for collagen</li>
+            <li>🌰 Zinc & Selenium for acne control</li>
+            <li>🫚 Antioxidant-rich foods</li>
+            <li>🚫 Foods to avoid for clearer skin</li>
+          </ul>
+          <div class="dcc-actions">
+            <button class="btn-primary" onclick="openModal('register-modal')">Get Plan</button>
+            <button class="btn-outline" onclick="downloadSamplePlan('skin')">📥 Sample PDF</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="diet-cat-card">
+        <div class="dcc-header green"><span>👶</span> Children Nutrition</div>
+        <div class="dcc-body">
+          <p>Age-appropriate nutrition plans for children (2–18 years) designed to support healthy growth, brain development, and immunity.</p>
+          <h4>Key Focus Areas:</h4>
+          <ul>
+            <li>🥛 Calcium for bone and teeth development</li>
+            <li>🧠 DHA & Iron for brain development</li>
+            <li>🌈 Rainbow diet for micronutrients</li>
+            <li>🍱 Healthy tiffin box ideas</li>
+            <li>🚫 Managing picky eating</li>
+            <li>⚡ Energy-boosting snack ideas</li>
+          </ul>
+          <div class="dcc-actions">
+            <button class="btn-primary" onclick="openModal('register-modal')">Get Plan</button>
+            <button class="btn-outline" onclick="downloadSamplePlan('children')">📥 Sample PDF</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="diet-cat-card">
+        <div class="dcc-header purple"><span>🌸</span> Women Nutrition</div>
+        <div class="dcc-body">
+          <p>Comprehensive nutrition guidance addressing women's unique health needs at every stage of life — from adolescence to menopause.</p>
+          <h4>Key Focus Areas:</h4>
+          <ul>
+            <li>🩸 Iron for menstrual health & anemia</li>
+            <li>🤰 Pre & post-natal nutrition</li>
+            <li>🌡️ PCOS & hormonal balance diet</li>
+            <li>🦴 Bone health in menopause</li>
+            <li>💪 Protein for muscle preservation</li>
+            <li>🧘 Stress & gut health connection</li>
+          </ul>
+          <div class="dcc-actions">
+            <button class="btn-primary" onclick="openModal('register-modal')">Get Plan</button>
+            <button class="btn-outline" onclick="downloadSamplePlan('women')">📥 Sample PDF</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="diet-cat-card">
+        <div class="dcc-header blue"><span>💪</span> Male Nutrition</div>
+        <div class="dcc-body">
+          <p>Tailored nutrition programs for men focusing on muscle gain, fat loss, testosterone support, and overall vitality.</p>
+          <h4>Key Focus Areas:</h4>
+          <ul>
+            <li>🥩 High-protein diet for muscle gain</li>
+            <li>⚡ Testosterone-boosting foods</li>
+            <li>🔥 Metabolic rate optimization</li>
+            <li>💓 Heart health nutrition</li>
+            <li>🏋️ Pre & post-workout nutrition</li>
+            <li>🚫 Gut health for men</li>
+          </ul>
+          <div class="dcc-actions">
+            <button class="btn-primary" onclick="openModal('register-modal')">Get Plan</button>
+            <button class="btn-outline" onclick="downloadSamplePlan('male')">📥 Sample PDF</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="diet-cat-card">
+        <div class="dcc-header teal"><span>🏠</span> Weight Loss From Home</div>
+        <div class="dcc-body">
+          <p>A complete at-home weight loss program — no gym required. Combines diet modifications with home-friendly exercises for maximum fat loss.</p>
+          <h4>Key Focus Areas:</h4>
+          <ul>
+            <li>📉 Calorie deficit meal planning</li>
+            <li>🏃 Home HIIT workout routines</li>
+            <li>🪑 NEAT activity optimization</li>
+            <li>⏰ Intermittent fasting guidance</li>
+            <li>🛒 Budget-friendly healthy foods</li>
+            <li>😴 Sleep & stress management</li>
+          </ul>
+          <div class="dcc-actions">
+            <button class="btn-primary" onclick="openModal('register-modal')">Get Plan</button>
+            <button class="btn-outline" onclick="downloadSamplePlan('home-loss')">📥 Sample PDF</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="diet-cat-card">
+        <div class="dcc-header coral"><span>🏋️</span> Exercise From Home</div>
+        <div class="dcc-body">
+          <p>Structured home workout plans paired with the right nutrition for each exercise intensity. No equipment needed for most routines.</p>
+          <h4>Key Focus Areas:</h4>
+          <ul>
+            <li>💪 Bodyweight strength training</li>
+            <li>🧘 Yoga & stretching routines</li>
+            <li>⚡ HIIT cardio workouts</li>
+            <li>🥗 Pre/Post workout meals</li>
+            <li>💧 Exercise hydration protocol</li>
+            <li>📅 Weekly workout scheduling</li>
+          </ul>
+          <div class="dcc-actions">
+            <button class="btn-primary" onclick="openModal('register-modal')">Get Plan</button>
+            <button class="btn-outline" onclick="downloadSamplePlan('exercise')">📥 Sample PDF</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="diet-cat-card">
+        <div class="dcc-header dark"><span>🩺</span> Skin Care Nutrition</div>
+        <div class="dcc-body">
+          <p>Beyond topical skincare — heal your skin from within with targeted nutrition, lifestyle modifications, and detox protocols.</p>
+          <h4>Key Focus Areas:</h4>
+          <ul>
+            <li>🫧 Detox food protocols</li>
+            <li>🌿 Anti-acne nutrition plan</li>
+            <li>🌞 UV protection through diet</li>
+            <li>🧬 Collagen-boosting nutrition</li>
+            <li>🌡️ Anti-inflammatory diet</li>
+            <li>💊 Essential skin supplements</li>
+          </ul>
+          <div class="dcc-actions">
+            <button class="btn-primary" onclick="openModal('register-modal')">Get Plan</button>
+            <button class="btn-outline" onclick="downloadSamplePlan('skincare')">📥 Sample PDF</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════
+     ZUMBA PAGE
+════════════════════════════ -->
+<section id="page-zumba" class="page">
+  <div class="page-hero zumba-hero">
+    <div class="container">
+      <div class="section-badge">💃 Dance Fitness</div>
+      <h1>Zumba <span class="gradient-text">Classes</span></h1>
+      <p>High-energy dance fitness classes for all levels — burn calories while having the time of your life!</p>
+    </div>
+  </div>
+
+  <div class="section-padding container">
+    <div class="zumba-intro grid-2">
+      <div>
+        <h2>Why Choose Our <span class="gradient-text">Zumba Classes?</span></h2>
+        <p>Our Zumba classes are led by certified instructors and are designed to be fun, inclusive, and effective. Whether you're a complete beginner or a seasoned dancer, our classes welcome everyone!</p>
+        <div class="zumba-benefits">
+          <div class="zb-item"><span>💃</span><div><strong>Fun Cardio</strong><br/>Burn 400–600 calories per session</div></div>
+          <div class="zb-item"><span>🎵</span><div><strong>Great Music</strong><br/>Latin, Bollywood, and pop beats</div></div>
+          <div class="zb-item"><span>👥</span><div><strong>Group Energy</strong><strong></strong><br/>Supportive community environment</div></div>
+          <div class="zb-item"><span>🏆</span><div><strong>Certified Trainers</strong><br/>Licensed Zumba instructors</div></div>
+          <div class="zb-item"><span>⏱️</span><div><strong>45–60 Min Classes</strong><br/>Full body cardio workout</div></div>
+          <div class="zb-item"><span>🌟</span><div><strong>All Levels Welcome</strong><br/>Beginner to advanced</div></div>
+        </div>
+      </div>
+      <div class="zumba-visual">
+        <div class="zumba-emoji-card">💃🕺🎵🔥</div>
+        <h3>Zumba with Preethi Nutrition</h3>
+        <p>Experience the joy of dancing your way to fitness!</p>
+      </div>
+    </div>
+
+    <div class="section-header" style="margin-top:60px">
+      <h2 class="section-title">Class <span class="gradient-text">Schedule</span></h2>
+    </div>
+    <div class="schedule-table-wrapper">
+      <table class="schedule-table">
+        <thead>
+          <tr><th>Day</th><th>Time</th><th>Class Type</th><th>Level</th><th>Instructor</th><th>Action</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Monday</td><td>6:00 AM – 7:00 AM</td><td>Zumba Classic</td><td>All Levels</td><td>Preethi Ma'am</td><td><button class="btn-sm" onclick="openModal('register-modal')">Book</button></td></tr>
+          <tr><td>Monday</td><td>7:00 PM – 8:00 PM</td><td>Zumba Toning</td><td>Intermediate</td><td>Preethi Ma'am</td><td><button class="btn-sm" onclick="openModal('register-modal')">Book</button></td></tr>
+          <tr><td>Wednesday</td><td>6:00 AM – 7:00 AM</td><td>Zumba Gold (Seniors)</td><td>Beginner</td><td>Preethi Ma'am</td><td><button class="btn-sm" onclick="openModal('register-modal')">Book</button></td></tr>
+          <tr><td>Wednesday</td><td>7:00 PM – 8:00 PM</td><td>High Intensity Zumba</td><td>Advanced</td><td>Preethi Ma'am</td><td><button class="btn-sm" onclick="openModal('register-modal')">Book</button></td></tr>
+          <tr><td>Friday</td><td>6:00 AM – 7:00 AM</td><td>Zumba Dance Fit</td><td>All Levels</td><td>Preethi Ma'am</td><td><button class="btn-sm" onclick="openModal('register-modal')">Book</button></td></tr>
+          <tr><td>Saturday</td><td>8:00 AM – 9:30 AM</td><td>Weekend Mega Class</td><td>All Levels</td><td>Preethi Ma'am</td><td><button class="btn-sm" onclick="openModal('register-modal')">Book</button></td></tr>
+          <tr><td>Sunday</td><td>9:00 AM – 10:00 AM</td><td>Family Zumba Fun</td><td>Family</td><td>Preethi Ma'am</td><td><button class="btn-sm" onclick="openModal('register-modal')">Book</button></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="section-header" style="margin-top:60px">
+      <h2 class="section-title">Membership <span class="gradient-text">Plans</span></h2>
+    </div>
+    <div class="pricing-grid">
+      <div class="price-card">
+        <div class="price-badge">Starter</div>
+        <div class="price-amount">₹999<span>/month</span></div>
+        <ul>
+          <li>✅ 8 Classes per month</li>
+          <li>✅ All class types</li>
+          <li>✅ Progress tracking</li>
+          <li>❌ Personal coaching</li>
+          <li>❌ Diet consultation</li>
+        </ul>
+        <button class="btn-outline" onclick="openModal('register-modal')">Get Started</button>
+      </div>
+      <div class="price-card featured">
+        <div class="price-badge">⭐ Popular</div>
+        <div class="price-amount">₹1999<span>/month</span></div>
+        <ul>
+          <li>✅ Unlimited Classes</li>
+          <li>✅ All class types</li>
+          <li>✅ Progress tracking</li>
+          <li>✅ Monthly diet consultation</li>
+          <li>❌ Personal coaching</li>
+        </ul>
+        <button class="btn-primary" onclick="openModal('register-modal')">Join Now</button>
+      </div>
+      <div class="price-card">
+        <div class="price-badge">Premium</div>
+        <div class="price-amount">₹3499<span>/month</span></div>
+        <ul>
+          <li>✅ Unlimited Classes</li>
+          <li>✅ All class types</li>
+          <li>✅ Progress tracking</li>
+          <li>✅ Weekly diet consultation</li>
+          <li>✅ Personal fitness coaching</li>
+        </ul>
+        <button class="btn-outline" onclick="openModal('register-modal')">Go Premium</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════
+     SUCCESS STORIES PAGE
+════════════════════════════ -->
+<section id="page-success" class="page">
+  <div class="page-hero teal-hero">
+    <div class="container">
+      <div class="section-badge">Transformations</div>
+      <h1>Success <span class="gradient-text">Stories</span></h1>
+      <p>Real people, real results — inspiring transformations from our clients</p>
+    </div>
+  </div>
+
+  <div class="section-padding container">
+    <div class="stories-grid">
+      <div class="story-card">
+        <div class="story-avatar" style="background:linear-gradient(135deg,#0f766e,#14b8a6)">R</div>
+        <div class="story-content">
+          <h3>Ramya S. — Lost 22kg in 5 months</h3>
+          <div class="story-tags"><span>Weight Loss</span><span>PCOS</span></div>
+          <p>"I had been struggling with PCOS and weight gain for 3 years. After joining Preethi Nutrition Center, my diet was completely revamped. The weekly follow-ups kept me accountable, and I lost 22kg without feeling starved. My PCOS symptoms improved dramatically, and I feel like myself again!"</p>
+          <div class="story-metrics">
+            <div class="sm-item"><div class="sm-val">22kg</div><div class="sm-lbl">Weight Lost</div></div>
+            <div class="sm-item"><div class="sm-val">5 months</div><div class="sm-lbl">Duration</div></div>
+            <div class="sm-item"><div class="sm-val">⭐⭐⭐⭐⭐</div><div class="sm-lbl">Rating</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="story-card">
+        <div class="story-avatar" style="background:linear-gradient(135deg,#7c3aed,#a78bfa)">K</div>
+        <div class="story-content">
+          <h3>Karthik R. — Gained 8kg muscle in 4 months</h3>
+          <div class="story-tags"><span>Muscle Gain</span><span>Fitness</span></div>
+          <p>"I was always skinny and couldn't gain weight no matter what I ate. The nutritionist here designed a calorie-surplus plan specific to my metabolism. Combined with the gym workout routine they suggested, I gained 8kg of lean muscle in just 4 months. Absolutely life-changing!"</p>
+          <div class="story-metrics">
+            <div class="sm-item"><div class="sm-val">8kg</div><div class="sm-lbl">Muscle Gained</div></div>
+            <div class="sm-item"><div class="sm-val">4 months</div><div class="sm-lbl">Duration</div></div>
+            <div class="sm-item"><div class="sm-val">⭐⭐⭐⭐⭐</div><div class="sm-lbl">Rating</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="story-card">
+        <div class="story-avatar" style="background:linear-gradient(135deg,#f59e0b,#fcd34d)">M</div>
+        <div class="story-content">
+          <h3>Meena A. — Controlled diabetes naturally</h3>
+          <div class="story-tags"><span>Diabetes</span><span>Diet Therapy</span></div>
+          <p>"My HbA1c was 9.2% when I first came here. With the diabetic-friendly meal plans and portion control guidance, it dropped to 6.4% in 3 months without any change in medication. The nutritionist explained everything so clearly. I now cook healthy for my whole family!"</p>
+          <div class="story-metrics">
+            <div class="sm-item"><div class="sm-val">9.2→6.4%</div><div class="sm-lbl">HbA1c Drop</div></div>
+            <div class="sm-item"><div class="sm-val">3 months</div><div class="sm-lbl">Duration</div></div>
+            <div class="sm-item"><div class="sm-val">⭐⭐⭐⭐⭐</div><div class="sm-lbl">Rating</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="story-card">
+        <div class="story-avatar" style="background:linear-gradient(135deg,#ec4899,#f9a8d4)">P</div>
+        <div class="story-content">
+          <h3>Priya V. — Zumba + Diet transformation</h3>
+          <div class="story-tags"><span>Zumba</span><span>Weight Loss</span></div>
+          <p>"I joined the Zumba classes expecting just a workout, but I got so much more. The trainers are so energetic and motivating! I also got a personalized diet plan and together I lost 15kg in 3 months. I look forward to every class — it's the highlight of my day!"</p>
+          <div class="story-metrics">
+            <div class="sm-item"><div class="sm-val">15kg</div><div class="sm-lbl">Weight Lost</div></div>
+            <div class="sm-item"><div class="sm-val">3 months</div><div class="sm-lbl">Duration</div></div>
+            <div class="sm-item"><div class="sm-val">⭐⭐⭐⭐⭐</div><div class="sm-lbl">Rating</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════
+     BLOG & TIPS PAGE
+════════════════════════════ -->
+<section id="page-blog" class="page">
+  <div class="page-hero teal-hero">
+    <div class="container">
+      <div class="section-badge">Knowledge Hub</div>
+      <h1>Blog & <span class="gradient-text">Health Tips</span></h1>
+      <p>Expert nutrition articles and daily wellness tips from our certified team</p>
+    </div>
+  </div>
+
+  <div class="section-padding container">
+    <div class="blog-filter">
+      <button class="filter-btn active" onclick="filterBlog('all',this)">All</button>
+      <button class="filter-btn" onclick="filterBlog('old-age',this)">Old-Age Nutrition</button>
+      <button class="filter-btn" onclick="filterBlog('skin',this)">Skin Health</button>
+      <button class="filter-btn" onclick="filterBlog('children',this)">Children Nutrition</button>
+      <button class="filter-btn" onclick="filterBlog('weight-loss',this)">Weight Loss</button>
+      <button class="filter-btn" onclick="filterBlog('women',this)">Women Nutrition</button>
+      <button class="filter-btn" onclick="filterBlog('men',this)">Male Nutrition</button>
+    </div>
+
+    <div class="blog-grid" id="blog-grid">
+      <!-- Rendered by JS -->
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════
+     CONTACT PAGE
+════════════════════════════ -->
+<section id="page-contact" class="page">
+  <div class="page-hero teal-hero">
+    <div class="container">
+      <div class="section-badge">Get In Touch</div>
+      <h1>Contact <span class="gradient-text">Us</span></h1>
+      <p>We'd love to hear from you. Book a consultation or drop us a message!</p>
+    </div>
+  </div>
+
+  <div class="section-padding container">
+    <div class="contact-grid">
+      <div class="contact-info">
+        <h2>Visit or Call Us</h2>
+        <div class="ci-item"><span class="ci-icon">📍</span><div><strong>Address</strong><br/>Preethi Nutrition Center,<br/>123 Wellness Street, Anna Nagar,<br/>Chennai - 600040, Tamil Nadu</div></div>
+        <div class="ci-item"><span class="ci-icon">📞</span><div><strong>Phone</strong><br/>+91 98765 43210<br/>+91 98765 43211</div></div>
+        <div class="ci-item"><span class="ci-icon">📧</span><div><strong>Email</strong><br/>info@preethinutrition.com<br/>appointments@preethinutrition.com</div></div>
+        <div class="ci-item"><span class="ci-icon">🕐</span><div><strong>Working Hours</strong><br/>Mon – Sat: 6:00 AM – 8:00 PM<br/>Sunday: 8:00 AM – 1:00 PM</div></div>
+        <div class="ci-item"><span class="ci-icon">💬</span><div><strong>WhatsApp</strong><br/>+91 98765 43210<br/><button class="btn-whatsapp" onclick="window.open('https://wa.me/919876543210')">Chat on WhatsApp</button></div></div>
+      </div>
+
+      <div class="contact-form-card">
+        <h3>Book a Free Consultation</h3>
+        <form id="contact-form" onsubmit="submitContact(event)">
+          <div class="form-row-2">
+            <div class="form-group">
+              <label>Full Name *</label>
+              <input type="text" id="cf-name" required placeholder="Your full name"/>
+            </div>
+            <div class="form-group">
+              <label>Phone Number *</label>
+              <input type="tel" id="cf-phone" required placeholder="+91 XXXXX XXXXX"/>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Email Address</label>
+            <input type="email" id="cf-email" placeholder="your@email.com"/>
+          </div>
+          <div class="form-group">
+            <label>Service Interested In *</label>
+            <select id="cf-service" required>
+              <option value="">Select a service...</option>
+              <option>Weight Loss Program</option>
+              <option>Weight Gain Program</option>
+              <option>Diet Consultation</option>
+              <option>Nutrition Counseling</option>
+              <option>Zumba Classes</option>
+              <option>Healthy Meal Planning</option>
+              <option>Fitness Guidance</option>
+              <option>Health Checkup Tracking</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Health Goals / Message</label>
+            <textarea id="cf-message" rows="4" placeholder="Tell us about your health goals, current challenges, or any questions..."></textarea>
+          </div>
+          <button type="submit" class="btn-primary btn-full">Send Message & Book Consultation</button>
+        </form>
+        <div class="form-success" id="contact-success" style="display:none;">
+          <div class="success-icon">✅</div>
+          <h3>Message Sent Successfully!</h3>
+          <p>Thank you for reaching out. Our team will contact you within 24 hours to confirm your consultation.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════
+     CUSTOMER DASHBOARD
+════════════════════════════ -->
+<section id="page-customer-dashboard" class="page">
+  <div class="dashboard-layout">
+    <div class="dash-sidebar">
+      <div class="dash-user-info">
+        <div class="dash-avatar" id="dash-avatar">U</div>
+        <div class="dash-user-name" id="dash-user-name">User</div>
+        <div class="dash-user-email" id="dash-user-email">user@email.com</div>
+      </div>
+      <nav class="dash-nav">
+        <button class="dash-nav-btn active" onclick="showDashTab('overview','customer')">📊 Overview</button>
+        <button class="dash-nav-btn" onclick="showDashTab('health-tracker','customer')">💪 Health Tracker</button>
+        <button class="dash-nav-btn" onclick="showDashTab('appointments','customer')">📅 My Appointments</button>
+        <button class="dash-nav-btn" onclick="showDashTab('diet-plans-dl','customer')">🥗 Diet Plans</button>
+        <button class="dash-nav-btn" onclick="showDashTab('bmi-tracker','customer')">📐 BMI & Body Stats</button>
+        <button class="dash-nav-btn" onclick="showDashTab('tips-personal','customer')">💡 Personal Tips</button>
+        <button class="dash-nav-btn" onclick="logout()">🚪 Logout</button>
+      </nav>
+    </div>
+
+    <div class="dash-content">
+
+      <!-- Overview Tab -->
+      <div class="dash-tab active" id="tab-overview">
+        <h2 class="dash-title">Good Morning! 🌿</h2>
+        <p class="dash-subtitle">Here's your health summary for today</p>
+        <div class="dash-stat-cards">
+          <div class="dsc-card green"><div class="dsc-icon">⚖️</div><div class="dsc-info"><div class="dsc-val" id="cur-weight">—</div><div class="dsc-lbl">Current Weight (kg)</div></div></div>
+          <div class="dsc-card blue"><div class="dsc-icon">📐</div><div class="dsc-info"><div class="dsc-val" id="cur-bmi">—</div><div class="dsc-lbl">Current BMI</div></div></div>
+          <div class="dsc-card orange"><div class="dsc-icon">📅</div><div class="dsc-info"><div class="dsc-val" id="next-appt">—</div><div class="dsc-lbl">Next Appointment</div></div></div>
+          <div class="dsc-card purple"><div class="dsc-icon">🏆</div><div class="dsc-info"><div class="dsc-val" id="streak-days">0</div><div class="dsc-lbl">Day Streak</div></div></div>
+        </div>
+        <div class="dash-actions">
+          <button class="btn-primary" onclick="showDashTab('health-tracker','customer')">Log Today's Health</button>
+          <button class="btn-outline" onclick="showDashTab('appointments','customer')">Book Appointment</button>
+        </div>
+        <div class="dash-progress-section">
+          <h3>Recent Progress</h3>
+          <div class="progress-chart" id="progress-chart">
+            <div class="chart-placeholder">📈 Log your health data to see progress charts</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Health Tracker Tab -->
+      <div class="dash-tab" id="tab-health-tracker">
+        <h2 class="dash-title">Health Tracker 💪</h2>
+        <p class="dash-subtitle">Log your daily health metrics</p>
+        <div class="tracker-form-card">
+          <h3>Log Today's Data</h3>
+          <div class="form-row-2">
+            <div class="form-group"><label>Today's Weight (kg)</label><input type="number" id="log-weight" placeholder="e.g. 68.5" step="0.1"/></div>
+            <div class="form-group"><label>Daily Steps</label><input type="number" id="log-steps" placeholder="e.g. 8000"/></div>
+          </div>
+          <div class="form-row-2">
+            <div class="form-group"><label>Water Intake (Liters)</label><input type="number" id="log-water" placeholder="e.g. 2.5" step="0.1"/></div>
+            <div class="form-group"><label>Height (cm) — for BMI</label><input type="number" id="log-height" placeholder="e.g. 165"/></div>
+          </div>
+          <div class="form-group"><label>Today's Mood</label>
+            <select id="log-mood">
+              <option>😊 Great</option><option>😐 Okay</option><option>😔 Not Good</option>
+            </select>
+          </div>
+          <button class="btn-primary" onclick="logHealth()">Save Today's Log</button>
+        </div>
+        <div class="health-logs-list" id="health-logs-list">
+          <h3>Health History</h3>
+          <div id="logs-table-wrapper">Loading...</div>
+        </div>
+      </div>
+
+      <!-- Appointments Tab -->
+      <div class="dash-tab" id="tab-appointments">
+        <h2 class="dash-title">My Appointments 📅</h2>
+        <div class="appt-book-form">
+          <h3>Book New Appointment</h3>
+          <div class="form-row-2">
+            <div class="form-group"><label>Service</label>
+              <select id="appt-service">
+                <option>Diet Consultation</option>
+                <option>Weight Loss Program</option>
+                <option>Weight Gain Program</option>
+                <option>Nutrition Counseling</option>
+                <option>Zumba Classes</option>
+                <option>Health Checkup</option>
+                <option>Fitness Guidance</option>
+              </select>
+            </div>
+            <div class="form-group"><label>Preferred Date</label><input type="date" id="appt-date"/></div>
+          </div>
+          <div class="form-row-2">
+            <div class="form-group"><label>Preferred Time</label>
+              <select id="appt-time">
+                <option>6:00 AM</option><option>7:00 AM</option><option>8:00 AM</option>
+                <option>9:00 AM</option><option>10:00 AM</option><option>11:00 AM</option>
+                <option>12:00 PM</option><option>2:00 PM</option><option>3:00 PM</option>
+                <option>4:00 PM</option><option>5:00 PM</option><option>6:00 PM</option>
+                <option>7:00 PM</option>
+              </select>
+            </div>
+            <div class="form-group"><label>Consultant</label>
+              <select id="appt-consultant"><option>Preethi Ma'am</option><option>Assistant Nutritionist</option></select>
+            </div>
+          </div>
+          <div class="form-group"><label>Notes (optional)</label><textarea id="appt-notes" rows="3" placeholder="Any health conditions, concerns, or questions..."></textarea></div>
+          <button class="btn-primary" onclick="bookAppointment()">Book Appointment</button>
+        </div>
+        <div id="my-appointments-list"><h3>My Appointments</h3><div id="appts-table">Loading...</div></div>
+      </div>
+
+      <!-- Diet Plans Download -->
+      <div class="dash-tab" id="tab-diet-plans-dl">
+        <h2 class="dash-title">Diet Plans 🥗</h2>
+        <p class="dash-subtitle">Download your personalized diet plans</p>
+        <div class="diet-dl-grid">
+          <div class="diet-dl-card"><div class="ddc-icon">👴</div><h3>Old-Age Nutrition Plan</h3><p>Specialized plan for 60+ seniors</p><button class="btn-outline" onclick="downloadSamplePlan('old-age')">📥 Download PDF</button></div>
+          <div class="diet-dl-card"><div class="ddc-icon">✨</div><h3>Skin Health Diet Plan</h3><p>Nourish your skin from within</p><button class="btn-outline" onclick="downloadSamplePlan('skin')">📥 Download PDF</button></div>
+          <div class="diet-dl-card"><div class="ddc-icon">👶</div><h3>Children Nutrition Plan</h3><p>Healthy growth for kids 2–18 years</p><button class="btn-outline" onclick="downloadSamplePlan('children')">📥 Download PDF</button></div>
+          <div class="diet-dl-card"><div class="ddc-icon">🌸</div><h3>Women's Nutrition Plan</h3><p>Women's health at every life stage</p><button class="btn-outline" onclick="downloadSamplePlan('women')">📥 Download PDF</button></div>
+          <div class="diet-dl-card"><div class="ddc-icon">💪</div><h3>Male Nutrition Plan</h3><p>Optimized nutrition for men</p><button class="btn-outline" onclick="downloadSamplePlan('male')">📥 Download PDF</button></div>
+          <div class="diet-dl-card"><div class="ddc-icon">🏠</div><h3>Home Weight Loss Plan</h3><p>Lose weight without gym</p><button class="btn-outline" onclick="downloadSamplePlan('home-loss')">📥 Download PDF</button></div>
+        </div>
+      </div>
+
+      <!-- BMI Tracker Tab -->
+      <div class="dash-tab" id="tab-bmi-tracker">
+        <h2 class="dash-title">BMI & Body Stats 📐</h2>
+        <div class="bmi-wrapper">
+          <div class="bmi-calc-card">
+            <div class="bmi-form">
+              <div class="form-row-2">
+                <div class="form-group"><label>Weight (kg)</label><input type="number" id="dash-bmi-weight" placeholder="e.g. 65" min="20" max="300"/></div>
+                <div class="form-group"><label>Height (cm)</label><input type="number" id="dash-bmi-height" placeholder="e.g. 165" min="100" max="250"/></div>
+              </div>
+              <div class="form-row-2">
+                <div class="form-group"><label>Age</label><input type="number" id="dash-bmi-age" placeholder="e.g. 30" min="1" max="120"/></div>
+                <div class="form-group"><label>Gender</label><select id="dash-bmi-gender"><option value="male">Male</option><option value="female">Female</option></select></div>
+              </div>
+              <button class="btn-primary btn-full" onclick="calculateDashBMI()">Calculate</button>
+            </div>
+            <div class="bmi-result" id="dash-bmi-result" style="display:none;">
+              <div class="bmi-score-ring"><div class="bmi-score-num" id="dash-bmi-score">0.0</div><div class="bmi-score-label" id="dash-bmi-label">—</div></div>
+              <div class="bmi-metrics">
+                <div class="bmi-metric"><span class="bm-icon">📏</span><span class="bm-label">BMR</span><span class="bm-value" id="dash-bmr-value">—</span></div>
+                <div class="bmi-metric"><span class="bm-icon">🔥</span><span class="bm-label">Daily Calories</span><span class="bm-value" id="dash-tdee-value">—</span></div>
+                <div class="bmi-metric"><span class="bm-icon">⚖️</span><span class="bm-label">Ideal Weight</span><span class="bm-value" id="dash-ideal-weight">—</span></div>
+              </div>
+              <p class="bmi-advice" id="dash-bmi-advice"></p>
+              <button class="btn-primary" onclick="saveBMILog()">💾 Save to Health Log</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Personal Tips Tab -->
+      <div class="dash-tab" id="tab-tips-personal">
+        <h2 class="dash-title">Personal Health Tips 💡</h2>
+        <p class="dash-subtitle">Tips curated for your health journey</p>
+        <div id="personal-tips-list">Loading tips...</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════
+     ADMIN DASHBOARD
+════════════════════════════ -->
+<section id="page-admin-dashboard" class="page">
+  <div class="dashboard-layout">
+    <div class="dash-sidebar admin-sidebar">
+      <div class="dash-user-info">
+        <div class="dash-avatar admin-av">A</div>
+        <div class="dash-user-name">Admin Panel</div>
+        <div class="dash-user-email">Preethi Nutrition Center</div>
+      </div>
+      <nav class="dash-nav">
+        <button class="dash-nav-btn active" onclick="showDashTab('admin-overview','admin')">📊 Dashboard</button>
+        <button class="dash-nav-btn" onclick="showDashTab('admin-appointments','admin')">📅 Appointments</button>
+        <button class="dash-nav-btn" onclick="showDashTab('admin-clients','admin')">👥 Clients</button>
+        <button class="dash-nav-btn" onclick="showDashTab('admin-blog','admin')">✍️ Blog Manager</button>
+        <button class="dash-nav-btn" onclick="showDashTab('admin-tips','admin')">💡 Tips Manager</button>
+        <button class="dash-nav-btn" onclick="logout()">🚪 Logout</button>
+      </nav>
+    </div>
+
+    <div class="dash-content">
+
+      <!-- Admin Overview -->
+      <div class="dash-tab active" id="tab-admin-overview">
+        <h2 class="dash-title">Admin Dashboard 🛡️</h2>
+        <p class="dash-subtitle">Welcome back, Admin. Here's an overview of the center.</p>
+        <div class="dash-stat-cards">
+          <div class="dsc-card green"><div class="dsc-icon">👥</div><div class="dsc-info"><div class="dsc-val" id="admin-total-clients">0</div><div class="dsc-lbl">Total Clients</div></div></div>
+          <div class="dsc-card blue"><div class="dsc-icon">📅</div><div class="dsc-info"><div class="dsc-val" id="admin-pending-appts">0</div><div class="dsc-lbl">Pending Appointments</div></div></div>
+          <div class="dsc-card orange"><div class="dsc-icon">✅</div><div class="dsc-info"><div class="dsc-val" id="admin-approved-appts">0</div><div class="dsc-lbl">Approved Appointments</div></div></div>
+          <div class="dsc-card purple"><div class="dsc-icon">📝</div><div class="dsc-info"><div class="dsc-val" id="admin-blog-count">0</div><div class="dsc-lbl">Blog Articles</div></div></div>
+        </div>
+        <div class="admin-quick-actions">
+          <h3>Quick Actions</h3>
+          <div class="qa-grid">
+            <button class="qa-btn" onclick="showDashTab('admin-appointments','admin')">📅 View Pending Appointments</button>
+            <button class="qa-btn" onclick="showDashTab('admin-clients','admin')">👥 View All Clients</button>
+            <button class="qa-btn" onclick="showDashTab('admin-blog','admin')">✍️ Write New Blog</button>
+            <button class="qa-btn" onclick="showDashTab('admin-tips','admin')">💡 Add Health Tip</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Admin Appointments -->
+      <div class="dash-tab" id="tab-admin-appointments">
+        <h2 class="dash-title">Manage Appointments 📅</h2>
+        <div id="admin-appts-table">Loading...</div>
+      </div>
+
+      <!-- Admin Clients -->
+      <div class="dash-tab" id="tab-admin-clients">
+        <h2 class="dash-title">All Clients 👥</h2>
+        <div id="admin-clients-table">Loading...</div>
+      </div>
+
+      <!-- Admin Blog Manager -->
+      <div class="dash-tab" id="tab-admin-blog">
+        <h2 class="dash-title">Blog Manager ✍️</h2>
+        <div class="admin-form-card">
+          <h3>Write New Article</h3>
+          <div class="form-group"><label>Article Title</label><input type="text" id="ab-title" placeholder="e.g. 5 Best Foods for Skin Glow"/></div>
+          <div class="form-row-2">
+            <div class="form-group"><label>Category</label>
+              <select id="ab-category">
+                <option value="old-age">Old-Age Nutrition</option>
+                <option value="skin">Skin Health</option>
+                <option value="children">Children Nutrition</option>
+                <option value="weight-loss">Weight Loss</option>
+                <option value="women">Women Nutrition</option>
+                <option value="men">Male Nutrition</option>
+                <option value="general">General Wellness</option>
+              </select>
+            </div>
+            <div class="form-group"><label>Read Time</label><input type="text" id="ab-readtime" placeholder="e.g. 5 min read"/></div>
+          </div>
+          <div class="form-group"><label>Summary</label><textarea id="ab-summary" rows="2" placeholder="Brief 1-2 sentence summary..."></textarea></div>
+          <div class="form-group"><label>Full Article Content</label><textarea id="ab-content" rows="8" placeholder="Write the full article content here..."></textarea></div>
+          <button class="btn-primary" onclick="publishBlog()">📤 Publish Article</button>
+        </div>
+        <div id="admin-blog-list"><h3>Published Articles</h3><div id="blog-admin-table">Loading...</div></div>
+      </div>
+
+      <!-- Admin Tips Manager -->
+      <div class="dash-tab" id="tab-admin-tips">
+        <h2 class="dash-title">Tips Manager 💡</h2>
+        <div class="admin-form-card">
+          <h3>Add New Health Tip</h3>
+          <div class="form-row-2">
+            <div class="form-group"><label>Category</label>
+              <select id="tip-category">
+                <option>Skin Care</option><option>Weight Loss</option><option>Children Nutrition</option>
+                <option>Exercise</option><option>Old-Age Nutrition</option><option>Women Health</option>
+                <option>Male Nutrition</option><option>General</option>
+              </select>
+            </div>
+            <div class="form-group"><label>Tip Title</label><input type="text" id="tip-title" placeholder="Short, catchy title"/></div>
+          </div>
+          <div class="form-group"><label>Tip Content</label><textarea id="tip-content" rows="4" placeholder="The full health tip..."></textarea></div>
+          <button class="btn-primary" onclick="addTip()">➕ Add Tip</button>
+        </div>
+        <div id="admin-tips-list"><h3>All Tips</h3><div id="tips-admin-table">Loading...</div></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ═══════════════════════════════════════════════════════════
+     FOOTER
+════════════════════════════════════════════════════════════ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-logo">🌿 Preethi Nutrition Center</div>
+        <p>Empowering healthier lives through personalized nutrition science, compassionate coaching, and evidence-based wellness programs since 2009.</p>
+        <div class="social-links">
+          <a href="#" class="social-btn">Facebook</a>
+          <a href="#" class="social-btn">Instagram</a>
+          <a href="#" class="social-btn">YouTube</a>
+          <a href="#" class="social-btn">WhatsApp</a>
+        </div>
+      </div>
+      <div class="footer-links">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><button onclick="navigateTo('home')">Home</button></li>
+          <li><button onclick="navigateTo('about')">About Us</button></li>
+          <li><button onclick="navigateTo('services')">Services</button></li>
+          <li><button onclick="navigateTo('diet')">Diet Plans</button></li>
+          <li><button onclick="navigateTo('zumba')">Zumba Classes</button></li>
+          <li><button onclick="navigateTo('blog')">Blog & Tips</button></li>
+          <li><button onclick="navigateTo('contact')">Contact Us</button></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h4>Our Services</h4>
+        <ul>
+          <li><button onclick="navigateTo('services')">Weight Loss Programs</button></li>
+          <li><button onclick="navigateTo('services')">Weight Gain Programs</button></li>
+          <li><button onclick="navigateTo('services')">Diet Consultation</button></li>
+          <li><button onclick="navigateTo('services')">Nutrition Counseling</button></li>
+          <li><button onclick="navigateTo('zumba')">Zumba Classes</button></li>
+          <li><button onclick="navigateTo('services')">Fitness Guidance</button></li>
+          <li><button onclick="navigateTo('services')">Health Tracking</button></li>
+        </ul>
+      </div>
+      <div class="footer-contact">
+        <h4>Contact Info</h4>
+        <p>📍 123 Wellness Street, Anna Nagar, Chennai – 600040</p>
+        <p>📞 +91 98765 43210</p>
+        <p>📧 info@preethinutrition.com</p>
+        <p>🕐 Mon–Sat: 6AM – 8PM | Sun: 8AM – 1PM</p>
+        <button class="btn-primary" style="margin-top:16px;" onclick="openModal('register-modal')">Book Consultation</button>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Preethi Nutrition Center. All Rights Reserved.</p>
+      <p>Made with ❤️ for healthier lives</p>
+    </div>
+  </div>
+</footer>
+
+<!-- ═══════════════════════════════════════════════════════════
+     MODALS
+════════════════════════════════════════════════════════════ -->
+
+<!-- Login Modal -->
+<div class="modal-overlay" id="login-modal" onclick="closeModalOutside(event,'login-modal')">
+  <div class="modal-card">
+    <button class="modal-close" onclick="closeModal('login-modal')">✕</button>
+    <div class="modal-header">
+      <div class="modal-icon">🔐</div>
+      <h2>Welcome Back</h2>
+      <p>Sign in to your account</p>
+    </div>
+    <form onsubmit="login(event)">
+      <div class="form-group"><label>Email Address</label><input type="email" id="login-email" required placeholder="your@email.com"/></div>
+      <div class="form-group"><label>Password</label><input type="password" id="login-password" required placeholder="Enter your password"/></div>
+      <div class="modal-error" id="login-error" style="display:none;"></div>
+      <button type="submit" class="btn-primary btn-full">Login</button>
+      <p class="modal-switch">Don't have an account? <span onclick="switchModal('login-modal','register-modal')">Register here</span></p>
+      <div class="demo-accounts">
+        <p><strong>Demo Accounts:</strong></p>
+        <p>👤 Customer: client@nutrition.com / password</p>
+        <p>🛡️ Admin: admin@nutrition.com / admin123</p>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Register Modal -->
+<div class="modal-overlay" id="register-modal" onclick="closeModalOutside(event,'register-modal')">
+  <div class="modal-card">
+    <button class="modal-close" onclick="closeModal('register-modal')">✕</button>
+    <div class="modal-header">
+      <div class="modal-icon">🌿</div>
+      <h2>Join Preethi Nutrition</h2>
+      <p>Create your wellness account</p>
+    </div>
+    <form onsubmit="register(event)">
+      <div class="form-row-2">
+        <div class="form-group"><label>Full Name *</label><input type="text" id="reg-name" required placeholder="Your full name"/></div>
+        <div class="form-group"><label>Email Address *</label><input type="email" id="reg-email" required placeholder="your@email.com"/></div>
+      </div>
+      <div class="form-row-2">
+        <div class="form-group"><label>Password *</label><input type="password" id="reg-password" required placeholder="Min 6 characters"/></div>
+        <div class="form-group"><label>Phone Number</label><input type="tel" id="reg-phone" placeholder="+91 XXXXX XXXXX"/></div>
+      </div>
+      <div class="form-row-2">
+        <div class="form-group"><label>Height (cm)</label><input type="number" id="reg-height" placeholder="e.g. 165"/></div>
+        <div class="form-group"><label>Weight (kg)</label><input type="number" id="reg-weight" placeholder="e.g. 65"/></div>
+      </div>
+      <div class="modal-error" id="register-error" style="display:none;"></div>
+      <button type="submit" class="btn-primary btn-full">Create Account & Start Journey</button>
+      <p class="modal-switch">Already have an account? <span onclick="switchModal('register-modal','login-modal')">Login here</span></p>
+    </form>
+  </div>
+</div>
+
+<!-- Toast Notification -->
+<div class="toast" id="toast"></div>
+
+<script src="/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us | Preethi Nutrition Center</title>
+  <meta name="description" content="Reach out to Preethi Nutrition Center. Schedule weights/BMI consultation, zumba trial session, or order Herbalife products.">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Premium Self-Contained Stylesheet -->
+  <style>
+    :root {
+  --hue-primary: 340;
+  --hue-secondary: 300;
+  --hue-accent: 300;
+  
+  --primary: #E75480;
+  --primary-light: #f472b6;
+  --primary-dark: #be185d;
+  --primary-glow: rgba(231, 84, 128, 0.12);
+  
+  --secondary: #C8A2C8;
+  --secondary-light: #f3e8ff;
+  --secondary-glow: rgba(200, 162, 200, 0.12);
+  
+  --accent: #C8A2C8;
+  
+  --bg: #FFFFFF;
+  --bg-surface: #FFFFFF;
+  --bg-surface-glass: rgba(255, 255, 255, 0.95);
+  --border: rgba(231, 84, 128, 0.12);
+  --text: #2c3e50;
+  --text-muted: #546e7a;
+  
+  --font-heading: 'Poppins', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-full: 9999px;
+  
+  --transition-fast: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-normal: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  
+  --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+  --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -2px rgba(0, 0, 0, 0.04);
+  --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.12), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  --shadow-premium: 0 30px 60px -15px rgba(0, 0, 0, 0.15);
+}
+    html[data-theme="dark"] {
+      --bg: hsl(165, 25%, 8%);
+      --bg-surface: hsl(165, 25%, 12%);
+      --bg-surface-glass: hsla(165, 25%, 12%, 0.7);
+      --border: hsla(165, 25%, 22%, 0.6);
+      --text: hsl(165, 30%, 94%);
+      --text-muted: hsl(165, 15%, 70%);
+      --glass-glow: hsla(0, 0%, 100%, 0.03);
+    }
+    html[data-theme="light"] {
+      --bg: hsl(165, 30%, 98%);
+      --bg-surface: hsl(0, 0%, 100%);
+      --bg-surface-glass: hsla(0, 0%, 100%, 0.75);
+      --border: hsla(165, 20%, 90%, 0.8);
+      --text: hsl(270, 30%, 15%);
+      --text-muted: hsl(270, 10%, 45%);
+      --glass-glow: hsla(0, 0%, 0%, 0.01);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: var(--font-body);
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+      transition: background-color var(--transition-normal), color var(--transition-normal);
+    }
+    a { text-decoration: none; color: inherit; transition: color var(--transition-fast); }
+    section { padding: 80px 0; position: relative; }
+    .section-container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+    .text-center { text-align: center; }
+
+    /* Header */
+    .navbar-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 100;
+      background: var(--bg-surface-glass);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      padding: 20px 0;
+    }
+    .nav-container { display: flex; align-items: center; justify-content: space-between; max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+    .logo { display: flex; align-items: center; gap: 10px; font-family: var(--font-heading); font-size: 24px; font-weight: 800; color: var(--text); }
+    .logo i { color: var(--primary); font-size: 28px; }
+    .logo span span { color: var(--primary); }
+    .nav-menu { display: flex; align-items: center; gap: 28px; }
+    .nav-link { font-family: var(--font-heading); font-weight: 600; font-size: 15px; position: relative; padding: 6px 0; color: var(--text-muted); }
+    .nav-link:hover, .nav-link.active { color: var(--primary); }
+    .nav-link::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background: var(--primary); transition: width var(--transition-fast); }
+    .nav-link:hover::after, .nav-link.active::after { width: 100%; }
+    .nav-controls { display: flex; align-items: center; gap: 15px; }
+    .theme-toggle { width: 44px; height: 44px; border-radius: var(--radius-md); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; cursor: pointer; background: var(--bg-surface); transition: border-color var(--transition-fast); }
+    .theme-toggle:hover { border-color: var(--primary); color: var(--primary); }
+    
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 12px 28px; border-radius: var(--radius-md); font-weight: 600; cursor: pointer; border: none; transition: transform var(--transition-fast), box-shadow var(--transition-fast); font-family: var(--font-heading); }
+    .btn:hover { transform: translateY(-2px); }
+    .btn-gradient { background: var(--gradient-brand); color: white; }
+    .nav-mobile-only { display: none; }
+
+    .hamburger { display: none; flex-direction: column; justify-content: space-between; width: 30px; height: 21px; cursor: pointer; }
+    .hamburger .bar { height: 3px; width: 100%; background-color: var(--text); border-radius: 10px; transition: all var(--transition-normal); }
+
+    /* Hero */
+    .contact-hero { padding-top: 200px; padding-bottom: 60px; }
+    .hero-bg-shapes .shape { position: absolute; border-radius: var(--radius-full); filter: blur(100px); z-index: 0; }
+    .hero-bg-shapes .shape-1 { width: 350px; height: 350px; background: hsla(var(--hue-primary), 80%, 42%, 0.12); top: 10%; right: 5%; }
+    .hero-badge { display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; background: var(--gradient-glow); border: 1px solid var(--border); border-radius: var(--radius-full); font-family: var(--font-heading); font-weight: 700; font-size: 13px; color: var(--primary); margin-bottom: 24px; }
+    .hero-title { font-family: var(--font-heading); font-size: 52px; font-weight: 800; letter-spacing: -1.5px; margin-bottom: 20px; background: linear-gradient(135deg, var(--text) 60%, var(--primary) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .hero-lead { font-size: 18px; color: var(--text-muted); max-width: 650px; margin: 0 auto; }
+
+    /* Contact Details Grid */
+    .contact-section { background-color: var(--bg-surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .glass-panel { background: var(--bg-surface-glass); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid var(--border); border-radius: var(--radius-lg); box-shadow: var(--shadow-md); padding: 50px; }
+    .contact-panel { grid-template-columns: 0.9fr 1.1fr; }
+    .contact-info-panel { padding-right: 40px; }
+    .contact-lead { color: var(--text-muted); margin-bottom: 40px; font-size: 15px; }
+    
+    .contact-details { display: flex; flex-direction: column; gap: 30px; }
+    .contact-detail-item { display: flex; gap: 20px; align-items: center; }
+    .contact-detail-item i {
+width: 50px; height: 50px; border-radius: var(--radius-md); background: var(--gradient-glow); display: flex; align-items: center; justify-content: center;  color: var(--primary); font-size: 18px; }
+    .contact-detail-item h4 { font-family: var(--font-heading); font-size: 16px; font-weight: 700; }
+    .contact-detail-item p { color: var(--text-muted); font-size: 14px; }
+
+    /* Form design */
+    .contact-form-panel { display: flex; flex-direction: column; justify-content: center; }
+    .form-group { display: flex; flex-direction: column; gap: 8px; margin-bottom: 20px; }
+    .form-group label { font-family: var(--font-heading); font-weight: 600; font-size: 13px; }
+    .form-input { width: 100%; background: var(--bg); border: 1px solid var(--border); padding: 14px 16px; border-radius: var(--radius-md); color: var(--text); outline: none; transition: border-color var(--transition-fast); }
+    .form-input:focus { border-color: var(--primary); }
+    .contact-form-panel textarea.form-input { resize: vertical; }
+
+    .contact-success { text-align: center; padding: 40px; animation: fadeIn 0.4s ease-out; }
+    .contact-success i {
+font-size: 54px;  color: var(--primary); margin-bottom: 20px; }
+    .contact-success h4 { font-family: var(--font-heading); font-size: 24px; font-weight: 800; margin-bottom: 10px; }
+    .contact-success p { color: var(--text-muted); }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    /* Footer */
+    .footer { background-color: hsl(220, 20%, 6%); color: #94a3b8; border-top: 1px solid var(--border); padding: 80px 0 30px; }
+    html[data-theme="light"] .footer { background-color: hsl(220, 25%, 93%); color: hsl(220, 15%, 35%); }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 50px; margin-bottom: 60px; }
+    .footer-brand { display: flex; flex-direction: column; gap: 20px; }
+    .social-links { display: flex; gap: 12px; }
+    .social-links a { width: 40px; height: 40px; border-radius: var(--radius-md); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; color: var(--text); background: var(--bg-surface); transition: transform var(--transition-fast), border-color var(--transition-fast); font-size: 16px; }
+    .social-links a:hover { transform: translateY(-3px); border-color: var(--primary); color: var(--primary); }
+    .footer-links { display: flex; flex-direction: column; gap: 12px; }
+    .footer-links h4, .footer-hours h4 { font-family: var(--font-heading); color: var(--text); font-size: 16px; font-weight: 700; margin-bottom: 8px; }
+    .footer-links a { font-size: 14px; transition: color var(--transition-fast); }
+    .footer-links a:hover { color: var(--primary); }
+    .footer-hours { display: flex; flex-direction: column; gap: 12px; font-size: 14px; }
+    .footer-bottom { border-top: 1px solid var(--border); padding-top: 30px; font-size: 13px; color: var(--text-muted); }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .contact-panel { grid-template-columns: 1fr; gap: 40px; }
+      .contact-info-panel { padding-right: 0; }
+      .hero-title { font-size: 40px; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 768px) {
+      section { padding: 60px 0; }
+      .contact-hero { padding-top: 150px; padding-bottom: 60px; }
+      .footer-grid { grid-template-columns: 1fr; gap: 30px; }
+      .navbar-header { padding: 15px 0; }
+      .hamburger { display: flex; }
+      .nav-menu { position: fixed; top: 75px; left: -100%; width: 100%; height: calc(100vh - 75px); background: var(--bg); flex-direction: column; align-items: flex-start; padding: 40px 24px; gap: 24px; transition: left var(--transition-normal); overflow-y: auto; z-index: 99; border-top: 1px solid var(--border); }
+      .nav-menu.active { left: 0; }
+      .nav-link { font-size: 18px; width: 100%; }
+      .nav-controls .login-btn { display: none; }
+      .nav-mobile-only { display: block; width: 100%; margin-top: 20px; }
+      .mobile-login-btn { width: 100%; }
+      .hamburger.active .bar:nth-child(1) { transform: translateY(9px) rotate(45deg); }
+      .hamburger.active .bar:nth-child(2) { opacity: 0; }
+      .hamburger.active .bar:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
+    }
+  
+.nav-link i { color: var(--primary);
+  margin-right: 6px;
+  font-size: 14px;
+  opacity: 0.85;
+  transition: transform var(--transition-fast), color var(--transition-fast);
+}
+.nav-link:hover i, .nav-link.active i {
+transform: translateY(-1px) scale(1.1);
+  color: var(--primary);
+}
+
+/* --- Social Follow Links --- */
+.follow-us-section {
+  margin-top: 35px;
+  border-top: 1px solid rgba(231, 84, 128, 0.15);
+  padding-top: 24px;
+}
+.follow-title {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #E75480;
+  margin: 0 0 16px 0;
+}
+.social-follow-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.social-follow-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: #2D2D2D !important;
+  font-weight: 500;
+  font-size: 0.9rem;
+  width: fit-content;
+  cursor: pointer;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+.social-follow-link .social-icon-wrapper {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white !important;
+  font-size: 1.1rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.social-follow-link.instagram .social-icon-wrapper {
+  background: #E4405F;
+}
+.social-follow-link.facebook .social-icon-wrapper {
+  background: #1877F2;
+}
+.social-follow-link:hover {
+  transform: translateX(4px);
+}
+.social-follow-link.instagram:hover {
+  color: #E4405F !important;
+}
+.social-follow-link.facebook:hover {
+  color: #1877F2 !important;
+}
+.social-follow-link:hover .social-icon-wrapper {
+  transform: scale(1.1);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+</style>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/jpeg" href="/uploads/logo.jpg">
+  <link rel="stylesheet" href="/css/style.css?v=9.0">
+</head>
+<body>
+  <!-- Header -->
+    <!-- Header & Navigation -->
+  <header class="navbar-header">
+    <div class="nav-container">
+      <a href="/" class="logo">
+        <img src="/uploads/logo.jpg" alt="Preethi Nutrition Logo" class="logo-img">
+      </a>
+      
+      <!-- Nav Menu Links -->
+      <nav class="nav-menu" id="navMenu">
+        <a href="/" class="nav-link"><i class="fa-solid fa-house"></i> Home</a>
+        <a href="/about" class="nav-link"><i class="fa-solid fa-circle-info"></i> About</a>
+        <a href="/services" class="nav-link"><i class="fa-solid fa-spa"></i> Services</a>
+        <a href="/diet" class="nav-link"><i class="fa-solid fa-apple-whole"></i> Diet Plans</a>
+        <a href="/zumba" class="nav-link"><i class="fa-solid fa-fire"></i> Zumba</a>
+        <a href="/success" class="nav-link"><i class="fa-solid fa-trophy"></i> Success Stories</a>
+        <a href="/blog" class="nav-link"><i class="fa-solid fa-pen-to-square"></i> Blog</a>
+        <a href="/contact" class="nav-link"><i class="fa-solid fa-phone"></i> Contact</a>
+        <div class="nav-mobile-only">
+          <a href="/login" class="btn btn-secondary mobile-login-btn">Portal Login</a>
+        </div>
+      </nav>
+      
+      <!-- Top Right Controls -->
+      <div class="nav-controls">
+        <a href="/login" class="btn btn-primary login-btn">Portal Login</a>
+        <button class="hamburger" id="hamburgerBtn" aria-label="Toggle mobile menu">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="contact-hero">
+    <div class="hero-bg-shapes">
+      <div class="shape shape-1"></div>
+    </div>
+    <div class="section-container text-center">
+      <span class="hero-badge"><i class="fa-solid fa-envelope"></i> Continuous Support Channels</span>
+      <h1 class="hero-title">Contact Our Center</h1>
+      <p class="hero-lead">Reach out via email, phone call, or scheduling forms. Preethi Ma'am or an assistant will contact you within 24 hours.</p>
+    </div>
+  </section>
+
+  <!-- Contact Form & Info Section -->
+  <section class="contact-section">
+    <div class="section-container">
+      <div class="glass-panel contact-panel grid-2">
+        
+        <!-- Info column -->
+        <div class="contact-info-panel">
+          <span class="section-sub">Communication Channels</span>
+          <h2>Let's Get Started</h2>
+          <p class="contact-lead">Have metabolic questions? Looking to register for Zumba slots? Message us directly.</p>
+          
+          <div class="contact-details">
+            <div class="contact-detail-item">
+              <i class="fa-solid fa-location-dot"></i>
+              <div>
+                <h4>Center Location</h4>
+                <p id="infoLocation">Preethi Nutrition Center, 2nd Floor, Central Plaza, Main Road</p>
+              </div>
+            </div>
+            <div class="contact-detail-item">
+              <i class="fa-solid fa-phone"></i>
+              <div>
+                <h4>Call / WhatsApp</h4>
+                <p id="infoPhone">+91 98765 43210</p>
+              </div>
+            </div>
+            <div class="contact-detail-item">
+              <i class="fa-solid fa-envelope"></i>
+              <div>
+                <h4>Support Email</h4>
+                <p id="infoEmail">contact@preethinutrition.com</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Social Media Follow Section -->
+          <div class="follow-us-section">
+            <h4 class="follow-title">Follow Us</h4>
+            <div class="social-follow-grid">
+              <a href="https://www.instagram.com/fit_coach_krishnamurthy" target="_blank" rel="noopener noreferrer" class="social-follow-link instagram">
+                <span class="social-icon-wrapper"><i class="fa-brands fa-instagram"></i></span>
+                <span class="social-follow-label">@fit_coach_krishnamurthy</span>
+              </a>
+              <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer" class="social-follow-link facebook">
+                <span class="social-icon-wrapper"><i class="fa-brands fa-facebook"></i></span>
+                <span class="social-follow-label">Krishnamurthy</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Form column -->
+        <div class="contact-form-panel">
+          <form id="contactForm">
+            <div class="form-group">
+              <label for="contactName">Name</label>
+              <input type="text" id="contactName" class="form-input" placeholder="Your Full Name" required>
+            </div>
+            <div class="form-group">
+              <label for="contactEmail">Email Address</label>
+              <input type="email" id="contactEmail" class="form-input" placeholder="Your Email Address" required>
+            </div>
+            <div class="form-group">
+              <label for="contactPhoneInput">Phone Number</label>
+              <input type="tel" id="contactPhoneInput" class="form-input" placeholder="Your Phone Number" required>
+            </div>
+            <div class="form-group">
+              <label for="contactMessage">Your Query</label>
+              <textarea id="contactMessage" class="form-input" rows="5" placeholder="How can we assist you?" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-gradient btn-full">Send Message <i class="fa-solid fa-paper-plane"></i></button>
+          </form>
+
+          <div class="contact-success" id="contactSuccessMsg" style="display: none;">
+            <i class="fa-solid fa-circle-check"></i>
+            <h4>Message Sent!</h4>
+            <p>We have successfully received your query details. We will contact you soon.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+    <!-- Footer -->
+  <footer class="footer">
+    <div class="section-container footer-grid">
+      <div class="footer-brand">
+        <a href="/" class="logo">
+          <img src="/uploads/logo.jpg" alt="Preethi Nutrition Logo" class="logo-img">
+        </a>
+        <p>Expert dietary lifestyle counselling, active Zumba, and premium wellness shakes. We guide you every step of your transformation journey.</p>
+        <div class="social-links">
+          <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
+          <a href="#" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+          <a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+        </div>
+      </div>
+      
+      <div class="footer-links">
+        <h4>Our Pages</h4>
+        <a href="/">Home</a>
+        <a href="/about">About Us</a>
+        <a href="/services">Services</a>
+        <a href="/diet">Diet Plans</a>
+        <a href="/zumba">Zumba</a>
+      </div>
+      
+      <div class="footer-links">
+        <h4>Client Portal</h4>
+        <a href="/success">Success Stories</a>
+        <a href="/blog">Blogs</a>
+        <a href="/login">User Portal</a>
+        <a href="/login">Counselor Portal</a>
+      </div>
+      
+      <div class="footer-hours">
+        <h4>Operating Slots</h4>
+        <p><strong>Mon - Fri:</strong><br>6:00 AM - 11:30 AM<br>4:30 PM - 8:30 PM</p>
+        <p><strong>Saturday:</strong><br>6:00 AM - 12:00 PM</p>
+        <p>Sunday: Closed</p>
+      </div>
+    </div>
+    
+    <div class="footer-bottom text-center">
+      <p>&copy; 2026 Preethi Nutrition Center. All rights reserved. Premium Health & Wellness.</p>
+    </div>
+  </footer>
+
+  <!-- Script for navigation, themes and contact form submit -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Theme toggle
+      const toggle = document.getElementById('themeToggleBtn');
+      const html = document.documentElement;
+      const icon = toggle.querySelector('i');
+      
+      const saved = localStorage.getItem('theme') || 'light';
+      html.setAttribute('data-theme', saved);
+      icon.className = saved === 'light' ? 'fa-solid fa-sun' : 'fa-moon';
+      
+      toggle.addEventListener('click', () => {
+        const curr = html.getAttribute('data-theme');
+        const next = curr === 'dark' ? 'light' : 'dark';
+        html.setAttribute('data-theme', next);
+        localStorage.setItem('theme', next);
+        icon.className = next === 'light' ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
+      });
+
+      // Mobile Menu
+      const burger = document.getElementById('hamburgerBtn');
+      const nav = document.getElementById('navMenu');
+      burger.addEventListener('click', () => {
+        burger.classList.toggle('active');
+        nav.classList.toggle('active');
+      });
+
+      // Form Interception and Submission with Validation
+      const form = document.getElementById('contactForm');
+      const success = document.getElementById('contactSuccessMsg');
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        const name = document.getElementById('contactName').value.trim();
+        const email = document.getElementById('contactEmail').value.trim();
+        const phone = document.getElementById('contactPhoneInput').value.trim();
+        const message = document.getElementById('contactMessage').value.trim();
+
+        // 1. Validation
+        if (!name || !email || !phone || !message) {
+          alert('Please fill out all fields.');
+          return;
+        }
+
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+          alert('Please enter a valid email address.');
+          return;
+        }
+
+        const phoneRegex = /^\+?[0-9]{10,15}$/;
+        if (!phoneRegex.test(phone)) {
+          alert('Please enter a valid phone number (10 to 15 digits, optionally starting with +).');
+          return;
+        }
+
+        // 2. Submit to API
+        try {
+          const response = await fetch('/api/contact', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ name, email, phone, message })
+          });
+          const data = await response.json();
+          if (data.success) {
+            form.style.display = 'none';
+            success.style.display = 'block';
+            form.reset();
+          } else {
+            alert(data.message || 'Failed to submit query.');
+          }
+        } catch (err) {
+          console.error(err);
+          alert('Server error. Failed to submit query.');
+        }
+      });
+
+      // Load dynamic config
+      async function loadContactConfig() {
+        const loc = document.getElementById('infoLocation');
+        const phone = document.getElementById('infoPhone');
+        const email = document.getElementById('infoEmail');
+        
+        try {
+          const response = await fetch('/api/content');
+          const data = await response.json();
+          if (data.success && data.data) {
+            const config = data.data;
+            if (config.contactAddress && loc) loc.innerHTML = config.contactAddress;
+            if (config.contactPhone && phone) phone.innerHTML = config.contactPhone;
+            if (config.contactEmail && email) email.innerHTML = config.contactEmail;
+          }
+        } catch (error) {
+          console.warn('Failed to load contact config:', error);
+        }
+      }
+      loadContactConfig();
+    });
+  </script>
+  <script src="/js/main.js?v=9.0"></script>
+</body>
+</html>

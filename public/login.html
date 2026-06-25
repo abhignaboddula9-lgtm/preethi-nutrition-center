@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Client Portal | Preethi Nutrition Center</title>
+  <meta name="description" content="Access your personalized health logs, appointment schedules, and diet plans. Login or Register to the Preethi Nutrition Center Client Portal.">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Login Stylesheet -->
+  <link rel="stylesheet" href="/css/pages/login.css?v=9.0">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/jpeg" href="/uploads/logo.jpg">
+  <link rel="stylesheet" href="/css/style.css?v=9.0">
+</head>
+<body>
+  <!-- Header & Navigation -->
+    <!-- Header & Navigation -->
+  <header class="navbar-header">
+    <div class="nav-container">
+      <a href="/" class="logo">
+        <img src="/uploads/logo.jpg" alt="Preethi Nutrition Logo" class="logo-img">
+      </a>
+      
+      <!-- Nav Menu Links -->
+      <nav class="nav-menu" id="navMenu">
+        <a href="/" class="nav-link"><i class="fa-solid fa-house"></i> Home</a>
+        <a href="/about" class="nav-link"><i class="fa-solid fa-circle-info"></i> About</a>
+        <a href="/services" class="nav-link"><i class="fa-solid fa-spa"></i> Services</a>
+        <a href="/diet" class="nav-link"><i class="fa-solid fa-apple-whole"></i> Diet Plans</a>
+        <a href="/zumba" class="nav-link"><i class="fa-solid fa-fire"></i> Zumba</a>
+        <a href="/success" class="nav-link"><i class="fa-solid fa-trophy"></i> Success Stories</a>
+        <a href="/blog" class="nav-link"><i class="fa-solid fa-pen-to-square"></i> Blog</a>
+        <a href="/contact" class="nav-link"><i class="fa-solid fa-phone"></i> Contact</a>
+        <div class="nav-mobile-only">
+          <a href="/login" class="btn btn-secondary mobile-login-btn">Portal Login</a>
+        </div>
+      </nav>
+      
+      <!-- Top Right Controls -->
+      <div class="nav-controls">
+        <a href="/login" class="btn btn-primary login-btn">Portal Login</a>
+        <button class="hamburger" id="hamburgerBtn" aria-label="Toggle mobile menu">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Portal Access Section -->
+  <section class="portal-section">
+    <div class="portal-bg-shapes">
+      <div class="shape shape-1"></div>
+      <div class="shape shape-2"></div>
+    </div>
+    
+    <div class="section-container portal-container">
+      <!-- Combined Sliding Auth Panel -->
+      <div class="auth-wrapper glass-panel" id="authWrapper">
+        
+        <!-- Mode Switcher Sidebar (Desktop Overlay) -->
+        <div class="auth-overlay-panel">
+          <div class="overlay-content overlay-left">
+            <h2>Welcome Back!</h2>
+            <p>Access your health charts, log daily weight, and book zumba training sessions.</p>
+            <button class="btn btn-outline btn-white" id="toLoginBtn">Log In Instead</button>
+          </div>
+          <div class="overlay-content overlay-right">
+            <h2>New to Preethi Nutrition?</h2>
+            <p>Register today to track your BMI parameters and receive customized meal schedules.</p>
+            <button class="btn btn-outline btn-white" id="toRegisterBtn">Register Account</button>
+          </div>
+        </div>
+
+        <!-- Forms Container -->
+        <div class="auth-forms-container">
+          
+          <!-- 1. LOGIN FORM PANEL -->
+          <div class="form-panel login-panel" id="loginPanel">
+            <form id="loginForm">
+              <h3>Client Login</h3>
+              <p class="form-lead">Enter your email credentials to access your dashboard</p>
+              
+              <div class="error-alert" id="loginErrorMsg" style="display: none;"></div>
+              
+              <div class="form-group">
+                <label for="loginEmail">Email Address</label>
+                <div class="input-icon-wrap">
+                  <i class="fa-regular fa-envelope"></i>
+                  <input type="email" id="loginEmail" class="form-input" placeholder="name@example.com" required>
+                </div>
+              </div>
+              
+              <div class="form-group">
+                <div class="label-row">
+                  <label for="loginPassword">Password</label>
+                  <a href="#" class="forgot-link" id="forgotPassBtn">Forgot password?</a>
+                </div>
+                <div class="input-icon-wrap">
+                  <i class="fa-solid fa-lock"></i>
+                  <input type="password" id="loginPassword" class="form-input" placeholder="Min. 6 characters" required>
+                </div>
+              </div>
+              
+              <button type="submit" class="btn btn-gradient btn-full">Authenticate <i class="fa-solid fa-arrow-right-to-bracket"></i></button>
+              
+              <div class="google-divider">
+                <span>OR</span>
+              </div>
+              
+              <button type="button" class="btn btn-google btn-full" id="googleLoginBtn">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="20px" height="20px" style="margin-right: 12px; display: inline-block; vertical-align: middle;">
+                  <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
+                  <path fill="#4285F4" d="M46.5 24c0-1.61-.15-3.16-.41-4.69H24v9.09h12.64c-.55 2.89-2.2 5.34-4.69 7l7.33 5.68C43.56 36.96 46.5 31.02 46.5 24z"/>
+                  <path fill="#FBBC05" d="M10.54 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.98-6.19z"/>
+                  <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.33-5.68c-2.11 1.42-4.81 2.3-8.56 2.3-6.26 0-11.57-4.22-13.46-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
+                </svg>
+                Continue with Google
+              </button>
+              
+              <p class="mobile-switch-text">New here? <a href="#" id="mobileToRegister">Register Account</a></p>
+            </form>
+          </div>
+
+          <!-- 2. REGISTER FORM PANEL -->
+          <div class="form-panel register-panel" id="registerPanel" style="display: none;">
+            <form id="registerForm">
+              <h3>Client Registration</h3>
+              <p class="form-lead">Set up your portal credentials and starting wellness metrics</p>
+              
+              <div class="error-alert" id="registerErrorMsg" style="display: none;"></div>
+              
+              <!-- Two columns layout for name and email -->
+              <div class="form-grid-row">
+                <div class="form-group">
+                  <label for="regName">Name</label>
+                  <div class="input-icon-wrap">
+                    <i class="fa-regular fa-user"></i>
+                    <input type="text" id="regName" class="form-input" placeholder="John Doe" required>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="regEmail">Email Address</label>
+                  <div class="input-icon-wrap">
+                    <i class="fa-regular fa-envelope"></i>
+                    <input type="email" id="regEmail" class="form-input" placeholder="john@example.com" required>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Password & Phone row -->
+              <div class="form-grid-row">
+                <div class="form-group">
+                  <label for="regPassword">Password</label>
+                  <div class="input-icon-wrap">
+                    <i class="fa-solid fa-lock"></i>
+                    <input type="password" id="regPassword" class="form-input" placeholder="Min. 6 chars" required minlength="6">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="regPhone">Phone (Optional)</label>
+                  <div class="input-icon-wrap">
+                    <i class="fa-solid fa-phone"></i>
+                    <input type="tel" id="regPhone" class="form-input" placeholder="e.g. 9876543210">
+                  </div>
+                </div>
+              </div>
+
+              <!-- Starting Metrics row -->
+              <div class="form-grid-row">
+                <div class="form-group">
+                  <label for="regHeight">Height (cm)</label>
+                  <div class="input-icon-wrap">
+                    <i class="fa-solid fa-ruler-vertical"></i>
+                    <input type="number" id="regHeight" class="form-input" placeholder="Starting Height" min="50" max="250">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="regWeight">Weight (kg)</label>
+                  <div class="input-icon-wrap">
+                    <i class="fa-solid fa-weight-scale"></i>
+                    <input type="number" id="regWeight" class="form-input" placeholder="Starting Weight" min="10" max="300">
+                  </div>
+                </div>
+              </div>
+              
+              <button type="submit" class="btn btn-gradient btn-full">Register Account <i class="fa-solid fa-user-plus"></i></button>
+              
+              <p class="mobile-switch-text">Already registered? <a href="#" id="mobileToLogin">Log In</a></p>
+            </form>
+          </div>
+
+          <!-- 3. FORGOT PASSWORD PANEL -->
+          <div class="form-panel forgot-panel" id="forgotPanel" style="display: none;">
+            <form id="forgotForm">
+              <h3>Reset Password</h3>
+              <p class="form-lead">Provide your registered email. We will send a secure link to reset your account.</p>
+              
+              <div class="form-group">
+                <label for="forgotEmail">Email Address</label>
+                <div class="input-icon-wrap">
+                  <i class="fa-regular fa-envelope"></i>
+                  <input type="email" id="forgotEmail" class="form-input" placeholder="john@example.com" required>
+                </div>
+              </div>
+              
+              <button type="submit" class="btn btn-gradient btn-full">Send Reset Instructions <i class="fa-solid fa-paper-plane"></i></button>
+              
+              <button type="button" class="btn btn-secondary btn-full btn-back-login" id="backToLoginBtn">Back to Login</button>
+            </form>
+            
+            <div class="forgot-success-alert" id="forgotSuccessMsg" style="display: none;">
+              <i class="fa-solid fa-circle-check"></i>
+              <h4>Email Dispatched!</h4>
+              <p>A verification link was dispatched to your email coordinates. Check your inbox to complete the reset process.</p>
+              <button class="btn btn-primary" id="successBackToLoginBtn">OK, Back to Login</button>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+    <!-- Footer -->
+  <footer class="footer">
+    <div class="section-container footer-grid">
+      <div class="footer-brand">
+        <a href="/" class="logo">
+          <img src="/uploads/logo.jpg" alt="Preethi Nutrition Logo" class="logo-img">
+        </a>
+        <p>Expert dietary lifestyle counselling, active Zumba, and premium wellness shakes. We guide you every step of your transformation journey.</p>
+        <div class="social-links">
+          <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
+          <a href="#" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+          <a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+        </div>
+      </div>
+      
+      <div class="footer-links">
+        <h4>Our Pages</h4>
+        <a href="/">Home</a>
+        <a href="/about">About Us</a>
+        <a href="/services">Services</a>
+        <a href="/diet">Diet Plans</a>
+        <a href="/zumba">Zumba</a>
+      </div>
+      
+      <div class="footer-links">
+        <h4>Client Portal</h4>
+        <a href="/success">Success Stories</a>
+        <a href="/blog">Blogs</a>
+        <a href="/login">User Portal</a>
+        <a href="/login">Counselor Portal</a>
+      </div>
+      
+      <div class="footer-hours">
+        <h4>Operating Slots</h4>
+        <p><strong>Mon - Fri:</strong><br>6:00 AM - 11:30 AM<br>4:30 PM - 8:30 PM</p>
+        <p><strong>Saturday:</strong><br>6:00 AM - 12:00 PM</p>
+        <p>Sunday: Closed</p>
+      </div>
+    </div>
+    
+    <div class="footer-bottom text-center">
+      <p>&copy; 2026 Preethi Nutrition Center. All rights reserved. Premium Health & Wellness.</p>
+    </div>
+  </footer>
+
+  <!-- Google Sign-In Chooser Modal -->
+  <div class="google-modal-overlay" id="googleModalOverlay" style="display: none;">
+    <div class="google-modal-box">
+      <div class="google-modal-header">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="40px" height="40px">
+          <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
+          <path fill="#4285F4" d="M46.5 24c0-1.61-.15-3.16-.41-4.69H24v9.09h12.64c-.55 2.89-2.2 5.34-4.69 7l7.33 5.68C43.56 36.96 46.5 31.02 46.5 24z"/>
+          <path fill="#FBBC05" d="M10.54 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.98-6.19z"/>
+          <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.33-5.68c-2.11 1.42-4.81 2.3-8.56 2.3-6.26 0-11.57-4.22-13.46-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
+        </svg>
+        <h3>Choose an account</h3>
+        <p>to continue to Preethi Nutrition</p>
+      </div>
+      <div class="google-modal-body">
+        <div class="google-account-list">
+          <div class="google-account-item" data-email="krishnamurthy@gmail.com" data-name="Krishnamurthy">
+            <img src="https://ui-avatars.com/api/?name=Krishnamurthy&background=1877F2&color=fff&rounded=true" alt="Avatar">
+            <div class="account-details">
+              <span class="name">Krishnamurthy</span>
+              <span class="email">krishnamurthy@gmail.com</span>
+            </div>
+          </div>
+          <div class="google-account-item" data-email="preethiherbalife@gmail.com" data-name="Preethi Ma'am">
+            <img src="https://ui-avatars.com/api/?name=Preethi+Maam&background=E75480&color=fff&rounded=true" alt="Avatar">
+            <div class="account-details">
+              <span class="name">Preethi Ma'am</span>
+              <span class="email">preethiherbalife@gmail.com</span>
+            </div>
+          </div>
+          <div class="google-account-item" data-email="abhigna@gmail.com" data-name="Abhigna">
+            <img src="https://ui-avatars.com/api/?name=Abhigna&background=2E7D32&color=fff&rounded=true" alt="Avatar">
+            <div class="account-details">
+              <span class="name">Abhigna</span>
+              <span class="email">abhigna@gmail.com</span>
+            </div>
+          </div>
+          <div class="google-account-item" id="useCustomGoogle">
+            <div class="custom-icon-wrapper"><i class="fa-regular fa-user"></i></div>
+            <div class="account-details">
+              <span class="name" style="color: #2563EB;">Use another account</span>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Custom Account Form -->
+        <form id="googleCustomForm" style="display: none; margin-top: 15px;">
+          <div class="form-group" style="margin-bottom: 12px; display: flex; flex-direction: column; text-align: left;">
+            <label style="font-size: 0.75rem; font-weight: 700; color: #4B5563; margin-bottom: 4px;">Name</label>
+            <input type="text" id="gCustomName" class="form-input" style="padding: 8px 12px; font-size: 0.85rem;" placeholder="Your Name" required>
+          </div>
+          <div class="form-group" style="margin-bottom: 12px; display: flex; flex-direction: column; text-align: left;">
+            <label style="font-size: 0.75rem; font-weight: 700; color: #4B5563; margin-bottom: 4px;">Email</label>
+            <input type="email" id="gCustomEmail" class="form-input" style="padding: 8px 12px; font-size: 0.85rem;" placeholder="email@gmail.com" required>
+          </div>
+          <div style="display: flex; gap: 10px; margin-top: 15px;">
+            <button type="submit" class="btn btn-gradient" style="flex: 1; padding: 8px 12px; font-size: 0.85rem; border-radius: 50px; font-weight: 600;">Sign In</button>
+            <button type="button" class="btn btn-secondary" id="cancelCustomGoogle" style="flex: 1; padding: 8px 12px; font-size: 0.85rem; border-radius: 50px; font-weight: 600; color: var(--primary); border: 2px solid var(--primary);">Back</button>
+          </div>
+        </form>
+      </div>
+      <div class="google-modal-footer">
+        <button class="btn btn-secondary" id="closeGoogleModal" style="padding: 6px 16px; font-size: 0.85rem; border-radius: 50px; font-weight: 600; color: var(--primary); border: 2px solid var(--primary);">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Login JS Script -->
+  <script src="/js/pages/login.js?v=8.0"></script>
+  <script src="/js/main.js?v=9.0"></script>
+</body>
+</html>

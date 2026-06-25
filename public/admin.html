@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Control Panel | Preethi Nutrition Center</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Admin Stylesheet -->
+  <link rel="stylesheet" href="/css/pages/admin.css?v=9.0">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/jpeg" href="/uploads/logo.jpg">
+  <link rel="stylesheet" href="/css/style.css?v=9.0">
+</head>
+<body>
+  <!-- Admin Main Layout -->
+  <div class="admin-layout">
+    
+    <!-- Sidebar Navigation -->
+    <aside class="admin-sidebar">
+      <div class="sidebar-header">
+        <a href="/" class="logo">
+          <img src="/uploads/logo.jpg" alt="Preethi Nutrition Logo" class="logo-img">
+        </a>
+      </div>
+      <div class="admin-profile-badge">
+        <div class="avatar-wrap">PM</div>
+        <div>
+          <h4 id="adminName">Preethi Ma'am</h4>
+          <p>Lead Counselor</p>
+        </div>
+      </div>
+      <nav class="sidebar-nav" id="sidebarNav">
+        <button class="nav-btn active" data-tab="overview"><i class="fa-solid fa-chart-line"></i> Overview</button>
+        <button class="nav-btn" data-tab="about"><i class="fa-solid fa-sliders"></i> Site Config Manager</button>
+        <button class="nav-btn" data-tab="posts"><i class="fa-solid fa-square-rss"></i> Upload Feed Posts</button>
+        <button class="nav-btn" data-tab="products"><i class="fa-solid fa-leaf"></i> Manage Products</button>
+        <button class="nav-btn" data-tab="blogs"><i class="fa-solid fa-feather"></i> Manage Blogs</button>
+        <button class="nav-btn" data-tab="success"><i class="fa-solid fa-trophy"></i> Success Stories</button>
+        <button class="nav-btn" data-tab="queries"><i class="fa-solid fa-envelope-open-text"></i> Contact Queries</button>
+        <button class="nav-btn btn-logout" id="logoutBtn"><i class="fa-solid fa-arrow-right-from-bracket"></i> Sign Out</button>
+      </nav>
+      <div class="theme-toggle-wrap">
+        <button id="themeToggleBtn" class="theme-toggle">
+          <i class="fa-solid fa-moon"></i> Theme Mode
+        </button>
+      </div>
+    </aside>
+
+    <!-- Main Working Area -->
+    <main class="admin-main">
+      <header class="main-header">
+        <h2 id="currentTabTitle">Overview</h2>
+        <span class="date-badge" id="currentDate">June 22, 2026</span>
+      </header>
+
+      <!-- Global Messages -->
+      <div class="alert-box success" id="globalSuccessAlert" style="display: none;"></div>
+      <div class="alert-box error" id="globalErrorAlert" style="display: none;"></div>
+
+      <div class="content-body">
+        
+        <!-- 1. OVERVIEW PANEL -->
+        <div class="tab-panel active" id="overviewPanel">
+          <div class="stats-grid">
+            <div class="stat-card">
+              <i class="fa-solid fa-square-rss icon-posts"></i>
+              <div>
+                <h3 id="statPostsCount">0</h3>
+                <p>Social Posts</p>
+              </div>
+            </div>
+            <div class="stat-card">
+              <i class="fa-solid fa-leaf icon-products"></i>
+              <div>
+                <h3 id="statProductsCount">0</h3>
+                <p>Herbalife Products</p>
+              </div>
+            </div>
+            <div class="stat-card">
+              <i class="fa-solid fa-feather icon-blogs"></i>
+              <div>
+                <h3 id="statBlogsCount">0</h3>
+                <p>Wellness Blogs</p>
+              </div>
+            </div>
+            <div class="stat-card">
+              <i class="fa-solid fa-trophy icon-success"></i>
+              <div>
+                <h3 id="statSuccessCount">0</h3>
+                <p>Before/After Stories</p>
+              </div>
+            </div>
+            <div class="stat-card" style="cursor: pointer;" onclick="document.querySelector('[data-tab=queries]').click()">
+              <i class="fa-solid fa-envelope-open-text icon-queries"></i>
+              <div>
+                <h3 id="statQueriesCount">0</h3>
+                <p>Contact Queries</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Shortcuts -->
+          <div class="glass-panel shortcuts-panel mt-40">
+            <h3>Quick Control Panel Shortcuts</h3>
+            <p class="text-muted mb-20">Direct shortcuts to add or update your web assets instantly.</p>
+            <div class="shortcuts-grid">
+              <button class="shortcut-btn" data-target="posts"><i class="fa-solid fa-circle-plus"></i> New Feed Update</button>
+              <button class="shortcut-btn" data-target="products"><i class="fa-solid fa-circle-plus"></i> Add New Product</button>
+              <button class="shortcut-btn" data-target="blogs"><i class="fa-solid fa-circle-plus"></i> Write Wellness Blog</button>
+              <button class="shortcut-btn" data-target="success"><i class="fa-solid fa-circle-plus"></i> Register Success Testimonial</button>
+              <button class="shortcut-btn" data-target="queries"><i class="fa-solid fa-envelope-open-text"></i> View Contact Queries</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. SITE CONFIG MANAGER PANEL -->
+        <div class="tab-panel" id="aboutPanel">
+          <form id="aboutForm" class="glass-panel form-panel-layout" enctype="multipart/form-data">
+            <h3>Site Configuration Manager</h3>
+            <p class="text-muted mb-20">Manage home banners, descriptions, contact information, operating hours, and about details globally.</p>
+            
+            <h4 style="color: var(--secondary); margin-bottom: 15px; border-bottom: 1px solid var(--border); padding-bottom: 6px;"><i class="fa-solid fa-house"></i> Home Page Settings</h4>
+            <div class="form-grid-row">
+              <div class="form-group">
+                <label for="homeHeroTitle">Home Hero Title</label>
+                <input type="text" id="homeHeroTitle" class="form-input" required>
+              </div>
+              <div class="form-group">
+                <label for="homeHeroImageFile">Home Hero Image Banner (Replace)</label>
+                <input type="file" id="homeHeroImageFile" name="homeHeroImageFile" class="form-input" accept="image/*">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="homeHeroSubtitle">Home Hero Subtitle</label>
+              <textarea id="homeHeroSubtitle" class="form-input" rows="2" required></textarea>
+            </div>
+
+            <h4 style="color: var(--secondary); margin-top: 30px; margin-bottom: 15px; border-bottom: 1px solid var(--border); padding-bottom: 6px;"><i class="fa-solid fa-address-book"></i> Contact & Footer Settings</h4>
+            <div class="form-grid-row">
+              <div class="form-group">
+                <label for="contactPhone">Contact Phone Number</label>
+                <input type="text" id="contactPhone" class="form-input" required>
+              </div>
+              <div class="form-group">
+                <label for="contactEmail">Contact Email Address</label>
+                <input type="email" id="contactEmail" class="form-input" required>
+              </div>
+            </div>
+            <div class="form-grid-row">
+              <div class="form-group">
+                <label for="contactAddress">Physical Address</label>
+                <input type="text" id="contactAddress" class="form-input" required>
+              </div>
+              <div class="form-group">
+                <label for="operatingHours">Operating Hours Slots</label>
+                <input type="text" id="operatingHours" class="form-input" required>
+              </div>
+            </div>
+
+            <h4 style="color: var(--secondary); margin-top: 30px; margin-bottom: 15px; border-bottom: 1px solid var(--border); padding-bottom: 6px;"><i class="fa-solid fa-circle-info"></i> About Page Settings</h4>
+            <div class="form-grid-row">
+              <div class="form-group">
+                <label for="aboutHeroTitle">About Hero Title</label>
+                <input type="text" id="aboutHeroTitle" class="form-input" required>
+              </div>
+              <div class="form-group">
+                <label for="aboutExperienceYears">Years of Experience</label>
+                <input type="number" id="aboutExperienceYears" class="form-input" required min="1">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="aboutHeroSubtitle">About Hero Subtitle</label>
+              <textarea id="aboutHeroSubtitle" class="form-input" rows="2" required></textarea>
+            </div>
+            <div class="form-group">
+              <label for="aboutMainContent">About Main Content</label>
+              <textarea id="aboutMainContent" class="form-input" rows="5" required placeholder="Use double linebreaks (\n\n) to start new paragraphs..."></textarea>
+            </div>
+            <div class="form-grid-row">
+              <div class="form-group">
+                <label for="aboutMission">Mission Statement</label>
+                <textarea id="aboutMission" class="form-input" rows="3" required></textarea>
+              </div>
+              <div class="form-group">
+                <label for="aboutVision">Vision Statement</label>
+                <textarea id="aboutVision" class="form-input" rows="3" required></textarea>
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-gradient" style="margin-top: 20px;"><i class="fa-solid fa-floppy-disk"></i> Save Configuration</button>
+          </form>
+        </div>
+
+        <!-- 3. UPLOAD FEED POSTS PANEL -->
+        <div class="tab-panel" id="postsPanel">
+          <div class="panel-split-grid">
+            
+            <!-- Upload Form -->
+            <form id="postsForm" class="glass-panel form-panel-layout" enctype="multipart/form-data">
+              <h3>Create Feed Post</h3>
+              <p class="text-muted mb-20">Add new updates containing media uploads to the Home page feed.</p>
+
+              <div class="form-group">
+                <label for="postTitle">Post Title</label>
+                <input type="text" id="postTitle" class="form-input" placeholder="e.g. Monday Zumba Energy Boost!" required>
+              </div>
+
+              <div class="form-grid-row">
+                <div class="form-group">
+                  <label for="postCategory">Category</label>
+                  <select id="postCategory" class="form-input" required>
+                    <option value="weight-loss">Weight Loss</option>
+                    <option value="weight-gain">Weight Gain</option>
+                    <option value="nutrition-tips" selected>Nutrition Tips</option>
+                    <option value="herbalife-products">Herbalife Products</option>
+                    <option value="success-stories">Success Stories</option>
+                    <option value="zumba-classes">Zumba Classes</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="postType">Post Type</label>
+                  <select id="postType" class="form-input" required>
+                    <option value="instagram">Standard Feed Update</option>
+                    <option value="transformation">Client Transformation (Before/After)</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-grid-row">
+                <div class="form-group">
+                  <label>Featured Post <small style="color:#9CA3AF;">(shown in slider)</small></label>
+                  <div class="toggle-row">
+                    <label class="toggle-switch">
+                      <input type="checkbox" id="postFeatured">
+                      <span class="toggle-slider"></span>
+                    </label>
+                    <span id="postFeaturedLabel" style="font-size:0.85rem;color:#6B7280;">Not Featured</span>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label>Publish Post <small style="color:#9CA3AF;">(visible on Home Page)</small></label>
+                  <div class="toggle-row">
+                    <label class="toggle-switch">
+                      <input type="checkbox" id="postPublished" checked>
+                      <span class="toggle-slider"></span>
+                    </label>
+                    <span id="postPublishedLabel" style="font-size:0.85rem;color:#6B7280;">Published</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Media fields based on Type selection -->
+              <div id="standardMediaFields">
+                <div class="form-group">
+                  <label for="postMedia">Upload Image or Video</label>
+                  <input type="file" id="postMedia" name="media" class="form-input" accept="image/*,video/*">
+                  <p class="field-hint">Max file size: 10MB (mp4, webm, jpg, png)</p>
+                </div>
+              </div>
+
+              <!-- Transformation specific media fields -->
+              <div id="transformationMediaFields" style="display: none;">
+                <div class="form-grid-row">
+                  <div class="form-group">
+                    <label for="postBeforeImage">Upload Before Image</label>
+                    <input type="file" id="postBeforeImage" name="beforeImage" class="form-input" accept="image/*">
+                  </div>
+                  <div class="form-group">
+                    <label for="postAfterImage">Upload After Image</label>
+                    <input type="file" id="postAfterImage" name="afterImage" class="form-input" accept="image/*">
+                  </div>
+                </div>
+                <div class="form-grid-row">
+                  <div class="form-group">
+                    <label for="postClientName">Client Name</label>
+                    <input type="text" id="postClientName" class="form-input" placeholder="e.g. Sanjana Sharma">
+                  </div>
+                  <div class="form-group">
+                    <label for="postClientDetails">Client Details / Achievements</label>
+                    <input type="text" id="postClientDetails" class="form-input" placeholder="e.g. Lost 18kg in 4 months">
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="postCaption">Caption / Text Content</label>
+                <textarea id="postCaption" class="form-input" rows="4" placeholder="Write description or tip here..."></textarea>
+              </div>
+
+              <button type="submit" class="btn btn-gradient"><i class="fa-solid fa-cloud-arrow-up"></i> Upload Post</button>
+            </form>
+
+            <!-- Current Posts List -->
+            <div class="glass-panel list-panel">
+              <h3>Existing Posts</h3>
+              <p class="text-muted mb-20">List of all social updates uploaded to date.</p>
+              <div class="list-container" id="postsListContainer">
+                <!-- Loaded dynamically by JS -->
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- 4. MANAGE PRODUCTS PANEL -->
+        <div class="tab-panel" id="productsPanel">
+          <div class="panel-split-grid">
+            
+            <!-- Create Product Form -->
+            <form id="productsForm" class="glass-panel form-panel-layout" enctype="multipart/form-data">
+              <h3 id="productFormTitle">Add Herbalife Product</h3>
+              <p class="text-muted mb-20" id="productFormSubtitle">List a new product in the store grid.</p>
+              
+              <input type="hidden" id="editProductId">
+
+              <div class="form-group">
+                <label for="productName">Product Name</label>
+                <input type="text" id="productName" class="form-input" required placeholder="e.g. Formula 1 Shake">
+              </div>
+
+              <div class="form-grid-row">
+                <div class="form-group">
+                  <label for="productPrice">Price (₹)</label>
+                  <input type="number" id="productPrice" class="form-input" required min="0">
+                </div>
+                <div class="form-group">
+                  <label for="productImage">Upload Image</label>
+                  <input type="file" id="productImage" name="productImg" class="form-input" accept="image/*">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="productBuyLink">Purchase Link (External)</label>
+                <input type="url" id="productBuyLink" class="form-input" required placeholder="https://www.herbalife.com/... or WhatsApp redirect link">
+              </div>
+
+              <div class="form-group">
+                <label for="productDetails">Product Details / Description</label>
+                <textarea id="productDetails" class="form-input" rows="4" required></textarea>
+              </div>
+
+              <div class="form-actions-row">
+                <button type="submit" class="btn btn-gradient" id="btnSubmitProduct"><i class="fa-solid fa-circle-plus"></i> Add Product</button>
+                <button type="button" class="btn btn-secondary" id="btnCancelEditProduct" style="display: none;">Cancel</button>
+              </div>
+            </form>
+
+            <!-- Product list -->
+            <div class="glass-panel list-panel">
+              <h3>Store Products</h3>
+              <p class="text-muted mb-20">List of all Herbalife products cataloged.</p>
+              <div class="list-container" id="productsListContainer">
+                <!-- Loaded dynamically -->
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- 5. MANAGE BLOGS PANEL -->
+        <div class="tab-panel" id="blogsPanel">
+          <div class="panel-split-grid grid-large-form">
+            
+            <!-- Create Blog Form -->
+            <form id="blogsForm" class="glass-panel form-panel-layout">
+              <h3 id="blogFormTitle">Write Wellness Blog</h3>
+              <p class="text-muted mb-20" id="blogFormSubtitle">Post articles or healthy eating suggestions.</p>
+              
+              <input type="hidden" id="editBlogId">
+
+              <div class="form-group">
+                <label for="blogTitle">Blog Title</label>
+                <input type="text" id="blogTitle" class="form-input" required placeholder="e.g. Benefits of Meal Replacements">
+              </div>
+
+              <div class="form-grid-row">
+                <div class="form-group">
+                  <label for="blogCategory">Category</label>
+                  <input type="text" id="blogCategory" class="form-input" required placeholder="e.g. Weight Loss, Fitness">
+                </div>
+                <div class="form-group">
+                  <label for="blogReadTime">Read Time</label>
+                  <input type="text" id="blogReadTime" class="form-input" required placeholder="e.g. 5 min read">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="blogSummary">Summary / Excerpt</label>
+                <input type="text" id="blogSummary" class="form-input" required placeholder="A brief one-line summary for preview cards">
+              </div>
+
+              <div class="form-group">
+                <label for="blogContent">Blog Content (Main Body)</label>
+                <textarea id="blogContent" class="form-input" rows="8" required placeholder="Write the full blog article here..."></textarea>
+              </div>
+
+              <div class="form-actions-row">
+                <button type="submit" class="btn btn-gradient" id="btnSubmitBlog"><i class="fa-solid fa-feather"></i> Publish Blog</button>
+                <button type="button" class="btn btn-secondary" id="btnCancelEditBlog" style="display: none;">Cancel</button>
+              </div>
+            </form>
+
+            <!-- Blogs List -->
+            <div class="glass-panel list-panel">
+              <h3>Published Blogs</h3>
+              <p class="text-muted mb-20">List of all blogs online.</p>
+              <div class="list-container" id="blogsListContainer">
+                <!-- Loaded dynamically -->
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- 6. SUCCESS STORIES PANEL -->
+        <div class="tab-panel" id="successPanel">
+          <div class="panel-split-grid">
+            
+            <!-- Success Story Form -->
+            <form id="successForm" class="glass-panel form-panel-layout" enctype="multipart/form-data">
+              <h3>Register Success Story</h3>
+              <p class="text-muted mb-20">Add before/after logs and client testimonials.</p>
+              
+              <div class="form-grid-row">
+                <div class="form-group">
+                  <label for="successClientName">Client Name</label>
+                  <input type="text" id="successClientName" class="form-input" required placeholder="e.g. Rajesh Kumar">
+                </div>
+                <div class="form-group">
+                  <label for="successClientDetails">Client Achievements</label>
+                  <input type="text" id="successClientDetails" class="form-input" required placeholder="e.g. Lost 14kg in 3 months">
+                </div>
+              </div>
+
+              <div class="form-grid-row">
+                <div class="form-group">
+                  <label for="successBeforeImg">Before Image</label>
+                  <input type="file" id="successBeforeImg" name="successBefore" class="form-input" required accept="image/*">
+                </div>
+                <div class="form-group">
+                  <label for="successAfterImg">After Image</label>
+                  <input type="file" id="successAfterImg" name="successAfter" class="form-input" required accept="image/*">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="successTestimonial">Testimonial Quote</label>
+                <textarea id="successTestimonial" class="form-input" rows="4" required placeholder="What did the client say about their journey?"></textarea>
+              </div>
+
+              <button type="submit" class="btn btn-gradient"><i class="fa-solid fa-circle-plus"></i> Save Story</button>
+            </form>
+
+            <!-- Success Stories list -->
+            <div class="glass-panel list-panel">
+              <h3>Existing Stories</h3>
+              <p class="text-muted mb-20">List of all registered success stories.</p>
+              <div class="list-container" id="successListContainer">
+                <!-- Loaded dynamically -->
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- 7. CONTACT QUERIES PANEL -->
+        <div class="tab-panel" id="queriesPanel">
+          <div class="glass-panel">
+            <h3>Contact Queries</h3>
+            <p class="text-muted mb-20">View, manage, and respond to queries sent by users through the website contact forms.</p>
+            
+            <div style="overflow-x: auto;">
+              <table class="queries-table" style="width: 100%; border-collapse: collapse; text-align: left;">
+                <thead>
+                  <tr style="border-bottom: 2px solid var(--border); padding-bottom: 10px;">
+                    <th style="padding: 12px;">Name</th>
+                    <th style="padding: 12px;">Phone</th>
+                    <th style="padding: 12px;">Email</th>
+                    <th style="padding: 12px;">Date</th>
+                    <th style="padding: 12px;">Status</th>
+                    <th style="padding: 12px; text-align: right;">Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="queriesTableBody">
+                  <!-- Loaded dynamically by JS -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </main>
+
+  </div>
+
+  <!-- Edit Post Modal Overlay -->
+  <div id="editPostModal" class="modal-overlay" style="display: none;">
+    <div class="modal-container glass-panel">
+      <div class="modal-header">
+        <h3>Edit Feed Post</h3>
+        <button type="button" id="closeEditModalBtn" class="btn-close-modal"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <form id="editPostForm" enctype="multipart/form-data">
+        <input type="hidden" id="editPostId">
+        <input type="hidden" id="editPostType">
+
+        <div class="form-group">
+          <label for="editPostTitle">Post Title</label>
+          <input type="text" id="editPostTitle" class="form-input" placeholder="Post title...">
+        </div>
+
+        <div class="form-grid-row">
+          <div class="form-group">
+            <label for="editPostCategory">Category</label>
+            <select id="editPostCategory" class="form-input">
+              <option value="weight-loss">Weight Loss</option>
+              <option value="weight-gain">Weight Gain</option>
+              <option value="nutrition-tips">Nutrition Tips</option>
+              <option value="herbalife-products">Herbalife Products</option>
+              <option value="success-stories">Success Stories</option>
+              <option value="zumba-classes">Zumba Classes</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Status</label>
+            <div style="display:flex;gap:16px;align-items:center;margin-top:8px;">
+              <label class="toggle-switch">
+                <input type="checkbox" id="editPostFeatured">
+                <span class="toggle-slider"></span>
+              </label>
+              <span style="font-size:0.82rem;color:#6B7280;">Featured</span>
+              <label class="toggle-switch">
+                <input type="checkbox" id="editPostPublished">
+                <span class="toggle-slider"></span>
+              </label>
+              <span style="font-size:0.82rem;color:#6B7280;">Published</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="editPostCaption">Caption / Description</label>
+          <textarea id="editPostCaption" class="form-input" rows="3" required placeholder="Write a caption..."></textarea>
+        </div>
+
+        <!-- Conditionally shown for transformation posts -->
+        <div id="editTransformationFields" style="display: none;">
+          <div class="grid-2">
+            <div class="form-group">
+              <label for="editPostClientName">Client Name</label>
+              <input type="text" id="editPostClientName" class="form-input" placeholder="e.g. Sanjana Sharma">
+            </div>
+            <div class="form-group">
+              <label for="editPostClientDetails">Client Details</label>
+              <input type="text" id="editPostClientDetails" class="form-input" placeholder="e.g. Lost 15kg in 4 months">
+            </div>
+          </div>
+          
+          <div class="grid-2">
+            <div class="form-group">
+              <label for="editPostBeforeImage">Replace Before Image (Optional)</label>
+              <input type="file" id="editPostBeforeImage" class="form-input" accept="image/*">
+            </div>
+            <div class="form-group">
+              <label for="editPostAfterImage">Replace After Image (Optional)</label>
+              <input type="file" id="editPostAfterImage" class="form-input" accept="image/*">
+            </div>
+          </div>
+        </div>
+
+        <!-- Conditionally shown for standard posts -->
+        <div id="editStandardFields" style="display: none;">
+          <div class="form-group">
+            <label for="editPostMedia">Replace Media (Image/Video - Optional)</label>
+            <input type="file" id="editPostMedia" class="form-input" accept="image/*,video/*">
+          </div>
+        </div>
+
+        <div class="modal-actions">
+          <button type="button" id="cancelEditModalBtn" class="btn btn-secondary">Cancel</button>
+          <button type="submit" class="btn btn-gradient">Save Changes</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- View Query Modal Overlay -->
+  <div id="viewQueryModal" class="modal-overlay" style="display: none;">
+    <div class="modal-container glass-panel" style="max-width: 600px;">
+      <div class="modal-header">
+        <h3>Contact Query Details</h3>
+        <button type="button" id="closeQueryModalBtn" class="btn-close-modal"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="modal-body" style="padding-top: 15px;">
+        <div class="query-detail-row" style="margin-bottom: 15px;">
+          <strong>Name:</strong> <span id="queryDetailName"></span>
+        </div>
+        <div class="query-detail-row" style="margin-bottom: 15px;">
+          <strong>Phone:</strong> <span id="queryDetailPhone"></span>
+        </div>
+        <div class="query-detail-row" style="margin-bottom: 15px;">
+          <strong>Email:</strong> <span id="queryDetailEmail"></span>
+        </div>
+        <div class="query-detail-row" style="margin-bottom: 15px;">
+          <strong>Date:</strong> <span id="queryDetailDate"></span>
+        </div>
+        <div class="query-detail-row" style="margin-bottom: 15px;">
+          <strong>Status:</strong> <span id="queryDetailStatus"></span>
+        </div>
+        <div class="query-detail-row" style="margin-bottom: 20px;">
+          <strong>Message:</strong>
+          <div id="queryDetailMessage" style="background: var(--bg); padding: 15px; border-radius: var(--radius-md); border: 1px solid var(--border); margin-top: 8px; white-space: pre-wrap; max-height: 250px; overflow-y: auto;"></div>
+        </div>
+      </div>
+      <div class="modal-actions" style="justify-content: flex-end; gap: 10px;">
+        <button type="button" id="btnDeleteQuery" class="btn" style="background: #ef4444; color: white;"><i class="fa-solid fa-trash"></i> Delete</button>
+        <button type="button" id="btnRespondQuery" class="btn btn-gradient"><i class="fa-solid fa-check"></i> Mark as Responded</button>
+        <button type="button" id="btnCloseQueryModal" class="btn btn-secondary">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Admin dashboard js -->
+  <script src="/js/api.js?v=8.0"></script>
+  <script src="/js/pages/admin.js?v=10.0"></script>
+  <script src="/js/main.js?v=9.0"></script>
+</body>
+</html>

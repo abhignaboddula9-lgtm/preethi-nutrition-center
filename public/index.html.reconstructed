@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Preethi Nutrition Center | Premium Wellness, Diet & Zumba</title>
+  <meta name="description" content="Discover professional lifestyle counseling, energetic Zumba classes, Herbalife supplements, and custom diet plans designed by wellness expert Preethi Ma'am.">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="/css/pages/home.css">
+</head>
+<body>
+  <!-- Header & Navigation -->
+  <header class="navbar-header">
+    <div class="nav-container">
+      <a href="/" class="logo">
+        <i class="fa-solid fa-heart-pulse"></i>
+        <span>Preethi <span>Nutrition</span></span>
+      </a>
+      
+      <!-- Nav Menu Links -->
+      <nav class="nav-menu" id="navMenu">
+        <a href="/" class="nav-link active">Home</a>
+        <a href="/about" class="nav-link">About</a>
+        <a href="/services" class="nav-link">Services</a>
+        <a href="/diet" class="nav-link">Diet Plans</a>
+        <a href="/zumba" class="nav-link">Zumba</a>
+        <a href="/success" class="nav-link">Success Stories</a>
+        <a href="/blog" class="nav-link">Blog</a>
+        <a href="/contact" class="nav-link">Contact</a>
+        <div class="nav-mobile-only">
+          <a href="/login" class="btn btn-secondary mobile-login-btn">Portal Login</a>
+        </div>
+      </nav>
+      
+      <!-- Top Right Controls -->
+      <div class="nav-controls">
+        <button id="themeToggleBtn" class="theme-toggle" aria-label="Toggle dark/light theme">
+          <i class="fa-solid fa-moon"></i>
+        </button>
+        <a href="/login" class="btn btn-primary login-btn">Portal Login</a>
+        <button class="hamburger" id="hamburgerBtn" aria-label="Toggle mobile menu">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Banner -->
+  <section class="hero-section">
+    <div class="hero-bg-shapes">
+      <div class="shape shape-1"></div>
+      <div class="shape shape-2"></div>
+    </div>
+    
+    <div class="section-container hero-grid">
+      <div class="hero-content">
+        <span class="hero-badge"><i class="fa-solid fa-sparkles"></i> Feel Your Best Everyday</span>
+        <h1 class="hero-title">Transform Your Health, Love Your Body</h1>
+        <p class="hero-lead">Achieve permanent results through personalized lifestyle guidance, high-energy Zumba sessions, and scientifically backed meal plans.</p>
+        <div class="hero-actions">
+          <a href="/login" class="btn btn-gradient btn-lg">Start Free Consultation <i class="fa-solid fa-arrow-trend-up"></i></a>
+          <a href="#bmi-preview" class="btn btn-secondary btn-lg">Check BMI</a>
+        </div>
+        <div class="hero-stats">
+          <div class="stat-item">
+            <h3>15+</h3>
+            <p>Years Counseling</p>
+          </div>
+          <div class="stat-item">
+            <h3>5,000+</h3>
+            <p>Successful Clients</p>
+          </div>
+          <div class="stat-item">
+            <h3>100%</h3>
+            <p>Custom Support</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="hero-visual">
+        <div class="hero-card-glow"></div>
+        <div class="hero-image-wrapper">
+          <div class="glass-info-card card-top">
+            <div class="icon-wrap"><i class="fa-solid fa-apple-whole"></i></div>
+            <div>
+              <h4>Active Nutrition</h4>
+              <p>Tailored Meal Chart</p>
+            </div>
+          </div>
+          <div class="glass-info-card card-bottom">
+            <div class="icon-wrap"><i class="fa-solid fa-fire-flame-curved"></i></div>
+            <div>
+              <h4>Fun Zumba</h4>
+              <p>High Calorie Burn</p>
+            </div>
+          </div>
+          <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?q=80&w=1200&auto=format&fit=crop" alt="Premium Fitness Coach" class="hero-main-img">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Preview -->
+  <section class="about-preview-section">
+    <div class="section-container grid-2">
+      <div class="about-img-showcase">
+        <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?q=80&w=800&auto=format&fit=crop" alt="Counselor Preethi portrait" class="about-counselor-img">
+        <div class="experience-badge">
+          <h3>15+</h3>
+          <p>Years of Transformational Success</p>
+        </div>
+      </div>
+      <div class="about-content">
+        <span class="section-sub">Who We Are</span>
+        <h2 class="section-title">Meet Wellness Counselor Preethi Ma'am</h2>
+        <p class="about-text">At Preethi Nutrition Center, we are dedicated to helping you live a healthier, happier life. Through certified dietary evaluations, behavioral counselling, and active fitness support, we help clients shed unwanted weight and gain lasting energy. We don't believe in starvations—we believe in smart fueling.</p>
+        
+        <div class="about-features">
+          <div class="feat-box">
+            <i class="fa-solid fa-heart-pulse"></i>
+            <div>
+              <h4>Tailored Guidance</h4>
+              <p>Individualized body measurements and progressive counseling updates.</p>
+            </div>
+          </div>
+          <div class="feat-box">
+            <i class="fa-solid fa-dumbbell"></i>
+            <div>
+              <h4>Fun Active Workouts</h4>
+              <p>Zumba choreographies designed to build stamina and reduce stress.</p>
+            </div>
+          </div>
+        </div>
+        <a href="/about" class="btn btn-outline">Read Full Biography <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Preview -->
+  <section class="services-preview-section">
+    <div class="section-container">
+      <div class="section-header text-center">
+        <span class="section-sub">What We Do</span>
+        <h2 class="section-title">Explore Our Programs</h2>
+        <p class="section-desc">We offer high-value plans focused on structural nutrition, body transformations, and active fitness.</p>
+      </div>
+      
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-icon"><i class="fa-solid fa-bowl-food"></i></div>
+          <h3>Nutrition Consulting</h3>
+          <p>Get full dietary charts calibrated for weight loss, muscle gain, diabetic control, and general wellness.</p>
+          <a href="/services" class="service-link">View Details <i class="fa-solid fa-chevron-right"></i></a>
+        </div>
+        <div class="service-card highlighted">
+          <div class="service-icon"><i class="fa-solid fa-music"></i></div>
+          <h3>Zumba Sessions</h3>
+          <p>Burn up to 600 calories an hour with high-energy rhythm workouts suited for beginners and pros alike.</p>
+          <a href="/zumba" class="service-link">View Details <i class="fa-solid fa-chevron-right"></i></a>
+        </div>
+        <div class="service-card">
+          <div class="service-icon"><i class="fa-solid fa-leaf"></i></div>
+          <h3>Herbalife Products</h3>
+          <p>Incorporate global-standard nutrition shakes and supplements directly recommended for your program.</p>
+          <a href="/products" class="service-link">View Details <i class="fa-solid fa-chevron-right"></i></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Success Stories Preview (Before/After comparison) -->
+  <section class="success-preview-section">
+    <div class="section-container grid-2">
+      <div class="success-text-content">
+        <span class="section-sub">Real Achievements</span>
+        <h2 class="section-title">Proven Transformations</h2>
+        <p class="success-lead">We help clients change their relationships with food and build daily exercise rhythms that last. Take a look at this recent story.</p>
+        
+        <div class="success-stat-row">
+          <div class="success-stat-card">
+            <h4>-18 kg</h4>
+            <p>Weight Dropped</p>
+          </div>
+          <div class="success-stat-card">
+            <h4>4 Months</h4>
+            <p>Active Program</p>
+          </div>
+        </div>
+        <a href="/success" class="btn btn-gradient btn-lg">See All Success Stories</a>
+      </div>
+      
+      <div class="slider-container">
+        <div class="ba-card">
+          <div class="ba-img-container" id="baSliderContainer">
+            <img src="https://images.unsplash.com/photo-1517838277536-f5f99be501cd?q=80&w=600&auto=format&fit=crop" alt="Before" class="ba-img before-img">
+            <div class="ba-img-resize-wrap" id="baResizeWrap">
+              <img src="https://images.unsplash.com/photo-1517838277536-f5f99be501cd?q=80&w=600&auto=format&fit=crop&hue=120" alt="After" class="ba-img after-img">
+            </div>
+            <div class="ba-handle" id="baHandle">
+              <i class="fa-solid fa-arrows-left-right"></i>
+            </div>
+            <span class="ba-label before-label">Before</span>
+            <span class="ba-label after-label">After</span>
+          </div>
+          <div class="ba-details">
+            <h3>Priyanka Nair</h3>
+            <p class="loss-badge"><i class="fa-solid fa-circle-check"></i> Personalized Lifestyle Shift</p>
+            <p class="ba-quote">"Working with Preethi Ma'am has completely restructured my wellness path. The counseling kept me motivated, and the diet was both filling and tasty."</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Instagram Style Feed -->
+  <section class="posts-feed-section">
+    <div class="section-container">
+      <div class="section-header flex-header">
+        <div>
+          <span class="section-sub">Instagram Updates</span>
+          <h2 class="section-title">Social Feed & Healthy Tips</h2>
+        </div>
+        <div class="feed-tabs">
+          <button class="feed-tab-btn active" data-filter="all">All</button>
+          <button class="feed-tab-btn" data-filter="instagram">Social posts</button>
+          <button class="feed-tab-btn" data-filter="transformation">Transformations</button>
+        </div>
+      </div>
+
+      <div class="posts-grid" id="postsGrid">
+        <div class="loader-placeholder">
+          <i class="fa-solid fa-circle-notch fa-spin"></i> Loading updates...
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Latest Videos Feed -->
+  <section class="videos-feed-section">
+    <div class="section-container">
+      <div class="section-header text-center">
+        <span class="section-sub">Video Tips</span>
+        <h2 class="section-title">Latest Workout & Meal Prep Videos</h2>
+        <p class="section-desc">Watch our short tutorial clips, fitness routines, and healthy recipes direct from the kitchen.</p>
+      </div>
+
+      <div class="videos-grid" id="videosGrid">
+        <!-- Rendered dynamically by JS from video posts, or defaults -->
+        <div class="video-card">
+          <div class="video-wrapper">
+            <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Sample Fitness Video" allowfullscreen></iframe>
+          </div>
+          <div class="video-details">
+            <h4>Healthy Morning Shake Routine</h4>
+            <p>Quick recipe tutorial for packing 25g protein into a morning smoothie.</p>
+          </div>
+        </div>
+        <div class="video-card">
+          <div class="video-wrapper">
+            <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Sample Zumba Video" allowfullscreen></iframe>
+          </div>
+          <div class="video-details">
+            <h4>Warm Up Zumba Choreography</h4>
+            <p>Follow along with this simple 5-minute warm-up dance routine.</p>
+          </div>
+        </div>
+        <div class="video-card">
+          <div class="video-wrapper">
+            <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Sample Nutrition Tips" allowfullscreen></iframe>
+          </div>
+          <div class="video-details">
+            <h4>Shedding Belly Fat: Facts vs Myths</h4>
+            <p>Preethi Ma'am outlines the core myths around spot reduction and metabolism.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BMI Calculator Preview -->
+  <section class="bmi-section" id="bmi-preview">
+    <div class="section-container">
+      <div class="glass-panel bmi-panel grid-2">
+        <div class="bmi-calc-form">
+          <span class="section-sub">Weight Check</span>
+          <h2 class="section-title">Calculate Your Body Mass Index</h2>
+          <p class="bmi-desc">Determine your health score instantly. Enter your height and weight below to check your health category.</p>
+          
+          <form id="bmiForm">
+            <div class="form-group-row">
+              <div class="form-group">
+                <label for="bmiWeight">Weight (kg)</label>
+                <input type="number" id="bmiWeight" class="form-input" placeholder="e.g. 65" required min="10" max="300">
+              </div>
+              <div class="form-group">
+                <label for="bmiHeight">Height (cm)</label>
+                <input type="number" id="bmiHeight" class="form-input" placeholder="e.g. 165" required min="50" max="250">
+              </div>
+            </div>
+            <button type="submit" class="btn btn-gradient btn-full">Compute Score <i class="fa-solid fa-calculator"></i></button>
+          </form>
+        </div>
+        
+        <div class="bmi-result-panel" id="bmiResultPanel">
+          <div class="result-placeholder">
+            <i class="fa-solid fa-gauge-simple-high"></i>
+            <h3>No Calculations Made Yet</h3>
+            <p>Fill in the values on the left and click submit to analyze your BMI index and see advice.</p>
+          </div>
+          <div class="result-display" style="display: none;">
+            <div class="bmi-gauge">
+              <div class="gauge-bar">
+                <div class="gauge-indicator" id="gaugeIndicator"></div>
+              </div>
+              <div class="gauge-labels">
+                <span>18.5 (Under)</span>
+                <span>25.0 (Normal)</span>
+                <span>30.0 (Over)</span>
+              </div>
+            </div>
+            <div class="score-box">
+              <h4 id="bmiScoreText">21.8</h4>
+              <p>Your BMI Metric</p>
+            </div>
+            <div class="category-badge" id="bmiCategoryBadge">Normal Weight</div>
+            <p class="category-advice" id="bmiAdviceText">Excellent score! Continue your path of solid nutrition, Herbalife updates, and zumba exercise.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="testimonials-section">
+    <div class="section-container">
+      <div class="section-header text-center">
+        <span class="section-sub">Testimonials</span>
+        <h2 class="section-title">What Our Community Says</h2>
+      </div>
+      
+      <div class="testimonials-grid">
+        <div class="testimonial-card">
+          <div class="rating">
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+          </div>
+          <p class="testimonial-text">"Preethi Ma'am's nutrition guidance transformed my metabolic health. I dropped 14 kgs and got my stamina back. Plus, the Zumba sessions are pure joy!"</p>
+          <div class="client-info">
+            <div class="client-avatar">MD</div>
+            <div>
+              <h4>Meera Deshmukh</h4>
+              <p>Active Zumba Client</p>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="rating">
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+          </div>
+          <p class="testimonial-text">"The diet schedules are extremely practical. I never feel hungry or lacking energy during my work days. Herbalife recommendations worked perfectly."</p>
+          <div class="client-info">
+            <div class="client-avatar">AK</div>
+            <div>
+              <h4>Amit Kulkarni</h4>
+              <p>Nutrition Consult Client</p>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="rating">
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+          </div>
+          <p class="testimonial-text">"Excellent guidance. Combining the daily shakes with routine zumba dance classes has helped me manage stress and stay in shape effortlessly."</p>
+          <div class="client-info">
+            <div class="client-avatar">SV</div>
+            <div>
+              <h4>Sneha Vyas</h4>
+              <p>Zumba & Supps Client</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Preview -->
+  <section class="contact-preview-section">
+    <div class="section-container">
+      <div class="glass-panel contact-panel grid-2">
+        <div class="contact-info-panel">
+          <span class="section-sub">Get In Touch</span>
+          <h2 class="section-title">Ready to Start?</h2>
+          <p class="contact-lead">Send us a quick query or visit our center. We are ready to support your health journey.</p>
+          
+          <div class="contact-details">
+            <div class="contact-detail-item">
+              <i class="fa-solid fa-location-dot"></i>
+              <div>
+                <h4>Center Location</h4>
+                <p id="infoLocation">Preethi Nutrition Center, 2nd Floor, Central Plaza, Main Road</p>
+              </div>
+            </div>
+            <div class="contact-detail-item">
+              <i class="fa-solid fa-phone"></i>
+              <div>
+                <h4>Call / WhatsApp</h4>
+                <p id="infoPhone">+91 98765 43210</p>
+              </div>
+            </div>
+            <div class="contact-detail-item">
+              <i class="fa-solid fa-envelope"></i>
+              <div>
+                <h4>Support Email</h4>
+                <p id="infoEmail">contact@preethinutrition.com</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Social Media Follow Section -->
+          <div class="follow-us-section">
+            <h4 class="follow-title">Follow Us</h4>
+            <div class="social-follow-grid">
+              <a href="https://www.instagram.com/fit_coach_krishnamurthy" target="_blank" rel="noopener noreferrer" class="social-follow-link instagram">
+                <span class="social-icon-wrapper"><i class="fa-brands fa-instagram"></i></span>
+                <span class="social-follow-label">@fit_coach_krishnamurthy</span>
+              </a>
+              <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer" class="social-follow-link facebook">
+                <span class="social-icon-wrapper"><i class="fa-brands fa-facebook"></i></span>
+                <span class="social-follow-label">Krishnamurthy</span>
+              </a>
+            </div>
+          </div>
+        </div>
+        
+        <div class="contact-form-panel">
+          <form id="contactForm">
+            <div class="form-group">
+              <label for="contactName">Name</label>
+              <input type="text" id="contactName" class="form-input" placeholder="Your Full Name" required>
+            </div>
+            <div class="form-group">
+              <label for="contactEmail">Email</label>
+              <input type="email" id="contactEmail" class="form-input" placeholder="Your Email Address" required>
+            </div>
+            <div class="form-group">
+              <label for="contactMessage">Query</label>
+              <textarea id="contactMessage" class="form-input" rows="4" placeholder="How can we assist you?" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-gradient btn-full">Send Query <i class="fa-solid fa-paper-plane"></i></button>
+          </form>
+          
+          <div class="contact-success" id="contactSuccessMsg" style="display: none;">
+            <i class="fa-solid fa-circle-check"></i>
+            <h4>Message Transmitted!</h4>
+            <p>We have received your details. Preethi Ma'am or an assistant will contact you shortly.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="section-container footer-grid">
+      <div class="footer-brand">
+        <a href="/" class="logo">
+          <i class="fa-solid fa-heart-pulse"></i>
+          <span>Preethi <span>Nutrition</span></span>
+        </a>
+        <p>Expert dietary lifestyle counselling, active Zumba, and premium wellness shakes. We guide you every step of your transformation journey.</p>
+        <div class="social-links">
+          <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
+          <a href="#" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+          <a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+        </div>
+      </div>
+      
+      <div class="footer-links">
+        <h4>Our Pages</h4>
+        <a href="/">Home</a>
+        <a href="/about">About Us</a>
+        <a href="/services">Services</a>
+        <a href="/diet">Diet Plans</a>
+        <a href="/zumba">Zumba</a>
+      </div>
+      
+      <div class="footer-links">
+        <h4>Client Portal</h4>
+        <a href="/success">Success Stories</a>
+        <a href="/blog">Blogs</a>
+        <a href="/login">User Portal</a>
+        <a href="/admin-login">Counselor Portal</a>
+      </div>
+      
+      <div class="footer-hours">
+        <h4>Operating Slots</h4>
+        <p><strong>Mon - Fri:</strong><br>6:00 AM - 11:30 AM<br>4:30 PM - 8:30 PM</p>
+        <p><strong>Saturday:</strong><br>6:00 AM - 12:00 PM</p>
+        <p>Sunday: Closed</p>
+      </div>
+    </div>
+    
+    <div class="footer-bottom text-center">
+      <p>&copy; 2026 Preethi Nutrition Center. All rights reserved. Premium Health & Wellness.</p>
+    </div>
+  </footer>
+
+  <!-- Page JS Script -->
+  <script src="/js/api.js"></script>
+  <script src="/js/pages/home.js"></script>
+</body>
+</html>

@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Client Portal Dashboard | Preethi Nutrition Center</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Dashboard Stylesheet -->
+  <link rel="stylesheet" href="/css/pages/dashboard.css?v=9.0">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/jpeg" href="/uploads/logo.jpg">
+  <link rel="stylesheet" href="/css/style.css?v=9.0">
+</head>
+<body>
+  <!-- Dashboard Navigation Header -->
+    <header class="navbar-header">
+    <div class="nav-container">
+      <a href="/" class="logo">
+        <img src="/uploads/logo.jpg" alt="Preethi Nutrition Logo" class="logo-img">
+      </a>
+      
+      <div class="header-right-nav">
+        <span class="user-badge" id="headerUserBadge">
+          <i class="fa-regular fa-user"></i> <span id="headerUserName">Client Name</span>
+        </span>
+        <button class="btn btn-secondary btn-sm" id="logoutBtn">
+          <i class="fa-solid fa-arrow-right-from-bracket"></i> Sign Out
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Dashboard Main Section -->
+  <section class="dashboard-section">
+    <div class="section-container dashboard-grid">
+      
+      <!-- LEFT COLUMN: Profile & Parameters -->
+      <div class="dashboard-sidebar-column">
+        <!-- 1. Profile card -->
+        <div class="glass-panel profile-card">
+          <div class="profile-avatar" id="profileInitials">CN</div>
+          <h3 id="profileName">Loading Profile...</h3>
+          <p class="profile-email" id="profileEmail">email@example.com</p>
+          
+          <div class="profile-details-list">
+            <div class="detail-item">
+              <i class="fa-solid fa-phone"></i>
+              <div>
+                <span>Phone Number</span>
+                <p id="profilePhone">Not Provided</p>
+              </div>
+            </div>
+            <div class="detail-item">
+              <i class="fa-solid fa-ruler-vertical"></i>
+              <div>
+                <span>Height</span>
+                <p id="profileHeight">0 cm</p>
+              </div>
+            </div>
+            <div class="detail-item">
+              <i class="fa-solid fa-weight-scale"></i>
+              <div>
+                <span>Last Logged Weight</span>
+                <p id="profileWeight">0 kg</p>
+              </div>
+            </div>
+          </div>
+          
+          <button class="btn btn-outline btn-full" id="btnEditProfile">
+            <i class="fa-solid fa-pen"></i> Edit Profile Metrics
+          </button>
+        </div>
+
+        <!-- Edit Profile Modal overlay -->
+        <div class="profile-edit-modal-wrap" id="profileModal" style="display: none;">
+          <div class="glass-panel modal-content">
+            <h3>Update Profile Metrics</h3>
+            <p class="text-muted mb-20">Set your current height and baseline phone details.</p>
+            <form id="editProfileForm">
+              <div class="form-group">
+                <label for="editPhone">Phone Number</label>
+                <input type="text" id="editPhone" class="form-input">
+              </div>
+              <div class="form-group">
+                <label for="editHeight">Height (cm)</label>
+                <input type="number" id="editHeight" class="form-input" min="50" max="250" required>
+              </div>
+              <div class="form-actions">
+                <button type="submit" class="btn btn-gradient">Save Metrics</button>
+                <button type="button" class="btn btn-secondary" id="btnCancelEdit">Cancel</button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <!-- 2. Current BMI Gauge card -->
+        <div class="glass-panel bmi-summary-card mt-30">
+          <h4>Your BMI Summary</h4>
+          <div class="current-bmi-score" id="currentBmiScore">0.0</div>
+          <div class="current-bmi-badge" id="currentBmiBadge">Normal</div>
+          
+          <div class="bmi-progress-gauge">
+            <div class="gauge-bar">
+              <div class="gauge-indicator" id="currentGaugeIndicator"></div>
+            </div>
+            <div class="gauge-labels">
+              <span>18.5</span>
+              <span>25.0</span>
+              <span>30.0</span>
+            </div>
+          </div>
+          <p class="bmi-counsel-text" id="currentBmiAdvice">Log your weight to calculate your BMI rating.</p>
+        </div>
+      </div>
+
+      <!-- RIGHT COLUMN: Loggers & Logs History -->
+      <div class="dashboard-content-column">
+        
+        <!-- Global success/error alerts -->
+        <div class="alert-box success" id="dashboardSuccessAlert" style="display: none;"></div>
+        <div class="alert-box error" id="dashboardErrorAlert" style="display: none;"></div>
+
+        <!-- 1. Weight Logger Card -->
+        <div class="glass-panel logger-card">
+          <div class="logger-header">
+            <div>
+              <h3>Weight Progress Tracker</h3>
+              <p class="text-muted">Enter your weight regularly to check your BMI progression parameters.</p>
+            </div>
+            <i class="fa-solid fa-weight-scale logger-icon"></i>
+          </div>
+          
+          <form id="weightLogForm" class="logger-form">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="logWeightVal">Current Weight (kg)</label>
+                <input type="number" id="logWeightVal" step="0.1" class="form-input" placeholder="e.g. 72.5" required min="10" max="300">
+              </div>
+              <div class="form-group">
+                <label for="logDateVal">Log Date</label>
+                <input type="date" id="logDateVal" class="form-input" required>
+              </div>
+              <div class="form-group btn-align-group">
+                <button type="submit" class="btn btn-gradient btn-full">
+                  <i class="fa-solid fa-plus"></i> Record Weight
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+
+        <!-- 2. Historical Progress Table -->
+        <div class="glass-panel logs-history-card mt-30">
+          <h3>Weight & BMI History</h3>
+          <p class="text-muted mb-20">Full list of your weight logs over time.</p>
+          
+          <div class="table-container">
+            <table class="history-table">
+              <thead>
+                <tr>
+                  <th>Date Logged</th>
+                  <th>Weight (kg)</th>
+                  <th>Computed BMI</th>
+                  <th>Health Class</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="logsTableBody">
+                <!-- Dynamically generated rows -->
+                <tr>
+                  <td colspan="5" class="text-center text-muted">No logs recorded. Log your first weight above to start tracking.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="section-container footer-grid">
+      <div class="footer-brand">
+        <a href="/" class="logo">
+        <img src="/uploads/logo.jpg" alt="Preethi Nutrition Logo" class="logo-img">
+      </a>
+        <p>Premium dietary counseling, Zumba active workouts, and Herbalife products. Supporting you in structural body transformations.</p>
+        <div class="social-links">
+          <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
+          <a href="#" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+          <a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+        </div>
+      </div>
+      
+      <div class="footer-links">
+        <h4>Our Pages</h4>
+        <a href="/">Home</a>
+        <a href="/about">About Us</a>
+        <a href="/services">Services</a>
+        <a href="/diet">Diet Plans</a>
+        <a href="/zumba">Zumba</a>
+      </div>
+      
+      <div class="footer-links">
+        <h4>Client Portal</h4>
+        <a href="/success">Success Stories</a>
+        <a href="/blog">Blogs</a>
+        <a href="/login">User Portal</a>
+        <a href="/login">Counselor Portal</a>
+      </div>
+      
+      <div class="footer-hours">
+        <h4>Operating Slots</h4>
+        <p><strong>Mon - Fri:</strong><br>6:00 AM - 11:30 AM<br>4:30 PM - 8:30 PM</p>
+        <p><strong>Saturday:</strong><br>6:00 AM - 12:00 PM</p>
+        <p>Sunday: Closed</p>
+      </div>
+    </div>
+    
+    <div class="footer-bottom text-center">
+      <p>&copy; 2026 Preethi Nutrition Center. All rights reserved. Premium Health & Wellness.</p>
+    </div>
+  </footer>
+
+  <!-- Dashboard Script -->
+  <script src="/js/pages/dashboard.js?v=8.0"></script>
+  <script src="/js/main.js?v=9.0"></script>
+</body>
+</html>

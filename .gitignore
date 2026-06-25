@@ -1,0 +1,51 @@
+# Dependencies
+node_modules/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+
+# Environment variables (keep .env.example, ignore real .env)
+.env
+
+# Build outputs
+dist/
+build/
+.vite/
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor directories
+.vscode/settings.json
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Temp scripts (automation helpers not needed in repo)
+apply_champagne_theme.py
+apply_peach_lavender_theme.py
+apply_pink_lavender_theme.py
+update_theme.py
+audit.py
+search_root.py
+check_headers.py
+
+# Database / uploads (exclude actual uploaded files; keep folder)
+# public/uploads/*
+# !public/uploads/.gitkeep

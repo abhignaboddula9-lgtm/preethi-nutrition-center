@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nutrition Counseling | Preethi Nutrition Center</title>
+  <meta name="description" content="Professional Nutrition Counseling by Counselor Preethi Ma'am. Address diabetes, cholesterol, thyroid, PCOS, and metabolic disorders.">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+    <!-- Premium Stylesheet -->
+  <link rel="stylesheet" href="/css/style.css?v=9.0">
+  <style>
+    /* Page specific program styles */
+    .program-hero { padding-top: 180px; padding-bottom: 60px; background: linear-gradient(180deg, var(--bg-surface) 0%, var(--bg) 100%); }
+    .hero-badge { display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; background: hsla(var(--hue-primary), 80%, 42%, 0.08); border: 1px solid var(--border); border-radius: var(--radius-full); font-family: var(--font-heading); font-weight: 700; font-size: 13px; color: var(--primary); margin-bottom: 20px; }
+    .hero-title { font-family: var(--font-heading); font-size: 48px; font-weight: 800; letter-spacing: -1px; margin-bottom: 16px; color: var(--primary); }
+    .hero-lead { font-size: 18px; color: var(--text-muted); max-width: 700px; margin: 0 auto; }
+
+    .details-box { background: var(--bg-surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 40px; box-shadow: var(--shadow-sm); }
+    .details-box h3 { font-family: var(--font-heading); font-size: 26px; font-weight: 800; color: var(--primary); margin-bottom: 20px; }
+    .details-box p { font-size: 16px; color: var(--text-muted); margin-bottom: 24px; }
+    .features-list { display: flex; flex-direction: column; gap: 16px; margin-bottom: 30px; }
+    .feature-item { display: flex; gap: 14px; align-items: flex-start; }
+    .feature-item i { color: var(--primary); font-size: 20px; margin-top: 2px; }
+    .feature-item h4 { font-family: var(--font-heading); font-size: 16px; font-weight: 700; margin-bottom: 4px; color: var(--text); }
+    .feature-item p { font-size: 14px; color: var(--text-muted); margin-bottom: 0; }
+
+    .booking-card { background: var(--bg-surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 40px; box-shadow: var(--shadow-md); position: sticky; top: 120px; }
+    .booking-card h3 { font-family: var(--font-heading); font-size: 22px; font-weight: 800; margin-bottom: 10px; color: var(--primary); }
+    .booking-card p { font-size: 14px; color: var(--text-muted); margin-bottom: 24px; }
+    .form-group { display: flex; flex-direction: column; gap: 8px; margin-bottom: 20px; }
+    .form-group label { font-family: var(--font-heading); font-weight: 600; font-size: 13px; }
+    .form-input { width: 100%; background: var(--bg); border: 1px solid var(--border); padding: 14px 16px; border-radius: var(--radius-md); color: var(--text); outline: none; transition: border-color var(--transition-fast); }
+    .form-input:focus { border-color: var(--primary); }
+    .form-success { display: none; text-align: center; padding: 20px 0; }
+    .form-success i { font-size: 48px; color: var(--primary); margin-bottom: 16px; }
+
+    .grid-2 { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 60px; align-items: start; }
+
+    @media (max-width: 1024px) {
+      .grid-2 { grid-template-columns: 1fr; gap: 40px; }
+      .booking-card { position: static; }
+    }
+    @media (max-width: 768px) {
+      .program-hero { padding-top: 140px; }
+      .hero-title { font-size: 36px; }
+    }
+  
+.nav-link i { color: var(--primary);
+  margin-right: 6px;
+  font-size: 14px;
+  opacity: 0.85;
+  transition: transform var(--transition-fast), color var(--transition-fast);
+}
+.nav-link:hover i, .nav-link.active i {
+transform: translateY(-1px) scale(1.1);
+  color: var(--primary);
+}
+</style>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/jpeg" href="/uploads/logo.jpg">
+</head>
+<body>
+    <!-- Header -->
+    <!-- Header & Navigation -->
+  <header class="navbar-header">
+    <div class="nav-container">
+      <a href="/" class="logo">
+        <img src="/uploads/logo.jpg" alt="Preethi Nutrition Logo" class="logo-img">
+      </a>
+      
+      <!-- Nav Menu Links -->
+      <nav class="nav-menu" id="navMenu">
+        <a href="/" class="nav-link"><i class="fa-solid fa-house"></i> Home</a>
+        <a href="/about" class="nav-link"><i class="fa-solid fa-circle-info"></i> About</a>
+        <a href="/services" class="nav-link"><i class="fa-solid fa-spa"></i> Services</a>
+        <a href="/diet" class="nav-link"><i class="fa-solid fa-apple-whole"></i> Diet Plans</a>
+        <a href="/zumba" class="nav-link"><i class="fa-solid fa-fire"></i> Zumba</a>
+        <a href="/success" class="nav-link"><i class="fa-solid fa-trophy"></i> Success Stories</a>
+        <a href="/blog" class="nav-link"><i class="fa-solid fa-pen-to-square"></i> Blog</a>
+        <a href="/contact" class="nav-link"><i class="fa-solid fa-phone"></i> Contact</a>
+        <div class="nav-mobile-only">
+          <a href="/login" class="btn btn-secondary mobile-login-btn">Portal Login</a>
+        </div>
+      </nav>
+      
+      <!-- Top Right Controls -->
+      <div class="nav-controls">
+        <a href="/login" class="btn btn-primary login-btn">Portal Login</a>
+        <button class="hamburger" id="hamburgerBtn" aria-label="Toggle mobile menu">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="program-hero">
+    <div class="section-container text-center">
+      <span class="hero-badge"><i class="fa-solid fa-notes-medical"></i> Therapeutic Wellness</span>
+      <h1 class="hero-title">Nutrition Counseling</h1>
+      <p class="hero-lead">Manage chronic health issues, rebalance hormonal levels, and optimize cell vitality with therapeutic, custom nutrition programs.</p>
+    </div>
+  </section>
+
+  <!-- Program Details -->
+  <section class="program-details">
+    <div class="section-container grid-2">
+      
+      <div class="details-box">
+        <h3>Therapeutic Food Therapy</h3>
+        <p>For clients managing conditions like PCOS, Diabetes, Thyroid imbalances, or Cholesterol, proper food selection is the most powerful medicine. Our therapeutic nutrition counseling creates custom meal adjustments designed to reduce inflammation and stabilize hormone and blood sugar levels.</p>
+        
+        <div class="features-list">
+          <div class="feature-item">
+            <i class="fa-solid fa-circle-check"></i>
+            <div>
+              <h4>Condition-Specific Programs</h4>
+              <p>Specialized dietary guidelines tailored specifically for PCOS management, diabetes control, thyroid regulation, or cardiac health.</p>
+            </div>
+          </div>
+          <div class="feature-item">
+            <i class="fa-solid fa-circle-check"></i>
+            <div>
+              <h4>Cellular Level Nutrition</h4>
+              <p>Incorporate dense micronutrients and supplements to repair tissue, speed up recovery, and combat daily oxidative stress.</p>
+            </div>
+          </div>
+          <div class="feature-item">
+            <i class="fa-solid fa-circle-check"></i>
+            <div>
+              <h4>Empathetic Lifestyle Coaching</h4>
+              <p>Receive regular check-ins and positive reinforcement to handle lifestyle stressors and build consistent eating behaviors.</p>
+            </div>
+          </div>
+        </div>
+
+        <p>Our goal is to help you reduce dependency on medication by addressing the root metabolic cause. We guide you carefully through lifestyle changes that support long-term relief.</p>
+      </div>
+
+      <!-- Lead Capture Card -->
+      <div class="booking-card">
+        <div id="bookingFormWrapper">
+          <h3>Request Consultation</h3>
+          <p>Book your initial health assessment and get a customized lifestyle review.</p>
+          <form id="programLeadForm">
+            <div class="form-group">
+              <label for="leadName">Full Name</label>
+              <input type="text" id="leadName" class="form-input" placeholder="e.g. Priyanka Nair" required>
+            </div>
+            <div class="form-group">
+              <label for="leadPhone">Phone Number</label>
+              <input type="tel" id="leadPhone" class="form-input" placeholder="e.g. 9876543210" required>
+            </div>
+            <div class="form-group">
+              <label for="leadEmail">Email Address</label>
+              <input type="email" id="leadEmail" class="form-input" placeholder="e.g. priyanka@example.com" required>
+            </div>
+            <div class="form-group">
+              <label for="leadNotes">Your Goal / Notes</label>
+              <input type="text" id="leadNotes" class="form-input" placeholder="e.g. Need help with PCOS diet plan">
+            </div>
+            <button type="submit" class="btn btn-gradient btn-full">Book Free Assessment <i class="fa-solid fa-chevron-right"></i></button>
+          </form>
+        </div>
+        <div id="bookingSuccessMsg" class="form-success">
+          <i class="fa-solid fa-circle-check"></i>
+          <h4>Thank you!</h4>
+          <p>Your consultation request has been received. Our counselor will contact you shortly.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Footer -->
+    <!-- Footer -->
+  <footer class="footer">
+    <div class="section-container footer-grid">
+      <div class="footer-brand">
+        <a href="/" class="logo">
+          <img src="/uploads/logo.jpg" alt="Preethi Nutrition Logo" class="logo-img">
+        </a>
+        <p>Expert dietary lifestyle counselling, active Zumba, and premium wellness shakes. We guide you every step of your transformation journey.</p>
+        <div class="social-links">
+          <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
+          <a href="#" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+          <a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+        </div>
+      </div>
+      
+      <div class="footer-links">
+        <h4>Our Pages</h4>
+        <a href="/">Home</a>
+        <a href="/about">About Us</a>
+        <a href="/services">Services</a>
+        <a href="/diet">Diet Plans</a>
+        <a href="/zumba">Zumba</a>
+      </div>
+      
+      <div class="footer-links">
+        <h4>Client Portal</h4>
+        <a href="/success">Success Stories</a>
+        <a href="/blog">Blogs</a>
+        <a href="/login">User Portal</a>
+        <a href="/login">Counselor Portal</a>
+      </div>
+      
+      <div class="footer-hours">
+        <h4>Operating Slots</h4>
+        <p><strong>Mon - Fri:</strong><br>6:00 AM - 11:30 AM<br>4:30 PM - 8:30 PM</p>
+        <p><strong>Saturday:</strong><br>6:00 AM - 12:00 PM</p>
+        <p>Sunday: Closed</p>
+      </div>
+    </div>
+    
+    <div class="footer-bottom text-center">
+      <p>&copy; 2026 Preethi Nutrition Center. All rights reserved. Premium Health & Wellness.</p>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('programLeadForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const body = {
+        name: document.getElementById('leadName').value,
+        phone: document.getElementById('leadPhone').value,
+        email: document.getElementById('leadEmail').value,
+        message: `[Nutrition Counseling Page Lead] - Goal: ${document.getElementById('leadNotes').value}`,
+        service: 'Nutrition Counseling'
+      };
+      try {
+        const res = await fetch('/api/contact', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(body)
+        });
+        const data = await res.json();
+        if (data.success) {
+          document.getElementById('bookingFormWrapper').style.display = 'none';
+          document.getElementById('bookingSuccessMsg').style.display = 'block';
+        }
+      } catch (err) {
+        console.error('Lead submit error:', err);
+      }
+    });
+  </script>
+  <script src="/js/main.js?v=9.0"></script>
+</body>
+</html>
