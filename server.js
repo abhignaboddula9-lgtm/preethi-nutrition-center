@@ -26,33 +26,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Serve uploads folder specifically if needed
 app.use('/uploads', express.static(uploadsDir));
 
-// MongoDB Connection Logic (Fail-fast in Production)
-const connectDB = async () => {
-  const mongoURI = process.env.MONGO_URI;
-  if (!mongoURI) {
-    console.error('CRITICAL CONFIGURATION ERROR: MONGO_URI environment variable is not defined.');
-    process.exit(1);
-  }
 
-  try {
-    // Sanitize credentials out of connection string before logging
-    const connStrLog = mongoURI.replace(/mongodb(\+srv)?:\/\/([^@]+)@/, 'mongodb$1://***:***@');
-    console.log(`Connecting to MongoDB at: ${connStrLog}`);
-
-    await mongoose.connect(mongoURI);
-    
-    const dbConnection = mongoose.connection;
-    console.log(`Successfully connected to MongoDB database: "${dbConnection.name}" on host: "${dbConnection.host}"`);
-
-    // Run admin seeding on successful connection
-    await seedAdmin();
-  } catch (err) {
-    console.error('CRITICAL STARTUP ERROR: MongoDB connection failed!', err.message);
-    process.exit(1);
-  }
-};
-
-connectDB();
 
 // Admin Account Seeding function
 async function seedAdmin() {
@@ -173,7 +147,33 @@ app.use((err, req, res, next) => {
   });
 });
 
-// Start Server
-app.listen(PORT, () => {
-  console.log(`Server is running in ${process.env.NODE_ENV || 'development'} mode on port ${PORT}`);
-});
+// MongoDB Connection Logic & Server Boot (Fail-fast in Production)
+const startServer = async () => {
+  const mongoURI = process.env.MONGO_URI;
+  if (!mongoURI) {
+    console.error('CRITICAL CONFIGURATION ERROR: MONGO_URI environment variable is not defined.');
+    process.exit(1);
+  }
+
+  try {
+    // Sanitize credentials out of connection string before logging
+    const connStrLog = mongoURI.replace(/mongodb(\+srv)?:\/\/([^@]+)@/, 'mongodb$1://***:***@');
+    console.log(`Connecting to MongoDB at: ${connStrLog}...`);
+
+    await mongoose.connect(mongoURI);
+    console.log('MongoDB connected successfully.');
+
+    // Run admin seeding on successful connection
+    await seedAdmin();
+
+    // Start listening only AFTER database connection is ready
+    app.listen(PORT, () => {
+      console.log(`Server is running in ${process.env.NODE_ENV || 'production'} mode on port ${PORT}`);
+    });
+  } catch (err) {
+    console.error('CRITICAL STARTUP ERROR: MongoDB connection failed!', err);
+    process.exit(1);
+  }
+};
+
+startServer();
