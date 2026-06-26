@@ -160,38 +160,80 @@ app.use((err, req, res, next) => {
   });
 });
 
-// MongoDB Connection Logic & Server Boot (Resilient in Production)
+// MongoDB Connection Logic & Server Boot
 const startServer = async () => {
   const rawMongoURI = process.env.MONGO_URI;
-  if (!rawMongoURI) {
-    console.warn('WARNING: MONGO_URI environment variable is not defined.');
-    console.warn('Database features will be offline.');
+
+  // ── DIAGNOSTIC: print exact URI properties to Render logs ──────────────────
+  console.log('=== MONGO_URI DIAGNOSTIC ===');
+  if (rawMongoURI === undefined) {
+    console.warn('MONGO_URI: UNDEFINED - not set in environment variables!');
+    console.warn('Database features will be offline. Set MONGO_URI in Render dashboard.');
   } else {
-    const mongoURI = rawMongoURI.trim();
-    console.log('MONGO_URI environment variable exists.');
+    const masked = rawMongoURI.replace(/mongodb(\+srv)?:\/\/([^:]+):([^@]+)@/, 'mongodb$1://$2:***@');
+    console.log('MONGO_URI (masked)      :', masked);
+    console.log('length                  :', rawMongoURI.length);
+    console.log('startsWith mongodb://   :', rawMongoURI.startsWith('mongodb://'));
+    console.log('startsWith mongodb+srv  :', rawMongoURI.startsWith('mongodb+srv://'));
+    console.log('contains \\n             :', rawMongoURI.includes('\n'));
+    console.log('contains \\r             :', rawMongoURI.includes('\r'));
+    console.log('contains "              :', rawMongoURI.includes('"'));
+    console.log("contains '              :", rawMongoURI.includes("'"));
+    console.log('has leading/trailing sp :', rawMongoURI !== rawMongoURI.trim());
+  }
+  console.log('=== END DIAGNOSTIC ===');
+  // ── END DIAGNOSTIC ─────────────────────────────────────────────────────────
 
-    try {
-      // Sanitize credentials out of connection string before logging
-      const connStrLog = mongoURI.replace(/mongodb(\+srv)?:\/\/([^@]+)@/, 'mongodb$1://***:***@');
-      console.log(`Connecting to MongoDB at: ${connStrLog}...`);
+  if (!rawMongoURI) {
+    console.warn('Server starting without MongoDB. Login and data features will not work.');
+  } else {
+    // Strip invisible characters, surrounding quotes, and whitespace
+    let mongoURI = rawMongoURI
+      .trim()
+      .replace(/^["']|["']$/g, '')   // strip surrounding quotes (copy-paste artifact)
+      .replace(/[\r\n\t]/g, '');     // strip carriage returns, newlines, tabs
 
-      await mongoose.connect(mongoURI, {
-        serverSelectionTimeoutMS: 10000 // fail fast if Atlas is not reachable
-      });
-      
-      // Seed admin accounts after successful connection
-      await seedAdmin();
-    } catch (err) {
-      console.error('CRITICAL STARTUP ERROR: MongoDB connection failed! Running in degraded mode.');
-      console.error(err.stack || err);
-      // Removed process.exit(1) to allow Render zero-downtime deployment to succeed
+    // Validate protocol
+    if (!mongoURI.startsWith('mongodb://') && !mongoURI.startsWith('mongodb+srv://')) {
+      console.error('MONGO_URI ERROR: URI does not start with mongodb:// or mongodb+srv://');
+      console.error('After stripping quotes, value starts with:', mongoURI.substring(0, 20));
+      console.error('Check Render dashboard - the MONGO_URI value may have surrounding quotes.');
+    } else {
+      const isSRV = mongoURI.startsWith('mongodb+srv://');
+      const connStrLog = mongoURI.replace(/mongodb(\+srv)?:\/\/([^:]+):([^@]+)@/, 'mongodb$1://$2:***@');
+      console.log(`Connecting to MongoDB (${isSRV ? 'SRV' : 'Standard'}) at: ${connStrLog}...`);
+
+      try {
+        const connectOptions = {
+          serverSelectionTimeoutMS: 15000,
+          connectTimeoutMS: 15000,
+          socketTimeoutMS: 30000,
+        };
+
+        // SRV URIs must NOT have replicaSet in the URI (Atlas SRV resolves it automatically)
+        // Standard URIs with explicit hosts keep their replicaSet param
+        await mongoose.connect(mongoURI, connectOptions);
+
+        // Seed admin accounts after successful connection
+        await seedAdmin();
+      } catch (err) {
+        console.error('MONGO CONNECTION FAILED:');
+        console.error('  name   :', err.name);
+        console.error('  message:', err.message);
+        console.error('  code   :', err.code);
+        console.error('  stack  :', err.stack);
+        // Do NOT process.exit() - allows Render to complete health check and deploy new code
+      }
     }
   }
 
-  // Start listening REGARDLESS of database connection status
+  // Start listening regardless of database connection status
   app.listen(PORT, () => {
-    console.log(`Server is running in ${process.env.NODE_ENV || 'production'} mode on port ${PORT}`);
+    console.log(`Server running in ${process.env.NODE_ENV || 'production'} mode on port ${PORT}`);
+    console.log(`Mongoose readyState: ${mongoose.connection.readyState} (1=connected, 0=disconnected)`);
+    console.log(`Database name: ${mongoose.connection.name || '(not connected)'}`);
   });
 };
 
 startServer();
+
