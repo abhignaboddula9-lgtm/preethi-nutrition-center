@@ -6,6 +6,28 @@ const path = require('path');
 const fs = require('fs');
 const bcrypt = require('bcryptjs');
 
+// Mongoose Configuration
+// Disable query buffering globally so we do not hide connection dropouts or failure hangs
+mongoose.set('bufferCommands', false);
+
+// Connection event logging
+mongoose.connection.on('connected', () => {
+  console.log('Mongoose connection established successfully.');
+  console.log('Database Name:', mongoose.connection.name);
+});
+
+mongoose.connection.on('error', (err) => {
+  console.error('Mongoose connection error occurred:', err.stack || err);
+});
+
+mongoose.connection.on('disconnected', () => {
+  console.warn('Mongoose connection disconnected!');
+});
+
+mongoose.connection.on('reconnected', () => {
+  console.log('Mongoose connection reestablished.');
+});
+
 const app = express();
 const PORT = process.env.PORT || 5001;
 
@@ -126,6 +148,17 @@ app.get('/fitness-guidance', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'fitness-guidance.html'));
 });
 
+// Database connection status check middleware for all API requests
+app.use('/api', (req, res, next) => {
+  if (mongoose.connection.readyState !== 1) {
+    return res.status(503).json({
+      success: false,
+      message: 'Database connection is currently offline. Please ensure MongoDB Atlas IP Whitelisting is set to 0.0.0.0/0.'
+    });
+  }
+  next();
+});
+
 // Backend API Routes
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/admin', require('./routes/admin'));
@@ -149,21 +182,25 @@ app.use((err, req, res, next) => {
 
 // MongoDB Connection Logic & Server Boot (Fail-fast in Production)
 const startServer = async () => {
-  const mongoURI = process.env.MONGO_URI;
-  if (!mongoURI) {
-    console.error('CRITICAL CONFIGURATION ERROR: MONGO_URI environment variable is not defined.');
+  const rawMongoURI = process.env.MONGO_URI;
+  if (!rawMongoURI) {
+    console.error('CRITICAL STARTUP ERROR: MONGO_URI environment variable is not defined.');
     process.exit(1);
   }
+
+  const mongoURI = rawMongoURI.trim();
+  console.log('MONGO_URI environment variable exists.');
 
   try {
     // Sanitize credentials out of connection string before logging
     const connStrLog = mongoURI.replace(/mongodb(\+srv)?:\/\/([^@]+)@/, 'mongodb$1://***:***@');
     console.log(`Connecting to MongoDB at: ${connStrLog}...`);
 
-    await mongoose.connect(mongoURI);
-    console.log('MongoDB connected successfully.');
-
-    // Run admin seeding on successful connection
+    await mongoose.connect(mongoURI, {
+      serverSelectionTimeoutMS: 10000 // fail fast if Atlas is not reachable (10 seconds timeout)
+    });
+    
+    // Seed admin accounts after successful connection
     await seedAdmin();
 
     // Start listening only AFTER database connection is ready
@@ -171,7 +208,8 @@ const startServer = async () => {
       console.log(`Server is running in ${process.env.NODE_ENV || 'production'} mode on port ${PORT}`);
     });
   } catch (err) {
-    console.error('CRITICAL STARTUP ERROR: MongoDB connection failed!', err);
+    console.error('CRITICAL STARTUP ERROR: MongoDB connection failed!');
+    console.error(err.stack || err);
     process.exit(1);
   }
 };
