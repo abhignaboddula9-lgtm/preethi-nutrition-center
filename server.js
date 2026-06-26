@@ -46,7 +46,16 @@ app.use(express.urlencoded({ extended: true }));
 const publicPath = path.join(__dirname, 'public');
 
 // Serve public folder (HTML pages, CSS, JS, images)
-app.use(express.static(publicPath));
+// HTML files get no-cache headers to prevent browser serving stale old pages
+app.use(express.static(publicPath, {
+  setHeaders: (res, filePath) => {
+    if (filePath.endsWith('.html')) {
+      res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate');
+      res.setHeader('Pragma', 'no-cache');
+      res.setHeader('Expires', '0');
+    }
+  }
+}));
 // Serve uploads folder
 app.use('/uploads', express.static(uploadsDir));
 
@@ -121,6 +130,11 @@ app.get('*', (req, res, next) => {
     return next();
   }
   
+  // No-cache headers for all HTML responses
+  res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate');
+  res.setHeader('Pragma', 'no-cache');
+  res.setHeader('Expires', '0');
+
   // Map clean URL to .html file in public/
   const cleanPath = req.path === '/' ? '/index.html' : req.path;
   let htmlPath = path.join(publicPath, cleanPath);
