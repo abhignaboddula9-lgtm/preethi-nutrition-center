@@ -5,12 +5,18 @@ require('dotenv').config({ path: path.join(__dirname, '../.env') });
 
 const User = require('../models/User');
 
-const MONGO_URI = process.env.MONGO_URI || 'mongodb://localhost:27017/preethi_nutrition';
+const MONGO_URI = process.env.MONGO_URI;
+if (!MONGO_URI) {
+  console.error('CRITICAL CONFIGURATION ERROR: MONGO_URI environment variable is not defined.');
+  process.exit(1);
+}
 
 async function seedAdmin() {
   try {
+    const connStrLog = MONGO_URI.replace(/mongodb(\+srv)?:\/\/([^@]+)@/, 'mongodb$1://***:***@');
+    console.log(`Connecting to MongoDB at: ${connStrLog}`);
     await mongoose.connect(MONGO_URI);
-    console.log('Connected to MongoDB for admin seeding...');
+    console.log('Connected to MongoDB successfully for admin seeding.');
 
     const adminEmail = (process.env.DEFAULT_ADMIN_EMAIL || 'admin@preethinutrition.com').toLowerCase();
     

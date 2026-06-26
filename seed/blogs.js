@@ -7,7 +7,11 @@ const Product = require('../models/Product');
 const SuccessStory = require('../models/SuccessStory');
 const About = require('../models/About');
 
-const MONGO_URI = process.env.MONGO_URI || 'mongodb://localhost:27017/preethi_nutrition';
+const MONGO_URI = process.env.MONGO_URI;
+if (!MONGO_URI) {
+  console.error('CRITICAL CONFIGURATION ERROR: MONGO_URI environment variable is not defined.');
+  process.exit(1);
+}
 
 const sampleBlogs = [
   {
@@ -88,8 +92,10 @@ const sampleAbout = {
 
 async function seedData() {
   try {
+    const connStrLog = MONGO_URI.replace(/mongodb(\+srv)?:\/\/([^@]+)@/, 'mongodb$1://***:***@');
+    console.log(`Connecting to MongoDB at: ${connStrLog}`);
     await mongoose.connect(MONGO_URI);
-    console.log('Connected to MongoDB for data seeding...');
+    console.log('Connected to MongoDB successfully for data seeding.');
 
     // Seed Blogs
     await Blog.deleteMany({});

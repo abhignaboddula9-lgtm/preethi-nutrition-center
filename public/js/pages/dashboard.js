@@ -1,6 +1,15 @@
-/* ==========================================
-   PREETHI NUTRITION CENTER - DASHBOARD JS
-   ========================================== */
+// Global fetch interceptor to handle session expiration (401/403)
+const originalFetch = window.fetch;
+window.fetch = async function (...args) {
+  const response = await originalFetch(...args);
+  if ((response.status === 401 || response.status === 403) && !args[0].includes('/api/auth/')) {
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    localStorage.removeItem('preethi_user_session');
+    window.location.href = '/login';
+  }
+  return response;
+};
 
 document.addEventListener('DOMContentLoaded', () => {
   verifyAuth();

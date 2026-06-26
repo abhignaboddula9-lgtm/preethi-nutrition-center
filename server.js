@@ -1,10 +1,10 @@
+require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const path = require('path');
 const fs = require('fs');
 const bcrypt = require('bcryptjs');
-require('dotenv').config();
 
 const app = express();
 const PORT = process.env.PORT || 5001;
@@ -26,18 +26,33 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Serve uploads folder specifically if needed
 app.use('/uploads', express.static(uploadsDir));
 
-// MongoDB Connection
-const MONGO_URI = process.env.MONGO_URI || 'mongodb://localhost:27017/preethi_nutrition';
+// MongoDB Connection Logic (Fail-fast in Production)
+const connectDB = async () => {
+  const mongoURI = process.env.MONGO_URI;
+  if (!mongoURI) {
+    console.error('CRITICAL CONFIGURATION ERROR: MONGO_URI environment variable is not defined.');
+    process.exit(1);
+  }
 
-mongoose
-  .connect(MONGO_URI)
-  .then(() => {
-    console.log('Connected to MongoDB successfully.');
-    seedAdmin();
-  })
-  .catch((err) => {
-    console.error('MongoDB connection error:', err);
-  });
+  try {
+    // Sanitize credentials out of connection string before logging
+    const connStrLog = mongoURI.replace(/mongodb(\+srv)?:\/\/([^@]+)@/, 'mongodb$1://***:***@');
+    console.log(`Connecting to MongoDB at: ${connStrLog}`);
+
+    await mongoose.connect(mongoURI);
+    
+    const dbConnection = mongoose.connection;
+    console.log(`Successfully connected to MongoDB database: "${dbConnection.name}" on host: "${dbConnection.host}"`);
+
+    // Run admin seeding on successful connection
+    await seedAdmin();
+  } catch (err) {
+    console.error('CRITICAL STARTUP ERROR: MongoDB connection failed!', err.message);
+    process.exit(1);
+  }
+};
+
+connectDB();
 
 // Admin Account Seeding function
 async function seedAdmin() {
