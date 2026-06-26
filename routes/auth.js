@@ -93,6 +93,11 @@ router.post('/login', async (req, res) => {
       return res.status(401).json({ success: false, message: 'Invalid credentials' });
     }
 
+    // Check if user is blocked
+    if (user.isBlocked) {
+      return res.status(403).json({ success: false, message: 'Your account has been blocked. Please contact counselor Preethi Ma\'am.' });
+    }
+
     // Verify Password
     const isMatch = await bcrypt.compare(loginPassword, user.password);
     if (!isMatch) {
@@ -145,6 +150,11 @@ router.post('/admin/login', async (req, res) => {
       return res.status(401).json({ success: false, message: 'Invalid credentials' });
     }
 
+    // Check if user is blocked
+    if (user.isBlocked) {
+      return res.status(403).json({ success: false, message: 'Your account has been blocked. Please contact counselor Preethi Ma\'am.' });
+    }
+
     // Verify role is admin
     if (user.role !== 'admin') {
       return res.status(403).json({ success: false, message: 'Access denied: Admin credentials required' });
@@ -188,6 +198,10 @@ router.post('/google', async (req, res) => {
 
     const emailLower = email.toLowerCase().trim();
     let user = await User.findOne({ email: emailLower });
+
+    if (user && user.isBlocked) {
+      return res.status(403).json({ success: false, message: 'Your account has been blocked. Please contact counselor Preethi Ma\'am.' });
+    }
 
     if (!user) {
       const isAdmin = emailLower === 'preethiherbalife@gmail.com' || emailLower === 'admin@preethinutrition.com';

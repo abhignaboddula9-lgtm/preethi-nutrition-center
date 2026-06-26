@@ -63,6 +63,9 @@
       <nav class="sidebar-nav" id="sidebarNav">
         <button class="nav-btn active" data-tab="overview"><i class="fa-solid fa-chart-line"></i> Overview</button>
         <button class="nav-btn" data-tab="about"><i class="fa-solid fa-sliders"></i> Site Config Manager</button>
+        <button class="nav-btn" data-tab="appointments"><i class="fa-solid fa-calendar-check"></i> Manage Appointments</button>
+        <button class="nav-btn" data-tab="users"><i class="fa-solid fa-users"></i> User Management</button>
+        <button class="nav-btn" data-tab="media"><i class="fa-solid fa-photo-film"></i> Media Library</button>
         <button class="nav-btn" data-tab="posts"><i class="fa-solid fa-square-rss"></i> Upload Feed Posts</button>
         <button class="nav-btn" data-tab="products"><i class="fa-solid fa-leaf"></i> Manage Products</button>
         <button class="nav-btn" data-tab="blogs"><i class="fa-solid fa-feather"></i> Manage Blogs</button>
@@ -126,6 +129,20 @@
               <div>
                 <h3 id="statQueriesCount">0</h3>
                 <p>Contact Queries</p>
+              </div>
+            </div>
+            <div class="stat-card" style="cursor: pointer;" onclick="document.querySelector('[data-tab=users]').click()">
+              <i class="fa-solid fa-users icon-users" style="background-color: rgba(59, 130, 246, 0.1); color: #3b82f6;"></i>
+              <div>
+                <h3 id="statUsersCount">0</h3>
+                <p>Total Users</p>
+              </div>
+            </div>
+            <div class="stat-card" style="cursor: pointer;" onclick="document.querySelector('[data-tab=appointments]').click()">
+              <i class="fa-solid fa-calendar-check icon-appointments" style="background-color: rgba(16, 185, 129, 0.1); color: #10b981;"></i>
+              <div>
+                <h3 id="statAppointmentsCount">0</h3>
+                <p>Total Appointments</p>
               </div>
             </div>
           </div>
@@ -222,7 +239,83 @@
           </form>
         </div>
 
-        <!-- 3. UPLOAD FEED POSTS PANEL -->
+        <!-- 3. MANAGE APPOINTMENTS PANEL -->
+        <div class="tab-panel" id="appointmentsPanel">
+          <div class="glass-panel">
+            <h3>Manage Appointments 📅</h3>
+            <p class="text-muted mb-20">View, schedule, approve, or cancel nutrition and workout appointments.</p>
+            
+            <div style="overflow-x: auto;">
+              <table class="queries-table" style="width: 100%; border-collapse: collapse; text-align: left;">
+                <thead>
+                  <tr style="border-bottom: 2px solid var(--border); padding-bottom: 10px;">
+                    <th style="padding: 12px;">Client Name</th>
+                    <th style="padding: 12px;">Email</th>
+                    <th style="padding: 12px;">Service</th>
+                    <th style="padding: 12px;">Date</th>
+                    <th style="padding: 12px;">Time</th>
+                    <th style="padding: 12px;">Consultant</th>
+                    <th style="padding: 12px;">Status</th>
+                    <th style="padding: 12px; text-align: right;">Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="appointmentsTableBody">
+                  <!-- Loaded dynamically by JS -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4. USER MANAGEMENT PANEL -->
+        <div class="tab-panel" id="usersPanel">
+          <div class="glass-panel">
+            <h3>User Management 👥</h3>
+            <p class="text-muted mb-20">Monitor registered user statistics, BMI parameters, and manage portal access.</p>
+            
+            <div style="overflow-x: auto;">
+              <table class="queries-table" style="width: 100%; border-collapse: collapse; text-align: left;">
+                <thead>
+                  <tr style="border-bottom: 2px solid var(--border); padding-bottom: 10px;">
+                    <th style="padding: 12px;">Name</th>
+                    <th style="padding: 12px;">Email</th>
+                    <th style="padding: 12px;">Phone</th>
+                    <th style="padding: 12px;">Height</th>
+                    <th style="padding: 12px;">Weight</th>
+                    <th style="padding: 12px;">BMI</th>
+                    <th style="padding: 12px;">Status</th>
+                    <th style="padding: 12px; text-align: right;">Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="usersTableBody">
+                  <!-- Loaded dynamically by JS -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- 5. MEDIA LIBRARY PANEL -->
+        <div class="tab-panel" id="mediaPanel">
+          <div class="glass-panel">
+            <h3>Media Library 📁</h3>
+            <p class="text-muted mb-20">View and manage uploaded images and videos or upload new assets directly.</p>
+            
+            <form id="mediaUploadForm" class="form-panel-layout" style="margin-bottom: 30px; padding: 20px; border: 1px dashed var(--border); border-radius: var(--radius-md);">
+              <div class="form-group" style="margin-bottom: 15px;">
+                <label for="mediaLibraryFile">Upload New Image/Video</label>
+                <input type="file" id="mediaLibraryFile" class="form-input" required accept="image/*,video/*">
+              </div>
+              <button type="submit" class="btn btn-gradient"><i class="fa-solid fa-cloud-arrow-up"></i> Upload to Gallery</button>
+            </form>
+            
+            <div class="media-grid" id="mediaLibraryGrid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 20px;">
+              <!-- Loaded dynamically by JS -->
+            </div>
+          </div>
+        </div>
+
+        <!-- 6. UPLOAD FEED POSTS PANEL -->
         <div class="tab-panel" id="postsPanel">
           <div class="panel-split-grid">
             
@@ -649,6 +742,39 @@
         <button type="button" id="btnRespondQuery" class="btn btn-gradient"><i class="fa-solid fa-check"></i> Mark as Responded</button>
         <button type="button" id="btnCloseQueryModal" class="btn btn-secondary">Close</button>
       </div>
+    </div>
+  </div>
+
+  <!-- Reschedule Appointment Modal Overlay -->
+  <div id="rescheduleModal" class="modal-overlay" style="display: none;">
+    <div class="modal-container glass-panel" style="max-width: 500px;">
+      <div class="modal-header">
+        <h3>Reschedule Appointment</h3>
+        <button type="button" id="closeRescheduleModalBtn" class="btn-close-modal"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <form id="rescheduleForm">
+        <input type="hidden" id="rescheduleApptId">
+        
+        <div class="form-group">
+          <label for="rescheduleDate">New Date</label>
+          <input type="date" id="rescheduleDate" class="form-input" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="rescheduleTime">New Time Slot</label>
+          <input type="text" id="rescheduleTime" class="form-input" required placeholder="e.g. 9:00 AM - 10:00 AM">
+        </div>
+        
+        <div class="form-group">
+          <label for="rescheduleConsultant">Consultant Name</label>
+          <input type="text" id="rescheduleConsultant" class="form-input" required placeholder="e.g. Preethi Ma'am">
+        </div>
+        
+        <div class="modal-actions">
+          <button type="button" id="cancelRescheduleModalBtn" class="btn btn-secondary">Cancel</button>
+          <button type="submit" class="btn btn-gradient">Save Schedule</button>
+        </div>
+      </form>
     </div>
   </div>
 

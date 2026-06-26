@@ -17,6 +17,9 @@ document.addEventListener('DOMContentLoaded', () => {
   initThemeToggle();
   initTabNavigation();
   initAboutTab();
+  initAppointmentsTab();
+  initUsersTab();
+  initMediaTab();
   initPostsTab();
   initProductsTab();
   initBlogsTab();
@@ -153,6 +156,9 @@ function initTabNavigation() {
       const btnMap = {
         overview: 'Overview Statistics',
         about: 'Edit About Content',
+        appointments: 'Manage Appointments',
+        users: 'User Management',
+        media: 'Media Library',
         posts: 'Upload Feed Posts',
         products: 'Manage Products catalog',
         blogs: 'Manage Wellness Blogs',
@@ -164,6 +170,9 @@ function initTabNavigation() {
 
     // Trigger reload lists if needed
     if (tabId === 'overview') loadDashboardStats();
+    if (tabId === 'appointments') loadAppointmentsList();
+    if (tabId === 'users') loadUsersList();
+    if (tabId === 'media') loadMediaList();
   }
 }
 
@@ -965,6 +974,26 @@ async function loadDashboardStats() {
     if (Array.isArray(queriesData) && queriesCount) {
       queriesCount.innerText = queriesData.length;
     }
+
+    // 6. Fetch Total Users
+    const usersCount = document.getElementById('statUsersCount');
+    if (usersCount) {
+      const usersRes = await fetch('/api/admin/clients', { headers: getHeaders() });
+      const usersData = await usersRes.json();
+      if (Array.isArray(usersData)) {
+        usersCount.innerText = usersData.length;
+      }
+    }
+
+    // 7. Fetch Total Appointments
+    const appointmentsCount = document.getElementById('statAppointmentsCount');
+    if (appointmentsCount) {
+      const apptsRes = await fetch('/api/admin/appointments', { headers: getHeaders() });
+      const apptsData = await apptsRes.json();
+      if (Array.isArray(apptsData)) {
+        appointmentsCount.innerText = apptsData.length;
+      }
+    }
   } catch (err) {
     console.error('Failed to load dashboard summary stats:', err);
   }
@@ -1159,4 +1188,319 @@ function initQueriesTab() {
       }
     }
   });
+}
+
+/* --- 11. Appointments Tab Controller --- */
+function initAppointmentsTab() {
+  const rescheduleForm = document.getElementById('rescheduleForm');
+  const rescheduleModal = document.getElementById('rescheduleModal');
+  const closeRescheduleModalBtn = document.getElementById('closeRescheduleModalBtn');
+  const cancelRescheduleModalBtn = document.getElementById('cancelRescheduleModalBtn');
+
+  if (rescheduleForm) {
+    rescheduleForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const id = document.getElementById('rescheduleApptId').value;
+      const date = document.getElementById('rescheduleDate').value;
+      const time = document.getElementById('rescheduleTime').value;
+      const consultant = document.getElementById('rescheduleConsultant').value;
+
+      try {
+        const response = await fetch(`/api/admin/appointments/${id}`, {
+          method: 'PUT',
+          headers: getHeaders(),
+          body: JSON.stringify({ date, time, consultant })
+        });
+        const data = await response.json();
+        if (data.success) {
+          showAlert('success', 'Appointment rescheduled successfully!');
+          rescheduleModal.style.display = 'none';
+          loadAppointmentsList();
+          loadDashboardStats();
+        } else {
+          showAlert('error', data.message || 'Reschedule failed.');
+        }
+      } catch (err) {
+        showAlert('error', 'Network error.');
+      }
+    });
+  }
+
+  const closeModal = () => { if (rescheduleModal) rescheduleModal.style.display = 'none'; };
+  if (closeRescheduleModalBtn) closeRescheduleModalBtn.addEventListener('click', closeModal);
+  if (cancelRescheduleModalBtn) cancelRescheduleModalBtn.addEventListener('click', closeModal);
+
+  // Expose status update and modal opening helper to global scope for button onclicks
+  window.updateApptStatus = async (id, status) => {
+    try {
+      const response = await fetch(`/api/admin/appointments/${id}`, {
+        method: 'PUT',
+        headers: getHeaders(),
+        body: JSON.stringify({ status })
+      });
+      const data = await response.json();
+      if (data.success) {
+        showAlert('success', `Appointment ${status.toLowerCase()} successfully!`);
+        loadAppointmentsList();
+        loadDashboardStats();
+      } else {
+        showAlert('error', data.message || 'Status update failed.');
+      }
+    } catch (err) {
+      showAlert('error', 'Network error.');
+    }
+  };
+
+  window.openReschedule = (id, currentDate, currentTime, currentConsultant) => {
+    document.getElementById('rescheduleApptId').value = id;
+    document.getElementById('rescheduleDate').value = currentDate || '';
+    document.getElementById('rescheduleTime').value = currentTime || '';
+    document.getElementById('rescheduleConsultant').value = currentConsultant || '';
+    rescheduleModal.style.display = 'flex';
+  };
+}
+
+async function loadAppointmentsList() {
+  const tableBody = document.getElementById('appointmentsTableBody');
+  if (!tableBody) return;
+
+  try {
+    const response = await fetch('/api/admin/appointments', { headers: getHeaders() });
+    const appts = await response.json();
+
+    tableBody.innerHTML = '';
+    if (Array.isArray(appts) && appts.length > 0) {
+      appts.forEach(appt => {
+        const tr = document.createElement('tr');
+        const statusClass = `status-${appt.status.toLowerCase()}`;
+        const actions = appt.status === 'Pending' ? `
+          <button class="btn btn-gradient" style="padding: 6px 12px; font-size: 12px; background: #10b981; border: none; color: white;" onclick="updateApptStatus('${appt._id}', 'Approved')"><i class="fa-solid fa-check"></i> Approve</button>
+          <button class="btn btn-secondary" style="padding: 6px 12px; font-size: 12px;" onclick="openReschedule('${appt._id}', '${appt.date}', '${appt.time}', '${appt.consultant}')"><i class="fa-solid fa-clock"></i> Reschedule</button>
+          <button class="btn" style="padding: 6px 12px; font-size: 12px; background: #ef4444; border: none; color: white;" onclick="updateApptStatus('${appt._id}', 'Cancelled')"><i class="fa-solid fa-xmark"></i> Cancel</button>
+        ` : '—';
+
+        tr.innerHTML = `
+          <td style="padding: 12px; font-weight: 600;">${appt.customerName}</td>
+          <td style="padding: 12px;">${appt.customerEmail}</td>
+          <td style="padding: 12px;">${appt.service}</td>
+          <td style="padding: 12px;">${appt.date}</td>
+          <td style="padding: 12px;">${appt.time}</td>
+          <td style="padding: 12px;">${appt.consultant}</td>
+          <td style="padding: 12px;"><span class="status-pill ${statusClass}">${appt.status}</span></td>
+          <td style="padding: 12px; text-align: right; display: flex; gap: 8px; justify-content: flex-end;">${actions}</td>
+        `;
+        tableBody.appendChild(tr);
+      });
+    } else {
+      tableBody.innerHTML = `<tr><td colspan="8" style="text-align: center; padding: 24px; color: var(--text-muted);">No appointments booked yet.</td></tr>`;
+    }
+  } catch (err) {
+    tableBody.innerHTML = `<tr><td colspan="8" style="text-align: center; padding: 24px; color: #ef4444;">Failed to load appointments list.</td></tr>`;
+  }
+}
+
+/* --- 12. User Management Tab Controller --- */
+function initUsersTab() {
+  window.toggleUserBlock = async (id, currentBlocked) => {
+    const action = currentBlocked ? 'unblock' : 'block';
+    if (confirm(`Are you sure you want to ${action} this client?`)) {
+      try {
+        const response = await fetch(`/api/admin/clients/${id}/${action}`, {
+          method: 'POST',
+          headers: getHeaders()
+        });
+        const data = await response.json();
+        if (data.success) {
+          showAlert('success', `User successfully ${action}ed!`);
+          loadUsersList();
+        } else {
+          showAlert('error', data.message || 'Operation failed.');
+        }
+      } catch (err) {
+        showAlert('error', 'Network error.');
+      }
+    }
+  };
+
+  window.deleteUser = async (id) => {
+    if (confirm('Are you sure you want to permanently delete this client? This action cannot be undone.')) {
+      try {
+        const response = await fetch(`/api/admin/clients/${id}`, {
+          method: 'DELETE',
+          headers: getHeaders()
+        });
+        const data = await response.json();
+        if (data.success) {
+          showAlert('success', 'User deleted successfully.');
+          loadUsersList();
+          loadDashboardStats();
+        } else {
+          showAlert('error', data.message || 'Delete failed.');
+        }
+      } catch (err) {
+        showAlert('error', 'Network error.');
+      }
+    }
+  };
+}
+
+async function loadUsersList() {
+  const tableBody = document.getElementById('usersTableBody');
+  if (!tableBody) return;
+
+  try {
+    const response = await fetch('/api/admin/clients', { headers: getHeaders() });
+    const users = await response.json();
+
+    tableBody.innerHTML = '';
+    if (Array.isArray(users) && users.length > 0) {
+      users.forEach(user => {
+        const tr = document.createElement('tr');
+        const heightM = user.height / 100;
+        const bmi = (user.height && user.weight) ? (user.weight / (heightM * heightM)).toFixed(1) : '—';
+        const isBlocked = user.isBlocked === true;
+        const statusBadge = isBlocked 
+          ? '<span class="status-pill status-cancelled">Blocked</span>'
+          : '<span class="status-pill status-approved">Active</span>';
+        
+        const blockBtnText = isBlocked ? '<i class="fa-solid fa-unlock"></i> Unblock' : '<i class="fa-solid fa-ban"></i> Block';
+        const blockBtnColor = isBlocked ? '#10b981' : '#f59e0b';
+
+        tr.innerHTML = `
+          <td style="padding: 12px; font-weight: 600;">${user.name}</td>
+          <td style="padding: 12px;">${user.email}</td>
+          <td style="padding: 12px;">${user.phone || '—'}</td>
+          <td style="padding: 12px;">${user.height ? user.height + ' cm' : '—'}</td>
+          <td style="padding: 12px;">${user.weight ? user.weight + ' kg' : '—'}</td>
+          <td style="padding: 12px; font-weight: bold;">${bmi}</td>
+          <td style="padding: 12px;">${statusBadge}</td>
+          <td style="padding: 12px; text-align: right; display: flex; gap: 8px; justify-content: flex-end;">
+            <button class="btn" style="padding: 6px 12px; font-size: 12px; background: ${blockBtnColor}; border: none; color: white;" onclick="toggleUserBlock('${user._id}', ${isBlocked})">${blockBtnText}</button>
+            <button class="btn" style="padding: 6px 12px; font-size: 12px; background: #ef4444; border: none; color: white;" onclick="deleteUser('${user._id}')"><i class="fa-solid fa-trash"></i> Delete</button>
+          </td>
+        `;
+        tableBody.appendChild(tr);
+      });
+    } else {
+      tableBody.innerHTML = `<tr><td colspan="8" style="text-align: center; padding: 24px; color: var(--text-muted);">No client users registered yet.</td></tr>`;
+    }
+  } catch (err) {
+    tableBody.innerHTML = `<tr><td colspan="8" style="text-align: center; padding: 24px; color: #ef4444;">Failed to load users list.</td></tr>`;
+  }
+}
+
+/* --- 13. Media Library Tab Controller --- */
+function initMediaTab() {
+  const mediaUploadForm = document.getElementById('mediaUploadForm');
+  if (mediaUploadForm) {
+    mediaUploadForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const fileInput = document.getElementById('mediaLibraryFile');
+      if (!fileInput.files[0]) return;
+
+      const formData = new FormData();
+      formData.append('mediaFile', fileInput.files[0]);
+
+      try {
+        const response = await fetch('/api/admin/media', {
+          method: 'POST',
+          headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` },
+          body: formData
+        });
+        const data = await response.json();
+        if (data.success) {
+          showAlert('success', 'Media file uploaded successfully!');
+          mediaUploadForm.reset();
+          loadMediaList();
+        } else {
+          showAlert('error', data.message || 'Upload failed.');
+        }
+      } catch (err) {
+        showAlert('error', 'Network error.');
+      }
+    });
+  }
+
+  window.deleteMediaFile = async (filename) => {
+    if (confirm(`Are you sure you want to delete the file "${filename}"?`)) {
+      try {
+        const response = await fetch(`/api/admin/media/${filename}`, {
+          method: 'DELETE',
+          headers: getHeaders()
+        });
+        const data = await response.json();
+        if (data.success) {
+          showAlert('success', 'File deleted successfully.');
+          loadMediaList();
+        } else {
+          showAlert('error', data.message || 'Delete failed.');
+        }
+      } catch (err) {
+        showAlert('error', 'Network error.');
+      }
+    }
+  };
+
+  window.copyMediaUrl = (url) => {
+    const fullUrl = window.location.origin + url;
+    navigator.clipboard.writeText(fullUrl).then(() => {
+      showAlert('success', 'Media URL copied to clipboard!');
+    }).catch(() => {
+      // Fallback
+      const el = document.createElement('textarea');
+      el.value = fullUrl;
+      document.body.appendChild(el);
+      el.select();
+      document.execCommand('copy');
+      document.body.removeChild(el);
+      showAlert('success', 'Media URL copied to clipboard!');
+    });
+  };
+}
+
+async function loadMediaList() {
+  const grid = document.getElementById('mediaLibraryGrid');
+  if (!grid) return;
+
+  try {
+    const response = await fetch('/api/admin/media', { headers: getHeaders() });
+    const mediaList = await response.json();
+
+    grid.innerHTML = '';
+    if (Array.isArray(mediaList) && mediaList.length > 0) {
+      mediaList.forEach(file => {
+        const card = document.createElement('div');
+        card.className = 'media-card';
+
+        const isVideo = file.name.match(/\.(mp4|mov|avi|webm)$/i);
+        let previewHtml = '';
+        if (isVideo) {
+          previewHtml = `<video src="${file.url}" muted preload="metadata"></video>`;
+        } else {
+          previewHtml = `<img src="${file.url}" alt="${file.name}">`;
+        }
+
+        const sizeMB = (file.size / (1024 * 1024)).toFixed(2);
+
+        card.innerHTML = `
+          <div class="media-preview-container">
+            ${previewHtml}
+          </div>
+          <div class="media-details">
+            <span class="media-name" title="${file.name}">${file.name}</span>
+            <span class="media-size">${sizeMB} MB</span>
+          </div>
+          <div class="media-actions">
+            <button class="btn btn-secondary" onclick="copyMediaUrl('${file.url}')"><i class="fa-solid fa-copy"></i> URL</button>
+            <button class="btn" style="background: #ef4444; border: none; color: white;" onclick="deleteMediaFile('${file.name}')"><i class="fa-solid fa-trash"></i> Delete</button>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    } else {
+      grid.innerHTML = '<p class="text-muted" style="grid-column: 1/-1; text-align: center; padding: 24px;">No media files uploaded yet.</p>';
+    }
+  } catch (err) {
+    grid.innerHTML = '<p style="grid-column: 1/-1; text-align: center; padding: 24px; color: #ef4444;">Failed to load media gallery.</p>';
+  }
 }

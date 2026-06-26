@@ -569,4 +569,199 @@ router.delete('/contacts/:id', async (req, res) => {
   }
 });
 
+/* ==========================================================================
+   7. POSTS MANAGEMENT (Fetch All for Admin)
+   ========================================================================== */
+
+// @desc    Get all Feed Posts (including unpublished/drafts)
+// @route   GET /api/admin/posts
+// @access  Private (Admin Only)
+router.get('/posts', async (req, res) => {
+  try {
+    const posts = await Post.find().sort({ createdAt: -1 });
+    res.status(200).json({ success: true, data: posts });
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message });
+  }
+});
+
+/* ==========================================================================
+   8. APPOINTMENTS MANAGEMENT (Admin Only)
+   ========================================================================== */
+
+// @desc    Get all appointments in the system
+// @route   GET /api/admin/appointments
+// @access  Private (Admin Only)
+router.get('/appointments', async (req, res) => {
+  try {
+    const Appointment = require('../models/Appointment');
+    const appts = await Appointment.find().sort({ date: -1, time: -1 });
+    res.json(appts);
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message });
+  }
+});
+
+// @desc    Update/Reschedule appointment
+// @route   PUT /api/admin/appointments/:id
+// @access  Private (Admin Only)
+router.put('/appointments/:id', async (req, res) => {
+  try {
+    const Appointment = require('../models/Appointment');
+    const { status, date, time, consultant } = req.body;
+    const appt = await Appointment.findById(req.params.id);
+    if (!appt) {
+      return res.status(404).json({ success: false, message: 'Appointment not found' });
+    }
+    if (status) appt.status = status;
+    if (date) appt.date = date;
+    if (time) appt.time = time;
+    if (consultant) appt.consultant = consultant;
+    await appt.save();
+    res.json({ success: true, data: appt });
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message });
+  }
+});
+
+/* ==========================================================================
+   9. CLIENT USER MANAGEMENT (Admin Only)
+   ========================================================================== */
+
+// @desc    Get all clients (customer users)
+// @route   GET /api/admin/clients
+// @access  Private (Admin Only)
+router.get('/clients', async (req, res) => {
+  try {
+    const User = require('../models/User');
+    const clients = await User.find({ role: 'customer' }).select('-password').sort({ createdAt: -1 });
+    res.json(clients);
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message });
+  }
+});
+
+// @desc    Delete a client
+// @route   DELETE /api/admin/clients/:id
+// @access  Private (Admin Only)
+router.delete('/clients/:id', async (req, res) => {
+  try {
+    const User = require('../models/User');
+    const user = await User.findById(req.params.id);
+    if (!user) {
+      return res.status(404).json({ success: false, message: 'Client not found' });
+    }
+    await user.deleteOne();
+    res.json({ success: true, message: 'Client deleted successfully' });
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message });
+  }
+});
+
+// @desc    Block a client
+// @route   POST /api/admin/clients/:id/block
+// @access  Private (Admin Only)
+router.post('/clients/:id/block', async (req, res) => {
+  try {
+    const User = require('../models/User');
+    const user = await User.findById(req.params.id);
+    if (!user) {
+      return res.status(404).json({ success: false, message: 'Client not found' });
+    }
+    user.isBlocked = true;
+    await user.save();
+    res.json({ success: true, message: 'Client blocked successfully', data: user });
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message });
+  }
+});
+
+// @desc    Unblock a client
+// @route   POST /api/admin/clients/:id/unblock
+// @access  Private (Admin Only)
+router.post('/clients/:id/unblock', async (req, res) => {
+  try {
+    const User = require('../models/User');
+    const user = await User.findById(req.params.id);
+    if (!user) {
+      return res.status(404).json({ success: false, message: 'Client not found' });
+    }
+    user.isBlocked = false;
+    await user.save();
+    res.json({ success: true, message: 'Client unblocked successfully', data: user });
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message });
+  }
+});
+
+/* ==========================================================================
+   10. MEDIA LIBRARY MANAGEMENT (Admin Only)
+   ========================================================================== */
+
+// @desc    List all media files
+// @route   GET /api/admin/media
+// @access  Private (Admin Only)
+router.get('/media', async (req, res) => {
+  try {
+    const uploadPath = path.join(__dirname, '..', 'public', 'uploads');
+    if (!fs.existsSync(uploadPath)) {
+      return res.json([]);
+    }
+    const files = fs.readdirSync(uploadPath);
+    const mediaList = files.map(file => {
+      const filePath = path.join(uploadPath, file);
+      const stats = fs.statSync(filePath);
+      return {
+        name: file,
+        url: `/uploads/${file}`,
+        size: stats.size,
+        createdAt: stats.mtime
+      };
+    });
+    // Sort newest first
+    mediaList.sort((a, b) => b.createdAt - a.createdAt);
+    res.json(mediaList);
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message });
+  }
+});
+
+// @desc    Upload media directly to library
+// @route   POST /api/admin/media
+// @access  Private (Admin Only)
+router.post('/media', upload.single('mediaFile'), async (req, res) => {
+  try {
+    if (!req.file) {
+      return res.status(400).json({ success: false, message: 'No file uploaded' });
+    }
+    res.status(201).json({
+      success: true,
+      data: {
+        name: req.file.filename,
+        url: `/uploads/${req.file.filename}`
+      }
+    });
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message });
+  }
+});
+
+// @desc    Delete a media file
+// @route   DELETE /api/admin/media/:filename
+// @access  Private (Admin Only)
+router.delete('/media/:filename', async (req, res) => {
+  try {
+    const filename = path.basename(req.params.filename); // prevent path traversal
+    const filePath = path.join(__dirname, '..', 'public', 'uploads', filename);
+    if (fs.existsSync(filePath)) {
+      fs.unlinkSync(filePath);
+      res.json({ success: true, message: 'Media file deleted successfully' });
+    } else {
+      res.status(404).json({ success: false, message: 'File not found' });
+    }
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message });
+  }
+});
+
 module.exports = router;
